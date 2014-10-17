@@ -28,22 +28,4 @@
 		{{ Form::close() }}
 		
 	</div>
-	<div>
-		@if(empty($posts))
-			<p>No posts availebel</p>
-		@else
-			<h1>Latest Posts</h1>
-			@foreach($posts as $post)
-				<div>
-					<h2>
-						{{$post->title}}
-					</h2>
-					<span>{{link_to("users/$post->userId", $post->username)}}</span>
-					<p>Votes:{{$post->votes}}</p>
-					{{link_to("$post->url", $post->url)}}
-
-				</div>
-			@endforeach
-		@endif
-	</div>
 @stop
