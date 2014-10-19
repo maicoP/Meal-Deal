@@ -17,8 +17,7 @@ class PostsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$allPosts = Post::getAllPosts();
-			return View::make('post.home',['posts' => $allPosts, 'postId' => null]);
+			return View::make('post.home');
 		}
 		else
 		{

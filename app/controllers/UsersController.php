@@ -26,7 +26,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.register');
+		return View::make('users.register',['regions' =>  Region::getAllRegions()]);
 	}
 
 
@@ -41,14 +41,14 @@ class UsersController extends \BaseController {
 		
 		if( $this->user->fill($input)->isValid("register"))
 		{
-			if(Input::hasFile('image'))
+			if(Input::hasFile('afbeelding'))
 			{
-				$filename = Input::file('image')->getClientOriginalName();
-				$image = Image::make(Input::file('image')->getRealPath())->heighten(100);
+				$filename = Input::file('afbeelding')->getClientOriginalName();
+				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
 				$image->crop(100,100);
 				$destenation = 'img/'.$filename;
 				$image->save($destenation);
-				$this->user->image = $filename;
+				$this->user->afbeelding= $filename;
 				$this->user->password = Hash::make($input['password']);
 				$this->user->save();
 
@@ -56,7 +56,7 @@ class UsersController extends \BaseController {
 			}
 			else
 			{
-				$this->user->image = 'no file';
+				$this->user->afbeelding = 'no file';
 				$this->user->password = Hash::make($input['password']);
 				$this->user->save();
 

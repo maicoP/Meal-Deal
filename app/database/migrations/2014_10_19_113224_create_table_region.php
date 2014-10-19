@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatedVotsColumInTablePosts extends Migration {
+class CreateTableRegion extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class CreatedVotsColumInTablePosts extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('posts', function(Blueprint $table)
+		Schema::create('regions', function(Blueprint $table)
 		{
-			$table->integer('votes')->default(0);
+			$table->increments('id');
+			$table->string('naam');
+			$table->timestamps();
 		});
 	}
 
@@ -25,10 +27,7 @@ class CreatedVotsColumInTablePosts extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('posts', function(Blueprint $table)
-		{
-			$table->dropColumn('votes');
-		});
+		Schema::drop('regions');
 	}
 
 }

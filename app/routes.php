@@ -13,8 +13,7 @@
 Route::get('logout','SessionsController@destroy');
 Route::get('/', function()
 {
-	$allPosts = Post::getAllPosts();
-	return View::make('home',['posts' => $allPosts]);
+	return View::make('home');
 });
 
 Route::get('posts/topPosts', 'PostsController@getTopPosts');

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTalbe extends Migration {
+class CreateTableSchools extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreateCommentsTalbe extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('comments', function(Blueprint $table)
+		Schema::create('schools', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('comment');
-			$table->integer('postId')->references('id')->on('posts');
-			$table->integer('userId')->references('id')->on('users');
+			$table->string('naam');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +27,7 @@ class CreateCommentsTalbe extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('comments');
+		Schema::drop('schools');
 	}
 
 }
