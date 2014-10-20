@@ -24,7 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'gemeente' => 'required',
 		'info' =>'required',
 		'password' => 'required|min:8',
-		'afbeelding' => 'image|max:500|mimes:jpg,jpeg,bmp,png,gif'
+		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'
 	];
 
 	public $errors;
@@ -57,9 +57,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->errors =$validation->messages();
 		return false;
 	}
-
-	public function getUserId()
+	public static function getRegionId($id)
 	{
-		return Auth::user()->id;
+		return DB::table('users')->select('regionId')->where('id','=',$id)->get();
 	}
 }

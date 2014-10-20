@@ -16,10 +16,10 @@ Route::get('/', function()
 	return View::make('home');
 });
 
-Route::get('posts/topPosts', 'PostsController@getTopPosts');
+Route::get('deals/getDealByRegion', 'DealsController@getDealByRegion');
 
 Route::resource('sessions','SessionsController');
 Route::resource('users','UsersController');
-Route::resource('posts','PostsController');
+Route::resource('deals','DealsController');
 Route::resource('comments','CommentsController');
 Route::resource('votes','VotesController');

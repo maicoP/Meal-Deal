@@ -41,6 +41,7 @@ class UsersController extends \BaseController {
 		
 		if( $this->user->fill($input)->isValid("register"))
 		{
+			$filename = 'nofile.png';
 			if(Input::hasFile('afbeelding'))
 			{
 				$filename = Input::file('afbeelding')->getClientOriginalName();
@@ -48,24 +49,12 @@ class UsersController extends \BaseController {
 				$image->crop(100,100);
 				$destenation = 'img/'.$filename;
 				$image->save($destenation);
+			}
 				$this->user->afbeelding= $filename;
 				$this->user->password = Hash::make($input['password']);
 				$this->user->save();
 
 				return Redirect::to('/');
-			}
-			else
-			{
-				$this->user->afbeelding = 'no file';
-				$this->user->password = Hash::make($input['password']);
-				$this->user->save();
-
-				return Redirect::to('/');
-			}
-			
-			
-			
-
 		}
 		else
 		{
@@ -87,15 +76,13 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$user = $this->user->whereid($id)->first();
-			$usersPosts = Post::getPostsFromUser($id);
-			return View::make('users.profile',['user' => $user,'posts' => $usersPosts]);
+			$user = $this->user->wherenaam($id)->first();
+			$usersDeals = Deal::getDealsFromUser($id);
+			return View::make('users.profile',['user' => $user,'deals' => $usersDeals]);
 		}
 		else
 		{
-			$user = $this->user->whereid($id)->first();
-			$usersPosts = Post::getPostsFromUser($id);
-			return View::make('profile',['user' => $user,'posts' => $usersPosts]);
+			return View::make('/');
 		}
 	}
 

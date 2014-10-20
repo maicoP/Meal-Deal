@@ -2,23 +2,35 @@
 
 @section('content')
 	<div>
-		<h1>Profile of {{$user->username}}</h1>
-		<img src="{{'/img/'.$user->image}}">
+		<h1>Profile of {{$user->naam}}</h1>
+		<img src="{{'/img/'.$user->afbeelding}}">
 		<p>{{$user->info}}</p>
-		<h2>Posts from {{$user->username}}</h2>
-		@foreach($posts as $post )
+		<p>Votes: {{$user->votes}}</p>
+		<p>Adres: {{$user->straatnaam." ".$user->huisnummer." ".$user->postcode." ".$user->gemeente}}
+		@if($user->postbus != "")
+		Postbus:{{$user->postbus}}
+		@endif</p>
+		<h2>Deals from {{$user->naam}}</h2>
+		@foreach($deals as $deal )
 			<div>
-					<h3>
-						{{link_to("posts/".$post->id,$post->title)}}
-					</h3>
-					<span>{{link_to("users/$post->userId", $post->username)}}</span>
-					<p>{{$post->created_at}} Votes:{{$post->votes}}</p>
-					<p>{{$post->info}}</p>
-					{{link_to("$post->url", $post->url)}}
-					{{Form::open(['route' => array('votes.store')]) }}
-					{{Form::hidden('postId',$post->id)}}
-					{{Form::submit('upVote')}}
-					{{Form::close() }}
+					<h2>
+						{{$deal->gerecht}}
+					</h2>
+					<div><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}"></div>
+					@if($deal->afhalen == 1)
+					<p>Ontvangst: Afhalen</p>
+					@else
+					<p>Ontvangst: Komen Eten.</p>
+					@endif
+					<p>Beschikbare Porties: {{$deal->porties}}</p>
+					<p>Datum: {{substr($deal->created_at, 0, 10);}}</p>
+					<p>Deal einde:{{$deal->dealeinde}}</p>
+					<p>Afhaaluur:{{$deal->afhaaluur}}</p>
+					@if($deal->beschikbaar == 1)
+					<p>Beschikbaar</p>
+					@else
+					<p>Niet meer Beschikbaar</p>
+					@endif
 
 				</div>
 		@endforeach

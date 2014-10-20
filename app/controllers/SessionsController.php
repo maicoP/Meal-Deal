@@ -45,7 +45,7 @@ class SessionsController extends \BaseController {
 			$credentials = array("email" => $input["email"],"password" => $input["password"]);
 			if(Auth::attempt($credentials))
 			{
-				return Redirect::route('posts.index');
+				return Redirect::route('deals.index');
 			}
 			return Redirect::to('/');
 		}
