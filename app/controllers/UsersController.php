@@ -53,12 +53,15 @@ class UsersController extends \BaseController {
 				$this->user->afbeelding= $filename;
 				$this->user->password = Hash::make($input['password']);
 				$this->user->save();
-
+				Mail::send('emails.name', array('username' => Input::get('username')), function($message)
+				{
+				 $message->to(Input::get('email'), Input::get('username'))->subject("Meal Deal registratie");
+				});
 				return Redirect::to('/');
 		}
 		else
 		{
-			return Redirect::back()->withInput()->withErrors($this->user->errors);
+			return Redirect::to('users/create')->withInput()->withErrors($this->user->errors);
 		}
 
 		
