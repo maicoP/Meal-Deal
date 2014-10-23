@@ -5,6 +5,6 @@
 	<title>succes</title>
 </head>
 <body>
-	<p>U Bent succesvol geregistreert lets start cooking.</p>
+	<p>U Bent succesvol geregistreert {{$naam}} lets start cooking.</p>
 </body>
 </html>

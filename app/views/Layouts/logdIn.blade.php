@@ -1,7 +1,7 @@
 <!doctype hmtl>
 <html>
 <head>
-	<title>Laravel Examen</title>
+	<title>Meal Deal</title>
 </head>
 <body>
 <body>
