@@ -1,14 +1,11 @@
 <!doctype hmtl>
 <html>
 <head>
-<<<<<<< HEAD
 	<title>Laravel Examen</title>
 	{{ HTML::style('css/style.css'); }}
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-=======
 	<title>Meal Deal</title>
->>>>>>> 81294777fbbcab2d1818c66a453becbf2a0edd79
 </head>
 <body>
 <!-- 	<div>
