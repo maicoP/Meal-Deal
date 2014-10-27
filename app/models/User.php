@@ -9,7 +9,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	protected $fillable =['naam','password','email','regionId','straatnaam','postcode','gemeente','postbus','info','afbeelding','coins','votes','badge','schoolId'];
+	protected $fillable =['naam','password','email','regionId','straatnaam','postcode','gemeente','huisnummer','postbus','info','afbeelding','coins','votes','badge','schoolId'];
 
 	public static $logInRules=[
 		'email' => 'required|email',
@@ -22,6 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'straatnaam' => 'required',
 		'postcode' => 'required',
 		'gemeente' => 'required',
+		'huisnummer' => 'required',
 		'info' =>'required',
 		'password' => 'required|min:8',
 		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'

@@ -42,7 +42,11 @@
             	{{ HTML::image('css/home/logo.png'); }}
             </div>
             <div id="wrapper">
-                <div id="login" class="animate form">
+                @if($errors->isEmpty())
+                    <div id="login" class="animate form" style="display: inline;">
+                @else
+                    <div id="login" class="animate form" style="display: none;">
+                @endif
                     {{ Form::open(['route' => 'sessions.store']) }}
                         <h1>Log in</h1> 
                         <p> 
@@ -66,57 +70,67 @@
 						</p>
                     {{ Form::close() }}
                 </div>
-
-                <div id="register" class="animate form">
+                @if($errors->isEmpty())
+                    <div id="register" class="animate form" style="display: none;">
+                @else
+                    <div id="register" class="animate form" style="display: inline;">
+                @endif
                     {{Form::open(['route' => 'users.store','files' => true]) }}
                         <h1>Registreer</h1> 
                         <p> 
-                      		{{Form::label('naam',' ', array('data-icon' => '&#xf007;'))}}
-							{{Form::text('naam','', array('placeholder' => 'Gebruikersnaam'))}}
+                            <span>{{ $errors->first('naam')}}</span>
+                            {{Form::label('naam',' ', array('data-icon' => '&#xf007;'))}}
+                            {{Form::text('naam','', array('placeholder' => 'Gebruikersnaam'))}}
                         </p>
                         <p> 
+                            <span>{{ $errors->first('email')}}</span>
                             {{Form::label('email',' ', array('data-icon' => '&#xf003;'))}}
-							{{Form::email('email','', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
+                            {{Form::email('email','', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
                         </p>
                         <p> 
-                     		{{Form::label('password',' ', array('data-icon' => '&#xf084;'))}}
-							{{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}	
+                            {{Form::label('password',' ', array('data-icon' => '&#xf084;'))}}
+                            {{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}    
                         </p>
                         <p> 
                             {{Form::label('regionId','Regio: ')}}
                             {{Form::select('regionId', $regions)}}  
                         </p>
                         <p> 
-            				{{Form::label('straatnaam',' ', array('data-icon' => '&#xf041;'))}}
-							{{Form::text('straatnaam','',array('placeholder' => 'Straatnaam','required' => 'required'))}}	
+                            {{Form::label('straatnaam',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::text('straatnaam','',array('placeholder' => 'Straatnaam','required' => 'required'))}}   
                         </p>
                         <p> 
-                           	{{Form::label('postcode',' ', array('data-icon' => '&#xf041;'))}}
-							{{Form::text('postcode','',array('placeholder' => 'Postcode','required' => 'required'))}}	
+                            {{Form::label('postcode',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::text('postcode','',array('placeholder' => 'Postcode','required' => 'required'))}}   
                         </p>
                         <p> 
-							{{Form::label('gemeente',' ', array('data-icon' => '&#xf041;'))}}
-							{{Form::text('gemeente','',array('placeholder' => 'Gemeente','required' => 'required'))}}		
+                            {{Form::label('gemeente',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::text('gemeente','',array('placeholder' => 'Gemeente','required' => 'required'))}}       
                         </p>
                         <p> 
-							{{Form::label('postbus',' ', array('data-icon' => '&#xf041;'))}}
-							{{Form::text('postbus','',array('placeholder' => 'Postbus','required' => 'required'))}}	
+                            {{Form::label('huisnummer',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::text('huisnummer','',array('placeholder' => 'Huisnummer','required' => 'required'))}}       
+                        </p>
+                        <p> 
+                            {{Form::label('postbus',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::text('postbus','',array('placeholder' => 'Postbus'))}}  
                         </p>
                         <p class="textarea"> 
-							{{Form::label('info',' ', array('data-icon' => '&#xf05a;'))}}
-							{{Form::textarea('info','',array('placeholder' => 'Informatie','required' => 'required','rows' => '4'))}}		
+                            {{Form::label('info',' ', array('data-icon' => '&#xf05a;'))}}
+                            {{Form::textarea('info','',array('placeholder' => 'Informatie','required' => 'required','rows' => '4','image' => 'image', 'max' => '1000', 'mimes' => 'jpg,jpeg,bmp,png,gif'))}}        
                         </p>
                         <p> 
-							{{Form::label('afbeelding',' ',array('data-icon' => '&#xf030;'))}}
-							{{Form::file('afbeelding','',array('placeholder' => 'Avatar'))}}	
+                            <span>{{ $errors->first('afbeelding')}}</span>
+                            {{Form::label('afbeelding',' ',array('data-icon' => '&#xf030;'))}}
+                            {{Form::file('afbeelding','',array('placeholder' => 'Avatar'))}}    
                         </p>                                                                                              
                         <p class="signin button"> 
-							<input type="submit" class="inloggen" value="Registreren"/> 
-						</p>
+                            <input type="submit" class="inloggen" value="Registreren"/> 
+                        </p>
                         <p class="change_link">  
-							Al wel lid?
-							<a href="#" class="to_login">Log in</a>
-						</p>
+                            Al wel lid?
+                            <a href="#" class="to_login">Log in</a>
+                        </p>
                     {{Form::close() }}
                 </div>
             </div>

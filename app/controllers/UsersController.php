@@ -62,7 +62,7 @@ class UsersController extends \BaseController {
 		}
 		else
 		{
-			return Redirect::to('users/create')->withInput()->withErrors($this->user->errors);
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
 		}
 
 		
