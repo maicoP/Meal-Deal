@@ -83,7 +83,8 @@
 							{{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}	
                         </p>
                         <p> 
-
+                            {{Form::label('regionId','Regio: ')}}
+                            {{Form::select('regionId', $regions)}}  
                         </p>
                         <p> 
             				{{Form::label('straatnaam',' ', array('data-icon' => '&#xf041;'))}}

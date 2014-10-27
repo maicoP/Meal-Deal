@@ -13,7 +13,8 @@
 Route::get('logout','SessionsController@destroy');
 Route::get('/', function()
 {
-	return View::make('home');
+	
+	return View::make('home',['regions' =>  Region::getAllRegions()]);
 });
 
 Route::get('deals/getDealByRegion', 'DealsController@getDealByRegion');
