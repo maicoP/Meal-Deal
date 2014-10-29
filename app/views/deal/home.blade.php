@@ -3,9 +3,32 @@
 @section('content')
 	<div>
 		<h1>Home</h1>
-		{{Form::open(['url' => 'deals/getDealByRegion']) }}
-		{{Form::select('regionId',$regions,$usersRegion)}}
-		{{Form::submit('zoek')}}	
+		{{Form::open(['route' => 'deals.index','method'=> 'get']) }}
+		<select name='regionId' onchange="this.form.submit()">
+			@foreach($regions as $key => $value)
+				@if($key == $selectedRegion)
+					<option value="{{$key}}" selected="selected">{{$value}}</option>
+				@else
+					<option value="{{$key}}">{{$value}}</option>
+				@endif
+		    @endforeach
+		</select>
+		<select name='afhalen' onchange="this.form.submit()">
+				@if($selectedAfhaalMethode == 1)
+					<option value="2">select</option>
+					<option value="1" selected="selected">Afhalen</option>
+					<option value="0">Komen Eten</option>
+				@elseif($selectedAfhaalMethode == 0)
+					<option value="2">select</option>
+					<option value="1">Afhalen</option>
+					<option value="0" selected="selected">Komen Eten</option>
+				@else
+					<option value="2" selected="selected">select</option>
+					<option value="1">Afhalen</option>
+					<option value="0">Komen Eten</option>
+				@endif
+					
+		</select>
 		{{Form::close() }}
 		
 		@if(empty($deals))

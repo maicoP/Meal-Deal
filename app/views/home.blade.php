@@ -49,13 +49,16 @@
                 @endif
                     {{ Form::open(['route' => 'sessions.store']) }}
                         <h1>Log in</h1> 
+                        @if(Session::get('err') !== null)
+                        <span>{{ Session::get('err') }}</span>
+                        @endif
                         <p> 
                             {{Form::label('email', ' ', array('data-icon' => '&#xf003;'))}}
-							{{Form::email('email','', array('placeholder' => 'Email'))}}
+							{{Form::email('email','', array('placeholder' => 'Email','required' => 'required'))}}
                         </p>
                         <p> 
 							{{Form::label('password',' ', array('data-icon' => '&#xf084;'))}} 
-							{{ Form::password('password', ['placeholder' => 'Paswoord']) }}                   
+							{{ Form::password('password', ['placeholder' => 'Paswoord','type' => 'password','required']) }}                   
 
                         </p>
                         <p class="login button"> 

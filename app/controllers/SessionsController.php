@@ -47,7 +47,7 @@ class SessionsController extends \BaseController {
 			{
 				return Redirect::route('deals.index');
 			}
-			return Redirect::to('/');
+			return Redirect::to('/')->with('err','Verkeerde gebruikersnaam of paswoord');
 		}
 		else
 		{
