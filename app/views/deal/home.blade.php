@@ -3,7 +3,7 @@
 @section('content')
 	<div>
 		<h1>Home</h1>
-		{{Form::open(['route' => 'deals.index','method'=> 'get']) }}
+		{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<select name='regionId' onchange="this.form.submit()">
 			@foreach($regions as $key => $value)
 				@if($key == $selectedRegion)
@@ -15,15 +15,15 @@
 		</select>
 		<select name='afhalen' onchange="this.form.submit()">
 				@if($selectedAfhaalMethode == 1)
-					<option value="2">select</option>
+					<option value="2">Alle</option>
 					<option value="1" selected="selected">Afhalen</option>
 					<option value="0">Komen Eten</option>
 				@elseif($selectedAfhaalMethode == 0)
-					<option value="2">select</option>
+					<option value="2">Alle</option>
 					<option value="1">Afhalen</option>
 					<option value="0" selected="selected">Komen Eten</option>
 				@else
-					<option value="2" selected="selected">select</option>
+					<option value="2" selected="selected">Alle</option>
 					<option value="1">Afhalen</option>
 					<option value="0">Komen Eten</option>
 				@endif

@@ -17,28 +17,9 @@ class DealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			if(Input::get('regionId') !== null)
-			{
-				$regionId = Input::get('regionId');
-			}
-			else
-			{
-				$regionId = User::getRegionId(Auth::Id());
-				$regionId = $regionId[0]->regionId;
-			}
-			$deals =  Deal::getDealByRegion($regionId);
-			$methode = 2;
-			if(Input::get('afhalen') !== null)
-			{
-				if(Input::get('afhalen') !== "2")
-				{
-					$deals = Deal::getDealByAfhaalMethode(Input::get('afhalen'),$regionId);
-					$methode = Input::get('afhalen');
-				}
-
-			}
-			
-			return View::make('deal.home',['deals' => $deals,'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => $methode]);
+			$regionId = User::getRegionId(Auth::Id());
+			$regionId = $regionId[0]->regionId;		
+			return View::make('deal.home',['deals' => Deal::getDealByRegion($regionId),'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => 2]);
 		}
 		else
 		{
@@ -151,9 +132,31 @@ class DealsController extends \BaseController {
 		//
 	}
 
-	public function afhaalMethode()
+	public function filter()
 	{
-		return View::make('deal.home',['deals' => Deal::getDealByAfhaalMethode(Input::get('afhalen'),Input::get('regionId')),'regions' => Region::getAllRegions(), 'selectedRegion' => Input::get('regionId')]);
+		if(Auth::check())
+		{
+
+			$regionId = Input::get('regionId');
+			
+			$deals =  Deal::getDealByRegion($regionId);
+			$methode = 2;
+			if(Input::get('afhalen') !== null)
+			{
+				if(Input::get('afhalen') !== "2")
+				{
+					$deals = Deal::getDealByAfhaalMethode(Input::get('afhalen'),$regionId);
+					$methode = Input::get('afhalen');
+				}
+
+			}
+			
+			return View::make('deal.home',['deals' => $deals,'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => $methode]);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 }

@@ -17,7 +17,7 @@ Route::get('/', function()
 	return View::make('home',['regions' =>  Region::getAllRegions()]);
 });
 
-Route::get('deals/afhaalMethode', 'DealsController@afhaalMethode');
+Route::post('deals/filter', 'DealsController@filter');
 
 Route::resource('sessions','SessionsController');
 Route::resource('users','UsersController');
