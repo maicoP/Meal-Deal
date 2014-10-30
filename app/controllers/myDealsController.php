@@ -1,21 +1,32 @@
 <?php
 
-class SessionsController extends \BaseController {
+class myDealsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-
-	public function __construct(User $user)
+	public function __construct(Deal $deal,Portie $portie)
 	{
-		$this->user = $user;
+		$this->deal = $deal;
+		$this->portie = $portie;
 	}
 
 	public function index()
 	{
-		//
+		if(Auth::check())
+		{
+			$beschikbaar = $this->deal->getMyDealsBeschikbaar();
+			$verkopen= $this->deal->getMyDealsVerkopen();
+			$kopen= $this->deal->getMyDealsKopen();
+			return View::make('deal.mydeals',['dealsBeschikbaar' => $beschikbaar,'dealsVerkopen' => $verkopen,'dealsKopen' => $kopen]);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+		
 	}
 
 
@@ -37,23 +48,16 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-
-
-		if( $this->user->fill($input)->isValid("login"))
+		if(Auth::check())
 		{
-			$credentials = array("email" => $input["email"],"password" => $input["password"]);
-			if(Auth::attempt($credentials))
-			{
-				return Redirect::route('deals.index');
-			}
-			return Redirect::to('/')->with('err','Verkeerde gebruikersnaam of paswoord')->withInput();
+			$this->portie->aanvraagPortie(Input::get('dealId'));
+			return Redirect::to('mydeals');
 		}
 		else
 		{
-			return Redirect::back()->withInput()->withErrors($this->user->errors);
+			return Redirect::to('/');
 		}
-
+		
 	}
 
 
@@ -77,7 +81,16 @@ class SessionsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		if(Auth::check())
+		{
+			$this->portie->acceptPortie($id);
+			return Redirect::back();
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+		
 	}
 
 
@@ -99,10 +112,9 @@ class SessionsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy()
+	public function destroy($id)
 	{
-		Auth::logout();
-		return Redirect::to('/');
+		//
 	}
 
 

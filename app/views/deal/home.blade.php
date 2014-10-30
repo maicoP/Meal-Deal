@@ -56,6 +56,10 @@
 					<p>Beschikbare Porties: {{$deal->porties}}</p>
 					<p>Deal einde:{{$deal->dealeinde}}</p>
 					<p>Afhaaluur:{{$deal->afhaaluur}}</p>
+					{{Form::open(['route' => 'mydeals.store'])}}
+					{{Form::hidden('dealId',$deal->id)}}
+					{{Form::submit('Deal')}}
+					{{Form::close()}}
 
 				</div>
 			@endforeach

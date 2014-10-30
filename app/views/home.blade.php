@@ -58,7 +58,7 @@
                         </p>
                         <p> 
 							{{Form::label('password',' ', array('data-icon' => '&#xf084;'))}} 
-							{{ Form::password('password', ['placeholder' => 'Paswoord','type' => 'password','required']) }}                   
+							{{ Form::password('password', ['placeholder' => 'Paswoord','type' => 'password','required','min' => '8']) }}                   
 
                         </p>
                         <p class="login button"> 

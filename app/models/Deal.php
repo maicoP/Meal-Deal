@@ -25,11 +25,40 @@ class Deal extends Eloquent{
 		return false;
 	}
 
-	public static function getDeals()
+	public function getMyDealsBeschikbaar()
 	{
-		return DB::table('deals')
-						->join('users','users.id', '=','deals.verkoperId')
-						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
+		return DB::table('porties')
+						->join('deals','deals.id', '=','porties.dealId')
+						->select('deals.*','porties.*')
+						->where('porties.verkoperId','=',Auth::id())
+						->where('status','=','beschikbaar')
+						->orderBy('deals.created_at','DESC')
+						->get();
+	}
+	public function getMyDealsVerkopen()
+	{
+		return DB::table('porties')
+						->join('deals','deals.id', '=','porties.dealId')
+						->join('users','users.id','=','porties.koperId')
+						->select('deals.*','porties.*','users.naam','users.afbeelding')
+						->where('status','=','aangevraagt')
+						->where('porties.verkoperId','=',Auth::id())
+						->orWhere('status', 'geaccepteert')
+						->where('porties.verkoperId','=',Auth::id())
+						->orderBy('deals.created_at','DESC')
+						->get();
+	}
+
+	public function getMyDealsKopen()
+	{
+		return DB::table('porties')
+						->join('deals','deals.id', '=','porties.dealId')
+						->join('users','users.id','=','porties.verkoperId')
+						->select('deals.*','porties.*','users.naam','users.afbeelding')
+						->where('status','=','aangevraagt')
+						->where('porties.koperId','=',Auth::id())
+						->orWhere('status', 'geaccepteert')
+						->where('porties.koperId','=',Auth::id())
 						->orderBy('deals.created_at','DESC')
 						->get();
 	}
@@ -50,6 +79,7 @@ class Deal extends Eloquent{
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
+						->where('beschikbaar','=',true)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->get();
@@ -62,6 +92,7 @@ class Deal extends Eloquent{
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
 						->where('deals.afhalen','=',$afhalen)
+						->where('beschikbaar','=',true)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->get();

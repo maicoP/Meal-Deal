@@ -22,5 +22,6 @@ Route::post('deals/filter', 'DealsController@filter');
 Route::resource('sessions','SessionsController');
 Route::resource('users','UsersController');
 Route::resource('deals','DealsController');
+Route::resource('mydeals','myDealsController');
 Route::resource('comments','CommentsController');
 Route::resource('votes','VotesController');

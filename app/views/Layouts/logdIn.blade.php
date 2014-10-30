@@ -10,7 +10,8 @@
 	</div>
 	<div>
 		{{link_to("deals", "Home")}}
-		{{link_to("deals/create", "Deal plaatsen")}}
+		{{link_to("deals/create", "Deal Plaatsen")}}
+		{{link_to("mydeals", "Mijn Deals")}}
 	</div>
 	@yield('content')
 </body>
