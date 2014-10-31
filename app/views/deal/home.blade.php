@@ -3,6 +3,11 @@
 @section('content')
 	<div>
 		<h1>Home</h1>
+		<div>
+			<h3>Welcome {{Auth::user()->naam}}</h3>
+			<img src="{{'/img/'.Auth::user()->afbeelding}}">
+			<p>Aantal Coins :{{Auth::user()->coins}}</p>
+		</div>
 		{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<select name='regionId' onchange="this.form.submit()">
 			@foreach($regions as $key => $value)

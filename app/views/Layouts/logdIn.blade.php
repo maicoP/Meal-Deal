@@ -12,6 +12,7 @@
 		{{link_to("deals", "Home")}}
 		{{link_to("deals/create", "Deal Plaatsen")}}
 		{{link_to("mydeals", "Mijn Deals")}}
+		{{link_to("users/instellingen", "Instellingen")}}
 	</div>
 	@yield('content')
 </body>

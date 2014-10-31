@@ -44,7 +44,7 @@ class UsersController extends \BaseController {
 			$filename = 'nofile.png';
 			if(Input::hasFile('afbeelding'))
 			{
-				$filename = Input::file('afbeelding')->getClientOriginalName();
+				$filename = Input::get('naam').".png";
 				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
 				$image->crop(100,100);
 				$destenation = 'img/'.$filename;
@@ -124,6 +124,18 @@ class UsersController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function instellingen()
+	{
+		$userData = $this->user->getUserData();
+		return View::make('users.instellingen',['userData'=> $userData[0]]);
+	}
+
+	public function profielWijzigen()
+	{
+		$userData = $this->user->getUserData();
+		return View::make('users.profielWijzigen',['userData'=> $userData[0]]);
 	}
 
 

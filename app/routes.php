@@ -18,6 +18,8 @@ Route::get('/', function()
 });
 
 Route::post('deals/filter', 'DealsController@filter');
+Route::get('users/instellingen', 'UsersController@instellingen');
+Route::get('users/Wijzigen', 'UsersController@profielWijzigen');
 
 Route::resource('sessions','SessionsController');
 Route::resource('users','UsersController');

@@ -62,4 +62,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return DB::table('users')->select('regionId')->where('id','=',$id)->get();
 	}
+
+	public function getUserData()
+	{
+		return DB::table('users')->join('regions','regions.id','=','users.regionId')
+								->select('users.*','regions.naamRegio')
+								->where('users.id','=',Auth::id())
+								->get();
+	}
 }
