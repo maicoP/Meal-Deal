@@ -2,16 +2,16 @@
 
 @section('content')
 	<div>
-		<h1>Profile of {{$user->naam}}</h1>
-		<img src="{{'/img/'.$user->afbeelding}}">
-		<p>{{$user->info}}</p>
-		<p>Votes: {{$user->votes}}</p>
-		<p>Adres: {{$user->straatnaam." ".$user->huisnummer." ".$user->postcode." ".$user->gemeente}}
-		@if($user->postbus != "")
-		Postbus:{{$user->postbus}}
+		<h1>Profile of {{$userData->naam}}</h1>
+		<img src="{{'/img/'.$userData->afbeelding}}">
+		<p>{{$userData->info}}</p>
+		<p>Votes: {{$userData->votes}}</p>
+		<p>Adres: {{$userData->straatnaam." ".$userData->huisnummer." ".$userData->postcode." ".$userData->gemeente}}
+		@if($userData->postbus != "")
+		Postbus:{{$userData->postbus}}
 		@endif</p>
-		<h2>Deals from {{$user->naam}}</h2>
-		@foreach($deals as $deal )
+		<h2>Deals from {{$userData->naam}}</h2>
+		@foreach($userData->deal as $deal )
 			<div>
 					<h2>
 						{{$deal->gerecht}}

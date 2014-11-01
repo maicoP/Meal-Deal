@@ -11,22 +11,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $fillable =['naam','password','email','regionId','straatnaam','postcode','gemeente','huisnummer','postbus','info','afbeelding','coins','votes','badge','schoolId'];
 
-	public static $logInRules=[
-		'email' => 'required|email',
-		'password' => 'required'
-	];
 
 	public static $registerRules=[
-		'naam' => 'required|unique:users,naam',
-		'email' => 'required|email|unique:users,email',
-		'straatnaam' => 'required',
-		'postcode' => 'required',
-		'gemeente' => 'required',
-		'huisnummer' => 'required',
-		'info' =>'required',
-		'password' => 'required|min:8',
+		'naam' => 'unique:users,naam',
+		'email' => 'unique:users,email',
+		'password' => 'min:8',
 		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'
 	];
+
+	public static $editRules=[
+		'email' => 'email|unique:users,email',
+		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'
+	];
+	public static $editRulesNoEmail=[
+		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'
+	];
+	
 
 	public $errors;
 	/**
@@ -42,16 +42,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-
+	public function deal()
+	{
+		return $this->hasMany('Deal','verkoperId');
+	}
+	public function region()
+	{
+		return $this->belongsTo('region','regionId');
+	}
 	public function isValid($rules)
 	{	
-		if($rules == "login")
+		if($rules == "register")
 		{
-			$validation =Validator::make($this->attributes,static::$logInRules);
-		}
-		elseif ($rules == "register") {
 			$validation =Validator::make($this->attributes,static::$registerRules);
 		}
+		elseif($rules == "edit")
+		{
+			$validation =Validator::make($this->attributes,static::$editRules);
+		}
+		elseif($rules == "editNoEmail")
+		{
+			$validation =Validator::make($this->attributes,static::$editRulesNoEmail);
+		}
+
+		
 
 		if($validation->passes()) return true;
 		
@@ -65,9 +79,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function getUserData()
 	{
-		return DB::table('users')->join('regions','regions.id','=','users.regionId')
-								->select('users.*','regions.naamRegio')
-								->where('users.id','=',Auth::id())
+		return User::with('region')->where('users.id','=',Auth::id())
 								->get();
 	}
 }

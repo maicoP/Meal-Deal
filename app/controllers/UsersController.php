@@ -80,9 +80,8 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$user = $this->user->wherenaam($id)->first();
-			$usersDeals = Deal::getDealsFromUser($id);
-			return View::make('users.profile',['user' => $user,'deals' => $usersDeals]);
+			$userData = Deal::getDealsFromUser($id);
+			return View::make('users.profile',['userData' => $userData[0]]);
 		}
 		else
 		{
@@ -99,7 +98,8 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$userData = $this->user->getUserData();
+		return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'userData'=> $userData[0]]);
 	}
 
 
@@ -111,7 +111,34 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$input = Input::all();
+		$this->user = User::find($id);
+		if(Auth::user()->email == Input::get('email'))
+		{
+			$rules = "editNoEmail";
+		}
+		else{
+			$rules = "edit";
+		}
+		if( $this->user->fill($input)->isValid($rules))
+		{
+			if(Input::hasFile('afbeelding'))
+			{
+				$filename = Auth::user()->naam.".png";
+				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
+				$image->crop(100,100);
+				$destenation = 'img/'.$filename;
+				$this->user->afbeelding = $filename;
+				$image->save($destenation);
+			}
+				$this->user->afbeelding = Auth::user()->afbeelding;
+				$this->user->save();
+				return Redirect::to('users/instellingen');
+		}
+		else
+		{
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
+		}
 	}
 
 
@@ -132,10 +159,45 @@ class UsersController extends \BaseController {
 		return View::make('users.instellingen',['userData'=> $userData[0]]);
 	}
 
-	public function profielWijzigen()
+	public function MakePasswordForm()
 	{
-		$userData = $this->user->getUserData();
-		return View::make('users.profielWijzigen',['userData'=> $userData[0]]);
+		if(Auth::check())
+		{
+			return View::make('users.changePassword');
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+	}
+
+	public function savePassword()
+	{
+		$input = Input::all();
+		$validation =Validator::make(Input::all(),array(
+			'password' => 'min:8',
+			'newpassword' => 'min:8'));
+		if( $validation->passes())
+		{
+			$user = User::find(Auth::id());
+			$password = Input::get('password');
+			$newpassword = Input::get('newpassword');
+			$oldPassword = Auth::user()->password;
+			if(Hash::check($password,$oldPassword))
+			{
+				$user->password = Hash::make($newpassword);
+				$user->save();
+				return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password has been changed']);
+			}
+			else
+			{
+				return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password could not be changed']);
+			}
+		}	
+		else
+		{
+			return Redirect::back()->withInput()->withErrors($validation->messages())->with('errorsPrecent', true);
+		}
 	}
 
 

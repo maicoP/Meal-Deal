@@ -2,6 +2,10 @@
 
 class Region extends Eloquent{
 
+	public function user()
+	{
+		return $this->hasMany('User','regionId');
+	}
 	public static function getAllRegions()
 	{
 		$results = DB::table('regions')->select('naamRegio','id')->orderBy('naamRegio','asc')->get();

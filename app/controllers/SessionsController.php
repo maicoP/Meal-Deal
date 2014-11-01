@@ -39,20 +39,13 @@ class SessionsController extends \BaseController {
 	{
 		$input = Input::all();
 
+		$credentials = array("email" => $input["email"],"password" => $input["password"]);
+		if(Auth::attempt($credentials))
+		{
+			return Redirect::route('deals.index');
+		}
+		return Redirect::to('/')->with('err','Verkeerde gebruikersnaam of paswoord')->withInput();
 
-		if( $this->user->fill($input)->isValid("login"))
-		{
-			$credentials = array("email" => $input["email"],"password" => $input["password"]);
-			if(Auth::attempt($credentials))
-			{
-				return Redirect::route('deals.index');
-			}
-			return Redirect::to('/')->with('err','Verkeerde gebruikersnaam of paswoord')->withInput();
-		}
-		else
-		{
-			return Redirect::back()->withInput()->withErrors($this->user->errors);
-		}
 
 	}
 

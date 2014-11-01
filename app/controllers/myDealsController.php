@@ -18,7 +18,7 @@ class myDealsController extends \BaseController {
 		if(Auth::check())
 		{
 			$beschikbaar = $this->deal->getMyDealsBeschikbaar();
-			$verkopen= $this->deal->getMyDealsVerkopen();
+			$verkopen= $this->deal->getMyDealsVerkopen();;
 			$kopen= $this->deal->getMyDealsKopen();
 			return View::make('deal.mydeals',['dealsBeschikbaar' => $beschikbaar,'dealsVerkopen' => $verkopen,'dealsKopen' => $kopen]);
 		}

@@ -19,7 +19,9 @@ Route::get('/', function()
 
 Route::post('deals/filter', 'DealsController@filter');
 Route::get('users/instellingen', 'UsersController@instellingen');
-Route::get('users/Wijzigen', 'UsersController@profielWijzigen');
+Route::get('user/editPassword','UsersController@MakePasswordForm');
+Route::post('user/savePassword','UsersController@savePassword');
+
 
 Route::resource('sessions','SessionsController');
 Route::resource('users','UsersController');

@@ -14,6 +14,15 @@ class Deal extends Eloquent{
 	];
 
 	public $errors;
+	public function porties()
+	{
+		 return $this->hasMany('Portie','dealId');
+	}
+
+	public function user()
+	{
+		 return $this->belongsTo('User','verkoperId');
+	}
 
 	public function isValid()
 	{
@@ -27,49 +36,46 @@ class Deal extends Eloquent{
 
 	public function getMyDealsBeschikbaar()
 	{
-		return DB::table('porties')
-						->join('deals','deals.id', '=','porties.dealId')
-						->select('deals.*','porties.*')
-						->where('porties.verkoperId','=',Auth::id())
+		// return DB::table('porties')
+		// 				->join('deals','deals.id', '=','porties.dealId')
+		// 				->select('deals.*','porties.*')
+		// 				->where('porties.verkoperId','=',Auth::id())
+		// 				->where('status','=','beschikbaar')
+		// 				->orderBy('deals.created_at','DESC')
+		// 				->get();
+		return Portie::with(array('deal'=>  function($q){
+						$q->orderBy('created_at','DESC');
+						}))->where('verkoperId','=',Auth::id())
 						->where('status','=','beschikbaar')
-						->orderBy('deals.created_at','DESC')
 						->get();
 	}
 	public function getMyDealsVerkopen()
 	{
-		return DB::table('porties')
-						->join('deals','deals.id', '=','porties.dealId')
-						->join('users','users.id','=','porties.koperId')
-						->select('deals.*','porties.*','users.naam','users.afbeelding')
-						->where('status','=','aangevraagt')
-						->where('porties.verkoperId','=',Auth::id())
+		return Portie::with(array('koper','deal'=>  function($q){
+						$q->orderBy('created_at','DESC');
+						}))->where('status','=','aangevraagt')
+						->where('verkoperId','=',Auth::id())
 						->orWhere('status', 'geaccepteert')
-						->where('porties.verkoperId','=',Auth::id())
-						->orderBy('deals.created_at','DESC')
+						->where('.verkoperId','=',Auth::id())
 						->get();
 	}
 
 	public function getMyDealsKopen()
 	{
-		return DB::table('porties')
-						->join('deals','deals.id', '=','porties.dealId')
-						->join('users','users.id','=','porties.verkoperId')
-						->select('deals.*','porties.*','users.naam','users.afbeelding')
-						->where('status','=','aangevraagt')
-						->where('porties.koperId','=',Auth::id())
+		return Portie::with(array('verkoper','deal'=>  function($q){
+						$q->orderBy('created_at','DESC');
+						}))->where('status','=','aangevraagt')
+						->where('koperId','=',Auth::id())
 						->orWhere('status', 'geaccepteert')
-						->where('porties.koperId','=',Auth::id())
-						->orderBy('deals.created_at','DESC')
+						->where('.koperId','=',Auth::id())
 						->get();
 	}
 
 	public static function getDealsFromUser($id)
 	{
-		return DB::table('users')
-						->join('deals','deals.verkoperId', '=','users.id')
-						->select('deals.*')
-						->orderBy('deals.created_at','DESC')
-						->where('users.naam','=',$id)
+		return User::with(array('Deal' => function($q){
+							$q->orderBy('deals.created_at','DESC');
+						}))->where('naam','=',$id)
 						->get();
 	}
 

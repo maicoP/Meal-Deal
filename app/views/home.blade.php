@@ -45,7 +45,7 @@
                         <p> 
                             <span>{{ $errors->first('naam')}}</span>
                             {{Form::label('naam',' ', array('data-icon' => '&#xf007;'))}}
-                            {{Form::text('naam','', array('placeholder' => 'Gebruikersnaam'))}}
+                            {{Form::text('naam','', array('placeholder' => 'Gebruikersnaam','required' => 'required'))}}
                         </p>
                         <p> 
                             <span>{{ $errors->first('email')}}</span>
@@ -53,6 +53,7 @@
                             {{Form::email('email','', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
                         </p>
                         <p> 
+                            <span>{{ $errors->first('password')}}</span>
                             {{Form::label('password',' ', array('data-icon' => '&#xf084;'))}}
                             {{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}    
                         </p>
@@ -82,7 +83,7 @@
                         </p>
                         <p class="textarea"> 
                             {{Form::label('info',' ', array('data-icon' => '&#xf05a;'))}}
-                            {{Form::textarea('info','',array('placeholder' => 'Informatie','required' => 'required','rows' => '4','image' => 'image', 'max' => '1000', 'mimes' => 'jpg,jpeg,bmp,png,gif'))}}        
+                            {{Form::textarea('info','',array('placeholder' => 'Informatie','required' => 'required','rows' => '4'))}}        
                         </p>
                         <p> 
                             <span>{{ $errors->first('afbeelding')}}</span>

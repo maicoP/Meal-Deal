@@ -10,13 +10,13 @@
 			@else
 				@foreach($dealsVerkopen as $dealVerkopen)
 					<div>
-						<h3>{{$dealVerkopen->gerecht}}</h3>
-						<p>Deal einde:{{$dealVerkopen->dealeinde}}</p>
-						<p>Afhaaluur:{{$dealVerkopen->afhaaluur}}</p>
-						@if($dealVerkopen->afhalen == 1)
+						<h3>{{$dealVerkopen->deal->gerecht}}</h3>
+						<p>Deal einde:{{$dealVerkopen->deal->dealeinde}}</p>
+						<p>Afhaaluur:{{$dealVerkopen->deal->afhaaluur}}</p>
+						@if($dealVerkopen->deal->afhalen == 1)
 						<p>Ontvangst: Afhalen</p>
-						<h3>Kopen door</h3>
-						<span><img src="{{'/img/'.$dealVerkopen->afbeelding}}">{{link_to("users/$dealVerkopen->naam", $dealVerkopen->naam)}}</span>
+						<h3>verkopen aan</h3>
+						<span><img src="{{'/img/'.$dealVerkopen->koper->afbeelding}}">{{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</span>
 						@else
 						<p>Ontvangst: Komen Eten.</p>
 						@endif
@@ -32,10 +32,10 @@
 				@endforeach
 				@foreach($dealsBeschikbaar as $dealBeschikbaar)
 					<div>
-						<h3>{{$dealBeschikbaar->gerecht}}</h3>
-						<p>Deal einde:{{$dealBeschikbaar->dealeinde}}</p>
-						<p>Afhaaluur:{{$dealBeschikbaar->afhaaluur}}</p>
-						@if($dealBeschikbaar->afhalen == 1)
+						<h3>{{$dealBeschikbaar->deal->gerecht}}</h3>
+						<p>Deal einde:{{$dealBeschikbaar->deal->dealeinde}}</p>
+						<p>Afhaaluur:{{$dealBeschikbaar->deal->afhaaluur}}</p>
+						@if($dealBeschikbaar->deal->afhalen == 1)
 						<p>Ontvangst: Afhalen</p>
 						@else
 						<p>Ontvangst: Komen Eten.</p>
@@ -51,16 +51,16 @@
 				<p>U heeft geen lopende Deals</p>
 			@else
 				@foreach($dealsKopen as $dealKopen)
-					<h3>{{$dealKopen->gerecht}}</h3>
-					<p>Deal einde:{{$dealKopen->dealeinde}}</p>
-					<p>Afhaaluur:{{$dealKopen->afhaaluur}}</p>
-					@if($dealKopen->afhalen == 1)
+					<h3>{{$dealKopen->deal->gerecht}}</h3>
+					<p>Deal einde:{{$dealKopen->deal->dealeinde}}</p>
+					<p>Afhaaluur:{{$dealKopen->deal->afhaaluur}}</p>
+					@if($dealKopen->deal->afhalen == 1)
 					<p>Ontvangst: Afhalen</p>
-					<h3>Verkoper</h3>
-					<span><img src="{{'/img/'.$dealKopen->afbeelding}}">{{link_to("users/$dealKopen->naam", $dealKopen->naam)}}</span>
 					@else
 					<p>Ontvangst: Komen Eten.</p>
 					@endif
+					<h3>Verkoper</h3>
+					<span><img src="{{'/img/'.$dealKopen->verkoper->afbeelding}}">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
 					@if($dealKopen->status == "aangevraagt")
 						<p>Wachten op reactie van verkoper</p>
 					@elseif($dealKopen->status == "geaccepteert")
