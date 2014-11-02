@@ -48,7 +48,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	public function region()
 	{
-		return $this->belongsTo('region','regionId');
+		return $this->belongsTo('Region','regionId');
+	}
+	public function profile()
+	{
+		return $this->belongsTo('Vote','profileId');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo('Vote','userId');
 	}
 	public function isValid($rules)
 	{	
@@ -79,7 +88,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function getUserData()
 	{
-		return User::with('region')->where('users.id','=',Auth::id())
+		return User::with('Region')->where('users.id','=',Auth::id())
 								->get();
+	}
+
+	public function addCoin($id)
+	{
+		User::where('id','=',$id)->increment('coins');
+	}
+
+	public function deleteCoin($id)
+	{
+		User::where('id','=',$id)->decrement('coins');
+	}
+
+	public function getAantalAanvragen($id)
+	{
+		return Portie::where('koperId','=',$id)
+						->where('status','=','aangevraagt')
+						->count();
 	}
 }

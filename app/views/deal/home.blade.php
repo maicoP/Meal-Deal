@@ -7,7 +7,11 @@
 			<h3>Welcome {{Auth::user()->naam}}</h3>
 			<img src="{{'/img/'.Auth::user()->afbeelding}}">
 			<p>Aantal Coins :{{Auth::user()->coins}}</p>
+		@if(Session::get('error') !== null )
+		<p>{{Session::get('error')}}</p>
+		@endif
 		</div>
+		<h1>beschikbare deals</h1>
 		{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<select name='regionId' onchange="this.form.submit()">
 			@foreach($regions as $key => $value)
@@ -39,7 +43,6 @@
 		@if(empty($deals))
 			<p>geen deals beschikbaar</p>
 		@else
-			<h1>beschikbare deals</h1>
 			@foreach($deals as $deal)
 				<div>
 					<h2>

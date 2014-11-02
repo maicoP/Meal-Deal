@@ -49,8 +49,8 @@ class Portie extends Eloquent{
 		// controleren of aantal porties van de deal niet 0 is zo ja status veranderen naar niet meer beschikbaar
 		$porties = Deal::select('porties')
 						   ->where('id','=',$dealId)
-						   ->get();
-		if($porties[0]->porties == 0)
+						   ->first();
+		if($porties->porties == 0)
 		{
 			Deal::where('id','=',$dealId)
 						   ->update(array(
@@ -65,6 +65,39 @@ class Portie extends Eloquent{
 						   ->update(array(
 						   	"status" => "geaccepteert"
 						   	));							
+	}
+
+	public function wijgerPortie($portieId)
+	{
+		Portie::where('id','=',$portieId)
+						   ->update(array(
+						   	"status" => "beschikbaar",
+						   	"koperId" => 0
+						   	));	
+		$dealId = Portie::where('id','=',$portieId)
+						->select('dealId')
+						->first();
+		$dealId = $dealId->dealId;
+		$porties = Deal::where('id','=',$dealId)
+						   ->select('porties')
+						   ->first();
+		if($porties->porties == 0)
+		{
+			Deal::where('id','=',$dealId)
+						   ->update(array(
+						   	"beschikbaar" => true
+						   	));	
+		}	
+		Deal::where('id','=',$dealId)
+						   ->increment('porties');					
+	}
+
+	public function getKoperId($id)
+	{
+		$koperId = Portie::where('id','=',$id)
+						->select('koperId')
+						->get();
+		return $koperId[0]->koperId;
 	}
 
 }

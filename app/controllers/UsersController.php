@@ -152,6 +152,10 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
+	public function vote($id)
+	{
+		return $id;
+	}
 
 	public function instellingen()
 	{

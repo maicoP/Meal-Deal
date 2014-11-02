@@ -7,10 +7,11 @@ class myDealsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function __construct(Deal $deal,Portie $portie)
+	public function __construct(User $user,Deal $deal,Portie $portie)
 	{
 		$this->deal = $deal;
 		$this->portie = $portie;
+		$this->user = $user;
 	}
 
 	public function index()
@@ -50,8 +51,24 @@ class myDealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$this->portie->aanvraagPortie(Input::get('dealId'));
-			return Redirect::to('mydeals');
+			if(Auth::user()->coins > 0)
+			{
+				if($this->user->getAantalAanvragen(Auth::id()) < Auth::user()->coins)
+				{
+					$this->portie->aanvraagPortie(Input::get('dealId'));
+					return Redirect::to('mydeals');		
+				}
+				else
+				{
+					return Redirect::to('deals')->with('error', 'U kan geen deal meer aanvragen, u hebt al aanvragen staan en niet genoeg coins voor een nieuwe aanvraag.');
+				}
+				
+			}
+			else
+			{
+				return Redirect::to('deals')->with('error', 'U kan geen deal maken u coins zijn op, verkoop zelf deals om coins te krijgen');
+			}
+			
 		}
 		else
 		{
@@ -83,7 +100,18 @@ class myDealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$this->portie->acceptPortie($id);
+			if(Input::get('type') == 'accepteer')
+			{
+				$this->portie->acceptPortie($id);
+				$koperId =  $this->portie->getKoperId($id);
+				$this->user->addCoin(Auth::id());
+				$this->user->deleteCoin($koperId);
+			}else if(Input::get('type') == 'wijger')
+			{
+				$koperId =  $this->portie->getKoperId($id);
+				$this->portie->wijgerPortie($id);
+			}
+			
 			return Redirect::back();
 		}
 		else

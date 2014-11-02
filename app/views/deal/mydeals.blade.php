@@ -22,7 +22,12 @@
 						@endif
 						@if($dealVerkopen->status == "aangevraagt")
 							{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+							{{Form::hidden('type','accepteer')}}
 							{{Form::submit('Accepteer Deal')}}
+							{{Form::close()}}
+							{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+							{{Form::hidden('type','wijger')}}
+							{{Form::submit('Wijger Deal')}}
 							{{Form::close()}}
 						@elseif($dealVerkopen->status == "geaccepteert")
 							<p>U heeft deze deal geacepteert</p>

@@ -21,6 +21,7 @@ Route::post('deals/filter', 'DealsController@filter');
 Route::get('users/instellingen', 'UsersController@instellingen');
 Route::get('user/editPassword','UsersController@MakePasswordForm');
 Route::post('user/savePassword','UsersController@savePassword');
+Route::post('user/{id}/vote','UsersController@vote');
 
 
 Route::resource('sessions','SessionsController');
