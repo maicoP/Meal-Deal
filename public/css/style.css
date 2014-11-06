@@ -5,6 +5,10 @@ body {
   line-height: 1.375em;
 }
 
+html {
+    overflow-y:scroll;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -75,7 +79,7 @@ img {
 
 .main-nav > ul > li {
   float: left;
-  text-transform: uppercase;
+  
   margin-top: 32px;
 }
 
@@ -98,7 +102,7 @@ img {
     font-family: "Montserrat";
     font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase;
+    
     color: #303030;
     padding: 11px 22px;
     border-top: 1px solid transparent;
@@ -184,8 +188,8 @@ img {
 .logodiv, .menulinks{
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 8px;
+  padding-left: 8px;
   float:left;
 }
 
@@ -201,10 +205,12 @@ img {
 }
 
 .menulinks {
-  width: 42.3%;
+  width: 42.4%;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 .logodiv {
-  width: 15.4%;
+  width: 15.2%;
 }
 
 .content{

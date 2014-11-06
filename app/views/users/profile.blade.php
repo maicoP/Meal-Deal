@@ -1,6 +1,9 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<div>
 		<h1>Profile of {{$userData->naam}}</h1>
 		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">

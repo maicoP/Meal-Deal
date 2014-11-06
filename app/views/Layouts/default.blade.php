@@ -1,3 +1,8 @@
+<?php
+function setActive($route, $class = 'current-menu-item') {
+return (Route::current()->uri() == $route) ? $class : '';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +21,9 @@
 				<div class="menulinks nav-wrap">
 					<nav class="main-nav to-left">
 						<ul class="navigation-list clearfix"> 
-							<li class="menu-item">{{link_to("mydeals", "Mijn Deals")}}</li>
-							<li class="menu-item">{{link_to("deals/create", "Deal Plaatsen")}}</li>
-							<li class="menu-item current-menu-item">{{link_to("deals", "Deal Zoeken")}}</li>
+							<li class="menu-item {{setActive('mydeals')}}">{{link_to("mydeals", "Mijn Deals")}}</li>
+							<li class="menu-item {{setActive('deals/create')}}">{{link_to("deals/create", "Deal Plaatsen")}}</li>
+							<li  class="menu-item {{setActive('deals')}}">{{link_to("deals", "Deal Zoeken")}}</li>
 						</ul>
 					</nav>
 				</div>
@@ -31,8 +36,8 @@
 				<div class="menulinks nav-wrap">
 					<nav class="main-nav to-right">
 						<ul class="navigation-list clearfix"> 
-							<li class="menu-item">{{link_to("user/profielen", "Profielen")}}</li>
-							<li class="menu-item">{{link_to("user/instellingen", "Instellingen")}}</li>
+							<li class="menu-item {{setActive('user/profielen')}}">{{link_to("user/profielen", "Profielen")}}</li>
+							<li class="menu-item {{setActive('user/instellingen')}}">{{link_to("user/instellingen", "Instellingen")}}</li>
 							<li class="menu-item">{{link_to("logout", "Logout")}}</li>
 						</ul>
 					</nav>

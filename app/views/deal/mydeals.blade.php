@@ -1,6 +1,9 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<div>
 		<h1>Mijn Deals</h1>
 		<div>

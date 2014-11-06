@@ -1,6 +1,9 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<h1>Profiel Wijzigen</h1>
 	<div>
 		{{Link_to("#","Profiel wijzigen")}}

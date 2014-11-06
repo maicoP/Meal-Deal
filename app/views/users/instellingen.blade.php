@@ -1,5 +1,9 @@
-@extends('layouts.logdIn')
-@section('content')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
+
+@section("content")
 	<h1>Instellingen</h1>
 	<div>
 		{{Link_to("users/".$userData->naam."/edit","Profiel wijzigen")}}

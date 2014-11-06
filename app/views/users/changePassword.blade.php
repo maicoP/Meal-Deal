@@ -1,6 +1,9 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<div class='col-md-12 text-center'>
 		<div class="page-header">
 			<h1>Edit Password</h1>

@@ -1,6 +1,9 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<div>
 		{{Form::open(['url' => 'user/filter' , 'method' => 'POST'])}}
 		<input type="text" name='zoekString' placeholder="Zoeken naar mensen" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
