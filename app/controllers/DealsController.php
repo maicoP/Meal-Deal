@@ -68,6 +68,9 @@ class DealsController extends \BaseController {
 					$image->save($destenation);
 				}
 				$this->deal->afbeeldingdeal= $filename;
+				$this->deal->gerecht = htmlspecialchars(Input::get('gerecht'));
+				$this->deal->afhaaluur = htmlspecialchars(Input::get('afhaaluur'));
+				$this->deal->dealeinde = htmlspecialchars(Input::get('dealeinde'));
 				$this->deal->verkoperId = Auth::id();
 				$this->deal->save();
 				$dealId = $this->deal->id;

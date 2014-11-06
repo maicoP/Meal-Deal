@@ -22,7 +22,7 @@
 
 			<div>
 				{{ Form::label('porties','Aantal Porties:')}}
-				{{ Form::text('porties')}}
+				{{  Form::selectRange('porties', 1, 20)}}
 				
 			</div>
 
