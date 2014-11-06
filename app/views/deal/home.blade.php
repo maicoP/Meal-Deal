@@ -1,8 +1,10 @@
-@extends('layouts.logdIn')
+@extends('layouts.default')
+@section("title")
+	Zoek Deals | MealDeal
+@stop
 
-@section('content')
+@section("content")
 	<div>
-		<h1>Home</h1>
 		<div>
 			<h3>Welcome {{Auth::user()->naam}}</h3>
 			<img src="{{strpos(Auth::user()->afbeelding,'https') !== false ?Auth::user()->afbeelding : '/img/'.Auth::user()->afbeelding}}">

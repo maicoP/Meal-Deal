@@ -1,0 +1,312 @@
+body {
+  margin:0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.375em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.navigation {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  /*background-color:red;*/ 
+  color:red;
+  height:1px;
+  content: " ";
+  display: table;
+  width: 1170px;
+}
+
+.navigation-box{
+  box-sizing:border-box;
+}
+
+.navigation-list{
+  list-style: none outside none;
+  margin-top: 0;
+  padding: 0;
+}
+
+.logo{
+    margin-bottom: 20px;
+}
+
+.logo:before{
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.nav-wrap nav{
+    position: relative;
+    margin-top:40px;
+    margin-top: 90px
+}
+
+.nav-wrap nav{
+  margin-top:60px;
+}
+
+.nav-wrap .to-right{
+  float: right;
+
+}
+.nav-wrap .to-left{
+  float: left;
+}
+
+.main-nav > ul {
+  margin-bottom: 0;
+}
+
+.main-nav > ul li {
+  position: relative;
+  z-index: 1;
+  margin: 0 2px;
+}
+
+.main-nav > ul > li {
+  float: left;
+  text-transform: uppercase;
+  margin-top: 32px;
+}
+
+.main-nav.to-left > ul li {
+  float: right;
+}
+
+.main-nav > ul > li a {
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition:    all 0.3s ease-in-out 0s;
+  -o-transition:      all 0.3s ease-in-out 0s;
+  -ms-transition:     all 0.3s ease-in-out 0s;
+  transition:         all 0.3s ease-in-out 0s;
+  text-decoration: none;
+}
+
+.main-nav > ul > li > a {
+    position: relative;
+    display: inline-block;
+    font-family: "Montserrat";
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #303030;
+    padding: 11px 22px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+.main-nav > ul > li > a:hover,
+.main-nav > ul > li:hover > a,
+.main-nav > ul > li ul a:hover {
+    border-color: #303030;
+    color: #f26c22;
+}
+
+.main-nav > ul > li > a:before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 120%;
+    z-index: 1;
+
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+
+    -webkit-transform:  translate(-50%, 0);
+    -moz-transform:     translate(-50%, 0);
+    -o-transform:       translate(-50%, 0);
+    -ms-transform:      translate(-50%, 0);
+    transform:          translate(-50%, 0);
+    -webkit-transition: all 0.2s ease-in-out 0.1s;
+    -moz-transition:    all 0.2s ease-in-out 0.1s;
+    -o-transition:      all 0.2s ease-in-out 0.1s;
+    -ms-transition:     all 0.2s ease-in-out 0.1s;
+    transition:         all 0.2s ease-in-out 0.1s;
+}
+
+.main-nav > ul > li > a:hover:before {
+    opacity: 1;
+
+    background: url("img/icon.png") no-repeat scroll 0 0 transparent;
+}
+
+.main-nav > ul > li a:hover + ul,
+.main-nav > ul > li a + ul:hover {
+  display: block;
+}
+
+.main-nav > ul > li ul {
+  position: absolute;
+  background: #ffffff;
+  display: none;
+  z-index: 100;
+  margin-top: -2px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.main-nav > ul > li li {
+    position: relative;
+    width: 220px; 
+    padding-left: 20px;
+}
+
+.main-nav > ul > li ul a {
+    font-family: "Montserrat";
+    font-size: 14px;
+    padding: 11px;
+    display: block;
+    color: #303030;
+}
+
+.main-nav > ul > .current-menu-item > a,
+.main-nav > ul:hover .current-menu-item:hover > a {
+  border-top-color: #303030;
+  border-bottom-color: #303030;
+}
+
+.main-nav > ul .current-menu-item > a:hover {
+    color: #303030;
+}
+
+.logodiv, .menulinks{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float:left;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.container{
+  width:100%;
+  height:auto;
+  background-color:#DED3C1;
+}
+
+.menulinks {
+  width: 42.3%;
+}
+.logodiv {
+  width: 15.4%;
+}
+
+.content{
+    content: " ";
+    display: table;
+    clear: both;
+    box-sizing: border-box;
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 1169px) {
+  .navigation {
+    /*background-color:yellow;*/
+    width: 700px;
+  }
+  .menulinks {
+    width: 36.66666667%;
+  }
+  .logodiv {
+    width: 26.66666667%;
+  }
+  .main-nav > ul > li {
+      margin-top: 0px;
+  }
+  .nav-wrap nav {
+      margin-top: 34px;
+  }
+  .main-nav > ul > .current-menu-item > a,
+  .main-nav > ul:hover .current-menu-item:hover > a{
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    /*active style*/
+  }
+  .main-nav > ul > li > a:hover:before {
+      opacity: 1;
+      background:none;
+  }
+  .main-nav > ul > li a:hover + ul,
+  .main-nav > ul > li a + ul:hover, {
+    display: block;
+  }
+  .main-nav > ul > li > a:hover,
+  .main-nav > ul > li:hover > a,
+  .main-nav > ul > li ul a:hover {
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+  }
+  .content{
+    width:700px;
+  }
+}
+
+@media (max-width: 700px) {
+  .navigation {
+    /*background-color:blue;*/
+    width: 500px;
+  }
+  .menulinks {
+    width: 36.66666667%;
+  }
+  .logodiv {
+    width: 26.66666667%;
+  }
+  .main-nav > ul > li >a {
+    padding: 5px 10px;
+    margin:1px;
+    /*background-color:orange;*/
+  }
+  .main-nav > ul > li {
+    /*background-color:pink;*/
+    margin:1px;
+  }
+  .nav-wrap nav {
+      margin-top: 20px;
+  }
+  .main-nav > ul > .current-menu-item > a,
+  .main-nav > ul:hover .current-menu-item:hover > a{
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    /*active style*/
+  }
+  .main-nav > ul > li > a:hover:before {
+      opacity: 1;
+      background:none;
+  }
+  .main-nav > ul > li a:hover + ul,
+  .main-nav > ul > li a + ul:hover, {
+    display: block;
+  }
+  .main-nav > ul > li > a:hover,
+  .main-nav > ul > li:hover > a,
+  .main-nav > ul > li ul a:hover {
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+  }
+  .content{
+    width:500px;
+  }
+}

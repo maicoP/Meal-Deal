@@ -1,43 +1,49 @@
 <!DOCTYPE html>
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="UTF-8" />
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>Meal Deal</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="MealDeal - Students cooking for students" />
-        <meta name="keywords" content="mealdeal, students, meals, deals" />
-        <link rel="shortcut icon" href="../favicon.ico"> 
-        {{ HTML::style('css/home/reset.css'); }}
-        {{ HTML::style('css/home/style.css'); }}
-        {{ HTML::style('css/home/font-awesome-4.2.0/css/font-awesome.min.css'); }}
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $(".to_register").click(function() {
-                    $("#register").fadeIn(1000); 
-                    $("#login").fadeOut(1000);
-                    $("#register").css("display","inline"); 
-                    $("#login").css("display","none"); 
-                    $("#wrapper").css("margin-bottom","900px"); 
-                }); 
-                $(".to_login").click(function() {
-                    $("#register").fadeOut(1000); 
-                    $("#login").fadeIn(1000);
-                    $("#register").css("display","none"); 
-                    $("#login").css("display","inline"); 
-                    $("#wrapper").css("margin-bottom","0px"); 
-                }); 
-            }); 
-        </script>
-    </head>
-    <body>
-    @yield('content')	
-    </body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		@yield('title')
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700' type='text/css' media='all' />
+	{{HTML::style("css/style.css")}}
+</head>
+<body>
+	<div class="navigation-box">
+		<div class="navigation">
+			<div class="row">
+				<div class="menulinks nav-wrap">
+					<nav class="main-nav to-left">
+						<ul class="navigation-list clearfix"> 
+							<li class="menu-item">{{link_to("mydeals", "Mijn Deals")}}</li>
+							<li class="menu-item">{{link_to("deals/create", "Deal Plaatsen")}}</li>
+							<li class="menu-item current-menu-item">{{link_to("deals", "Deal Zoeken")}}</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="logodiv">
+					<div class="logo aligncenter">
+							{{ HTML::image('css/img/logo.png'); }}
+					</div>
+					<div class="menu-button alignleft"></div>
+				</div>
+				<div class="menulinks nav-wrap">
+					<nav class="main-nav to-right">
+						<ul class="navigation-list clearfix"> 
+							<li class="menu-item">{{link_to("user/profielen", "Profielen")}}</li>
+							<li class="menu-item">{{link_to("user/instellingen", "Instellingen")}}</li>
+							<li class="menu-item">{{link_to("logout", "Logout")}}</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="content">
+			@yield('content')
+		</div>
+	</div>
+</body>
 </html>
