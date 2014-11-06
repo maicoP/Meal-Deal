@@ -36,27 +36,27 @@ class Deal extends Eloquent{
 
 	public function getMyDealsBeschikbaar()
 	{
-		// return DB::table('porties')
-		// 				->join('deals','deals.id', '=','porties.dealId')
-		// 				->select('deals.*','porties.*')
-		// 				->where('porties.verkoperId','=',Auth::id())
-		// 				->where('status','=','beschikbaar')
-		// 				->orderBy('deals.created_at','DESC')
-		// 				->get();
 		return Portie::with(array('deal'=>  function($q){
 						$q->orderBy('created_at','DESC');
 						}))->where('verkoperId','=',Auth::id())
 						->where('status','=','beschikbaar')
 						->get();
 	}
-	public function getMyDealsVerkopen()
+	public function getMyDealsVerkopenGeaccepteert()
+	{
+		return Portie::with(array('koper','deal'=>  function($q){
+						$q->orderBy('created_at','DESC');
+						}))->Where('status', 'geaccepteert')
+						->where('.verkoperId','=',Auth::id())
+						->get();
+	}
+
+	public function getMyDealsVerkopenAagevraagt()
 	{
 		return Portie::with(array('koper','deal'=>  function($q){
 						$q->orderBy('created_at','DESC');
 						}))->where('status','=','aangevraagt')
 						->where('verkoperId','=',Auth::id())
-						->orWhere('status', 'geaccepteert')
-						->where('.verkoperId','=',Auth::id())
 						->get();
 	}
 
