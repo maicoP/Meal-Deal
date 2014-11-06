@@ -44,7 +44,10 @@ class UsersController extends \BaseController {
 			$filename = 'nofile.png';
 			if(Input::get('facebook'))
 			{
-				$filename = 'https://graph.facebook.com/'.str_replace(' ', '',Input::get('naam')).'/picture?type=square&height=100';
+				$code = Input::get('code');
+				$facebook = new Facebook(Config::get('facebook'));
+			    $me = $facebook->api('/me');
+				$filename = 'https://graph.facebook.com/'.$me['id'].'/picture?type=square&height=100';
 			}
 			if(Input::hasFile('afbeelding'))
 			{
@@ -64,8 +67,6 @@ class UsersController extends \BaseController {
 		
 			if(Input::get('facebook'))
 			{
-				$code = Input::get('code');
-				$facebook = new Facebook(Config::get('facebook'));
 			    $uid = $facebook->getUser();
 				$profile = new Profile();
 		        $profile->uid =$uid;
