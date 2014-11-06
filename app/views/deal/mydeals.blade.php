@@ -5,7 +5,7 @@
 		<h1>Mijn Deals</h1>
 		<div>
 			<h2>Verkopen</h2>
-			@if(empty($dealsBeschikbaar) && empty($VerkopenGeaccepteert) && empty($VerkopenAangevraagt))
+			@if( $dealsBeschikbaar->isEmpty() == 1 && $VerkopenGeaccepteert->isEmpty() == 1 && $VerkopenAangevraagt->isEmpty() == 1)
 			<p>U verkoopt geen deals.</p>
 			@else
 				@foreach($VerkopenAangevraagt as $dealVerkopen)
@@ -66,10 +66,7 @@
 		</div>
 		<div>
 			<h2>Kopen</h2>
-			@if(empty($dealsKopen))
-				<p>U heeft geen lopende Deals</p>
-			@else
-				@foreach($dealsKopen as $dealKopen)
+				@forelse($dealsKopen as $dealKopen)
 					<h3>{{$dealKopen->deal->gerecht}}</h3>
 					<p>Verkoper: </p>
 					<span><img src="{{strpos($dealKopen->verkoper->afbeelding,'https') !== false ?$dealKopen->verkoper->afbeelding : '/img/'.$dealKopen->verkoper->afbeelding}}">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
@@ -86,8 +83,9 @@
 						<p>U deal is geacepteert</p>
 					@endif
 					
-				@endforeach
-			@endif
+				@empty
+				<p>U hebt momenteel geen aanvragen gedaan</p>
+				@endforelse
 		</div>
 		
 	</div>

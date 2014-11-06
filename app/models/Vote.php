@@ -4,7 +4,7 @@ class Vote extends Eloquent{
 
 	protected $fillable =['profileId','userId'];
 
-	public function profile()
+	public function userprofile()
 	{
 		return $this->belongsTo('User','profileId');
 	}

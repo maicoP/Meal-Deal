@@ -52,7 +52,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	public function vote()
 	{
-		return $this->belongsTo('Vote','userId');
+		return $this->hasMany('Vote','userId');
+	}
+	public function userprofile()
+	{
+		return $this->hasMany('User','profileId');
 	}
 	public function profiles()
     {
@@ -125,5 +129,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			$postVotedOn[]= $result->profileId;
 		}
 		return $postVotedOn;
+	}
+
+	public function getTopUsers()
+	{
+		return User::orderBy('votes','desc')
+						->take(10)
+						->get();
+	}
+
+	public function filterByName($zoekString)
+	{
+		return User::orderBy('votes','desc')
+						->where('naam','LIKE','%'.$zoekString.'%')
+						->get();
 	}
 }

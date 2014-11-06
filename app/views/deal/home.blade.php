@@ -41,11 +41,7 @@
 					
 		</select>
 		{{Form::close() }}
-		
-		@if(empty($deals))
-			<p>geen deals beschikbaar</p>
-		@else
-			@foreach($deals as $deal)
+			@forelse($deals as $deal)
 				<div>
 					<h2>
 						{{$deal->gerecht}}
@@ -72,7 +68,8 @@
 					{{Form::close()}}
 
 				</div>
-			@endforeach
-		@endif
+		@empty
+		      <p>Geen Deals gevonden</p>
+		@endforelse
 	</div>
 @stop

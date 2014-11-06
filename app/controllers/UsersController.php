@@ -56,6 +56,14 @@ class UsersController extends \BaseController {
 				$destenation = 'img/'.$filename;
 				$image->save($destenation);		
 			}
+			$this->user->naam = htmlspecialchars(Input::get('naam'));
+			$this->user->email = htmlspecialchars(Input::get('email'));
+			$this->user->straatnaam = htmlspecialchars(Input::get('straatnaam'));
+			$this->user->postcode = htmlspecialchars(Input::get('postcode'));
+			$this->user->gemeente = htmlspecialchars(Input::get('gemeente'));
+			$this->user->huisnummer = htmlspecialchars(Input::get('huisnummer'));
+			$this->user->postbus = htmlspecialchars(Input::get('postbus'));
+			$this->user->info = htmlspecialchars(Input::get('info'));
 			$this->user->afbeelding= $filename;
 			$this->user->password = Hash::make($input['password']);
 			$this->user->save();
@@ -114,8 +122,15 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$userData = $this->user->getUserData();
-		return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'userData'=> $userData[0]]);
+		if(Auth::check())
+		{
+			$userData = $this->user->getUserData();
+			return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'userData'=> $userData[0]]);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 
@@ -127,33 +142,40 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$input = Input::all();
-		$this->user = User::find($id);
-		if(Auth::user()->email == Input::get('email'))
+		if(Auth::check())
 		{
-			$rules = "editNoEmail";
-		}
-		else{
-			$rules = "edit";
-		}
-		if( $this->user->fill($input)->isValid($rules))
-		{
-			if(Input::hasFile('afbeelding'))
+			$input = Input::all();
+			$this->user = User::find($id);
+			if(Auth::user()->email == Input::get('email'))
 			{
-				$filename = Auth::user()->naam.".png";
-				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
-				$image->crop(100,100);
-				$destenation = 'img/'.$filename;
-				$this->user->afbeelding = $filename;
-				$image->save($destenation);
+				$rules = "editNoEmail";
 			}
-				$this->user->afbeelding = Auth::user()->afbeelding;
-				$this->user->save();
-				return Redirect::to('users/instellingen');
+			else{
+				$rules = "edit";
+			}
+			if( $this->user->fill($input)->isValid($rules))
+			{
+				if(Input::hasFile('afbeelding'))
+				{
+					$filename = Auth::user()->naam.".png";
+					$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
+					$image->crop(100,100);
+					$destenation = 'img/'.$filename;
+					$this->user->afbeelding = $filename;
+					$image->save($destenation);
+				}
+					$this->user->afbeelding = Auth::user()->afbeelding;
+					$this->user->save();
+					return Redirect::to('users/instellingen');
+			}
+			else
+			{
+				return Redirect::back()->withInput()->withErrors($this->user->errors);
+			}
 		}
 		else
 		{
-			return Redirect::back()->withInput()->withErrors($this->user->errors);
+			return Redirect::to('/');
 		}
 	}
 
@@ -191,13 +213,30 @@ class UsersController extends \BaseController {
 
 	public function instellingen()
 	{
-		$userData = $this->user->getUserData();
-		return View::make('users.instellingen',['userData'=> $userData[0]]);
+		if(Auth::check())
+		{
+			$userData = $this->user->getUserData();
+			return View::make('users.instellingen',['userData'=> $userData[0]]);
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+		
 	}
 
 	public function profielen()
 	{
-		return 'succes';
+		if(Auth::check())
+		{
+			$topUsers = $this->user->getTopUsers();
+			return View::make('users.profiles',['title' => 'Top mealdealers','users' => $topUsers]);	
+		}
+		else
+		{
+			return Redirect::to('/');
+		}		
+
 	}
 
 	public function MakePasswordForm()
@@ -211,33 +250,53 @@ class UsersController extends \BaseController {
 			return Redirect::to('/');
 		}
 	}
-
-	public function savePassword()
+	public function filter()
 	{
-		$input = Input::all();
-		$validation =Validator::make(Input::all(),array(
-			'password' => 'min:8',
-			'newpassword' => 'min:8'));
-		if( $validation->passes())
+		if(Auth::check())
 		{
-			$user = User::find(Auth::id());
-			$password = Input::get('password');
-			$newpassword = Input::get('newpassword');
-			$oldPassword = Auth::user()->password;
-			if(Hash::check($password,$oldPassword))
-			{
-				$user->password = Hash::make($newpassword);
-				$user->save();
-				return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password has been changed']);
-			}
-			else
-			{
-				return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password could not be changed']);
-			}
-		}	
+			$zoekString = Input::get('zoekString');
+			$zoekString = htmlspecialchars($zoekString);
+			$zoekResult = $this->user->filterByName($zoekString);
+			return View::make('users.profiles',['title' => 'Zoekresultaten voor '.$zoekString,'users' => $zoekResult]);
+		}
 		else
 		{
-			return Redirect::back()->withInput()->withErrors($validation->messages())->with('errorsPrecent', true);
+			return Redirect::to('/');
+		}
+	}
+	public function savePassword()
+	{
+		if(Auth::check())
+		{
+			$input = Input::all();
+			$validation =Validator::make(Input::all(),array(
+				'password' => 'min:8',
+				'newpassword' => 'min:8'));
+			if( $validation->passes())
+			{
+				$user = User::find(Auth::id());
+				$password = Input::get('password');
+				$newpassword = Input::get('newpassword');
+				$oldPassword = Auth::user()->password;
+				if(Hash::check($password,$oldPassword))
+				{
+					$user->password = Hash::make($newpassword);
+					$user->save();
+					return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password has been changed']);
+				}
+				else
+				{
+					return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password could not be changed']);
+				}
+			}	
+			else
+			{
+				return Redirect::back()->withInput()->withErrors($validation->messages())->with('errorsPrecent', true);
+			}
+		}
+		else
+		{
+			return Redirect::to('/');
 		}
 	}
 

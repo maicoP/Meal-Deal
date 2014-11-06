@@ -55,7 +55,9 @@ class DealsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
+		if(Auth::check())
+		{
+			$input = Input::all();
 
 			if( $this->deal->fill($input)->isValid())
 			{
@@ -84,6 +86,12 @@ class DealsController extends \BaseController {
 			{
 				return Redirect::back()->withInput()->withErrors($this->deal->errors);
 			}
+		}
+		else
+		{
+			return Redirect::to('/');
+		}		
+		
 	}
 
 

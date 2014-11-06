@@ -25,6 +25,7 @@ Route::get('user/editPassword','UsersController@MakePasswordForm');
 Route::post('user/savePassword','UsersController@savePassword');
 Route::post('user/{id}/vote','UsersController@vote');
 Route::get('user/profielen','UsersController@profielen');
+Route::post('user/filter','UsersController@filter');
 
 
 Route::resource('sessions','SessionsController');

@@ -19,7 +19,7 @@
 		Postbus:{{$userData->postbus}}
 		@endif</p>
 		<h2>Deals from {{$userData->naam}}</h2>
-		@foreach($userData->deal as $deal )
+		@forelse($userData->deal as $deal )
 			<div>
 					<h2>
 						{{$deal->gerecht}}
@@ -41,7 +41,9 @@
 					@endif
 
 				</div>
-		@endforeach
+		@empty
+			<p>{{$userData->naam}} heeft nog geen deals geplaats</p>
+		@endforelse
 	</div>
 	
 @stop
