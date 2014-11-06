@@ -39,26 +39,36 @@ class UsersController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
-		
 		if( $this->user->fill($input)->isValid("register"))
 		{
 			$filename = 'nofile.png';
+			if(Input::get('facebook'))
+			{
+				$filename = 'https://graph.facebook.com/'.str_replace(' ', '',Input::get('naam')).'/picture?type=square&height=100';
+			}
 			if(Input::hasFile('afbeelding'))
 			{
-				$filename = Input::get('naam').".png";
 				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
 				$image->crop(100,100);
 				$destenation = 'img/'.$filename;
-				$image->save($destenation);
+				$image->save($destenation);		
 			}
-				$this->user->afbeelding= $filename;
-				$this->user->password = Hash::make($input['password']);
-				$this->user->save();
-				$data = array('naam' => Input::get('naam') );
-				Mail::send('emails.name',$data, function($message)
-				{
-				 $message->to(Input::get('email'), Input::get('naam'))->subject("Meal Deal registratie");
-				});
+			$this->user->afbeelding= $filename;
+			$this->user->password = Hash::make($input['password']);
+			$this->user->save();
+			$data = array('naam' => Input::get('naam') );
+			Mail::send('emails.name',$data, function($message)
+			{
+			 $message->to(Input::get('email'), Input::get('naam'))->subject("Meal Deal registratie");
+			});
+		
+			if(Input::get('facebook'))
+			{
+				$profile = new Profile();
+		        $profile->uid =Input::get('uid');
+		        $profile->username = Input::get('naam');
+		        $profile = $this->user->profiles()->save($profile);
+			}
 				 return Redirect::to('/');
 		}
 		else

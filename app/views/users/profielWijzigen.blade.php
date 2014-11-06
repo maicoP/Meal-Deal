@@ -11,7 +11,7 @@
 		{{Form::open(['url' => 'users/'.$userData->id,'files' => true,'method' => 'PUT'])}}
 	   	<p>
 	   	    Afbeelding: <br/>	
-	   		<img src="{{'/img/'.$userData->afbeelding}}">
+	   		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
 	   	    <span>{{ $errors->first('afbeelding')}}</span>
 	   	    {{Form::file('afbeelding','',array('value' => 'Avatar'))}}    
 	   	</p>  

@@ -5,7 +5,7 @@
 		<h1>Home</h1>
 		<div>
 			<h3>Welcome {{Auth::user()->naam}}</h3>
-			<img src="{{'/img/'.Auth::user()->afbeelding}}">
+			<img src="{{strpos(Auth::user()->afbeelding,'https') !== false ?Auth::user()->afbeelding : '/img/'.Auth::user()->afbeelding}}">
 			<p>Aantal Coins :{{Auth::user()->coins}}</p>
 		@if(Session::get('error') !== null )
 		<p>{{Session::get('error')}}</p>
@@ -50,7 +50,7 @@
 					</h2>
 					<div><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}"></div>
 					
-					<span><img src="{{'/img/'.$deal->afbeelding}}">{{link_to("users/$deal->naam", $deal->naam)}}
+					<span><img src="{{strpos($deal->afbeelding,'https') !== false ?$deal->afbeelding : '/img/'.$deal->afbeelding}}">{{link_to("users/$deal->naam", $deal->naam)}}
 					</span>
 					<p>Adres: {{$deal->straatnaam." ".$deal->huisnummer." ".$deal->postcode." ".$deal->gemeente}}
 					@if($deal->postbus != "")

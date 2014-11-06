@@ -7,7 +7,7 @@
 	</div>
 	<div>
 		<h2>Profile of {{$userData->naam}}</h2>
-		<img src="{{'/img/'.$userData->afbeelding}}">
+		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
 		<p>{{$userData->info}}</p>
 		<p>Votes: {{$userData->votes}}</p>
 		<p>Regio: {{$userData->region->naamRegio}}</p>

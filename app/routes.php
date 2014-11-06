@@ -16,6 +16,8 @@ Route::get('/', function()
 	
 	return View::make('home',['regions' =>  Region::getAllRegions()]);
 });
+Route::get('login/fb', 'FacebookController@index');
+Route::get('login/fb/callback','FacebookController@callback');
 
 Route::post('deals/filter', 'DealsController@filter');
 Route::get('users/instellingen', 'UsersController@instellingen');

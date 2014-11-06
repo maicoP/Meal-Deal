@@ -16,7 +16,7 @@
 						@if($dealVerkopen->deal->afhalen == 1)
 						<p>Ontvangst: Afhalen</p>
 						<h3>verkopen aan</h3>
-						<span><img src="{{'/img/'.$dealVerkopen->koper->afbeelding}}">{{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</span>
+						<span><img src="{{strpos($dealVerkopen->koper->afbeelding,'https') !== false ?$dealVerkopen->koper->afbeelding : '/img/'.$dealVerkopen->koper->afbeelding}}">{{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</span>
 						@else
 						<p>Ontvangst: Komen Eten.</p>
 						@endif
@@ -65,7 +65,7 @@
 					<p>Ontvangst: Komen Eten.</p>
 					@endif
 					<h3>Verkoper</h3>
-					<span><img src="{{'/img/'.$dealKopen->verkoper->afbeelding}}">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
+					<span><img src="{{strpos($dealKopen->verkoper->afbeelding,'https') !== false ?$dealKopen->verkoper->afbeelding : '/img/'.$dealKopen->verkoper->afbeelding}}">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
 					@if($dealKopen->status == "aangevraagt")
 						<p>Wachten op reactie van verkoper</p>
 					@elseif($dealKopen->status == "geaccepteert")

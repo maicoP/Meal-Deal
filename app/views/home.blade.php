@@ -4,8 +4,15 @@
             	{{ HTML::image('css/home/logo.png'); }}
             </div>
             <div id="wrapper">
+                @if(Session::has('message'))
+                    {{ Session::get('message')}}
+                @endif
                 @if($errors->isEmpty())
-                    <div id="login" class="animate form" style="display: inline;">
+                    @if(Session::has('fbData'))
+                       <div id="login" class="animate form" style="display: none;"> 
+                    @else
+                        <div id="login" class="animate form" style="display: inline;">
+                    @endif
                 @else
                     <div id="login" class="animate form" style="display: none;">
                 @endif
@@ -27,7 +34,8 @@
                         	{{ Form::submit('LOG IN', ['class' => 'inloggen','value' => 'LOGIN'])}}
 						</p>
                         <p class="login button"> 
-                            <input type="submit" class="fb" value="LOG IN MET FACEBOOK" /> 
+                            <a class="fb" href="login/fb">LOG IN MET FACEBOOK</a> 
+                            
 						</p>
                         <p class="change_link">
 							Nog geen lid?
@@ -36,21 +44,31 @@
                     {{ Form::close() }}
                 </div>
                 @if($errors->isEmpty())
+                    @if(Session::has('fbData'))
+                       <div id="login" class="animate form" style="display: inline;">
+                    @else
                     <div id="register" class="animate form" style="display: none;">
+                    @endif
                 @else
                     <div id="register" class="animate form" style="display: inline;">
                 @endif
                     {{Form::open(['route' => 'users.store','files' => true]) }}
                         <h1>Registreer</h1> 
+                        @if(Session::has('fbData'))
+                        {{Form::hidden('facebook',true)}}
+                        {{Form::hidden('uid',Session::get('fbData')['uid'])}}
+                        @else
+                            {{Form::hidden('facebook',false)}}
+                        @endif
                         <p> 
                             <span>{{ $errors->first('naam')}}</span>
                             {{Form::label('naam',' ', array('data-icon' => '&#xf007;'))}}
-                            {{Form::text('naam','', array('placeholder' => 'Gebruikersnaam','required' => 'required'))}}
+                            {{Form::text('naam',Session::has('fbData') ? Session::get('fbData')['name'] :'', array('placeholder' => 'Gebruikersnaam','required' => 'required'))}}
                         </p>
                         <p> 
                             <span>{{ $errors->first('email')}}</span>
                             {{Form::label('email',' ', array('data-icon' => '&#xf003;'))}}
-                            {{Form::email('email','', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
+                            {{Form::email('email',Session::has('fbData') ? Session::get('fbData')['email'] :'', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
                         </p>
                         <p> 
                             <span>{{ $errors->first('password')}}</span>
@@ -95,7 +113,11 @@
                         </p>
                         <p class="change_link">  
                             Al wel lid?
-                            <a href="#" class="to_login">Log in</a>
+                            @if(Session::has('fbData'))
+                               <a href="/" class="to_login">Log in</a>
+                            @else
+                                <a href="#" class="to_login">Log in</a>
+                            @endif
                         </p>
                     {{Form::close() }}
                 </div>
