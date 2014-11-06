@@ -195,6 +195,11 @@ class UsersController extends \BaseController {
 		return View::make('users.instellingen',['userData'=> $userData[0]]);
 	}
 
+	public function profielen()
+	{
+		return 'succes';
+	}
+
 	public function MakePasswordForm()
 	{
 		if(Auth::check())

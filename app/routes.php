@@ -20,10 +20,11 @@ Route::get('login/fb', 'FacebookController@index');
 Route::get('login/fb/callback','FacebookController@callback');
 
 Route::post('deals/filter', 'DealsController@filter');
-Route::get('users/instellingen', 'UsersController@instellingen');
+Route::get('user/instellingen', 'UsersController@instellingen');
 Route::get('user/editPassword','UsersController@MakePasswordForm');
 Route::post('user/savePassword','UsersController@savePassword');
 Route::post('user/{id}/vote','UsersController@vote');
+Route::get('user/profielen','UsersController@profielen');
 
 
 Route::resource('sessions','SessionsController');
