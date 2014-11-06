@@ -3,7 +3,7 @@
 @section('content')
 	<div>
 		<h1>Profile of {{$userData->naam}}</h1>
-		<img src="{{'/img/'.$userData->afbeelding}}">
+		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
 		<p>{{$userData->info}}</p>
 		<p>Votes: {{$userData->votes}}</p>
 		@if(!in_array ( $userData->id , $userVotedOn))

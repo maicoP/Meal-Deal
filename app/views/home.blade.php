@@ -4,9 +4,7 @@
             	{{ HTML::image('css/home/logo.png'); }}
             </div>
             <div id="wrapper">
-                @if(Session::has('message'))
-                    {{ Session::get('message')}}
-                @endif
+
                 @if($errors->isEmpty())
                     @if(Session::has('fbData'))
                        <div id="login" class="animate form" style="display: none;"> 
@@ -15,6 +13,9 @@
                     @endif
                 @else
                     <div id="login" class="animate form" style="display: none;">
+                @endif
+                @if(Session::has('message'))
+                    {{ Session::get('message')}}
                 @endif
                     {{ Form::open(['route' => 'sessions.store']) }}
                         <h1>Log in</h1> 
@@ -56,7 +57,6 @@
                         <h1>Registreer</h1> 
                         @if(Session::has('fbData'))
                         {{Form::hidden('facebook',true)}}
-                        {{Form::hidden('uid',Session::get('fbData')['uid'])}}
                         @else
                             {{Form::hidden('facebook',false)}}
                         @endif

@@ -64,12 +64,15 @@ class UsersController extends \BaseController {
 		
 			if(Input::get('facebook'))
 			{
+				$code = Input::get('code');
+				$facebook = new Facebook(Config::get('facebook'));
+			    $uid = $facebook->getUser();
 				$profile = new Profile();
-		        $profile->uid =Input::get('uid');
+		        $profile->uid =$uid;
 		        $profile->username = Input::get('naam');
 		        $profile = $this->user->profiles()->save($profile);
 			}
-				 return Redirect::to('/');
+				 return Redirect::to('/')->with('message', 'U bent succesvol geregistreert');
 		}
 		else
 		{

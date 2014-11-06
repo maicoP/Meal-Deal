@@ -28,7 +28,6 @@ class FacebookController extends \BaseController {
 	    if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
 
 	    $me = $facebook->api('/me');
-	    $me['uid'] = $uid;
 
 	    $profile = Profile::whereUid($uid)->first();
 	    if (empty($profile)) {
