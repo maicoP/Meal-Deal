@@ -50,12 +50,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsTo('Region','regionId');
 	}
-	public function profile()
-	{
-		return $this->belongsTo('Vote','profileId');
-	}
-
-	public function user()
+	public function vote()
 	{
 		return $this->belongsTo('Vote','userId');
 	}
@@ -102,10 +97,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		User::where('id','=',$id)->decrement('coins');
 	}
 
+	public function addVote($userId)
+	{
+		User::where('id','=',$userId)->increment('votes');
+	}
+
 	public function getAantalAanvragen($id)
 	{
 		return Portie::where('koperId','=',$id)
 						->where('status','=','aangevraagt')
 						->count();
+	}
+
+	public function getProfileIdVoted($userId)
+	{	
+		$results = Vote::select('profileId')
+					->where('userId','=',$userId)
+		 			->get();
+
+		$postVotedOn = array();
+		foreach($results as $result)
+		{
+			$postVotedOn[]= $result->profileId;
+		}
+		return $postVotedOn;
 	}
 }

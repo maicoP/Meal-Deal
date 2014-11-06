@@ -8,9 +8,10 @@ class UsersController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function __construct(User $user)
+	public function __construct(User $user, Vote $vote)
 	{
 		$this->user = $user;
+		$this->vote = $vote;
 	}
 	
 	public function index()
@@ -81,7 +82,8 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$userData = Deal::getDealsFromUser($id);
-			return View::make('users.profile',['userData' => $userData[0]]);
+			$userVotedOn =  $this->user->getProfileIdVoted(Auth::id());
+			return View::make('users.profile',['userData' => $userData[0],'userVotedOn'=> $userVotedOn]);
 		}
 		else
 		{
@@ -154,7 +156,23 @@ class UsersController extends \BaseController {
 	}
 	public function vote($id)
 	{
-		return $id;
+		if(Auth::check())
+		{
+			$profileUserId = $id;
+			$userId = Auth::id();
+
+			$this->vote->profileId = $profileUserId;
+			$this->vote->userId = $userId;
+			$this->vote->save();
+			$this->user->addVote($profileUserId);
+
+			return Redirect::back();
+
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
 	}
 
 	public function instellingen()

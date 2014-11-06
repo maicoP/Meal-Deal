@@ -6,11 +6,14 @@
 		<img src="{{'/img/'.$userData->afbeelding}}">
 		<p>{{$userData->info}}</p>
 		<p>Votes: {{$userData->votes}}</p>
-		<div>
-			{{Form::open(['url' => 'user/'.$userData->id.'/vote'])}}
-			{{Form::submit('vote')}}
-			{{Form::close()}}
-		</div>
+		@if(!in_array ( $userData->id , $userVotedOn))
+			<div>
+				{{Form::open(['url' => 'user/'.$userData->id.'/vote'])}}
+				{{Form::submit('vote')}}
+				{{Form::close()}}
+			</div>
+		@endif
+
 		<p>Adres: {{$userData->straatnaam." ".$userData->huisnummer." ".$userData->postcode." ".$userData->gemeente}}
 		@if($userData->postbus != "")
 		Postbus:{{$userData->postbus}}

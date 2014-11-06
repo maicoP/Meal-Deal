@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"intervention/image": "~2.0",
-		"guzzlehttp/guzzle": "~4.0"
+		"guzzlehttp/guzzle": "~4.0",
+		"facebook/php-sdk": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
