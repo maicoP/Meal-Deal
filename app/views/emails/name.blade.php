@@ -5,6 +5,8 @@
 	<title>succes</title>
 </head>
 <body>
-	<p>U Bent succesvol geregistreert {{$naam}} lets start cooking.</p>
+	<p>Beste {{$naam}}, <br/>
+	Welcome bij Meal Deal <br/>
+	 U Bent succesvol geregistreert als {{$naam}}, lets start cooking.</p>
 </body>
 </html>

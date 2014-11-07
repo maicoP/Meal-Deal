@@ -103,9 +103,13 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$userData = Deal::getDealsFromUser($id);
-			$userVotedOn =  $this->user->getProfileIdVoted(Auth::id());
-			return View::make('users.profile',['userData' => $userData[0],'userVotedOn'=> $userVotedOn]);
+			$userDeals = Deal::getDealsFromUser($id);
+			$user= $this->user->getUserByNaam($id);
+			$userId = Auth::id();
+			$userVotedOn =  $this->user->getProfileIdVoted($userId);
+			$dealsVerkocht = $this->user->dealsVerkocht($userId);
+			$dealsGekocht = $this->user->dealsGekocht($userId);
+			return View::make('users.profile',['userDeals' => $userDeals,'user' => $user,'userVotedOn'=> $userVotedOn,'dealsVerkocht' => $dealsVerkocht,'dealsGekocht' => $dealsGekocht]);
 		}
 		else
 		{
@@ -216,7 +220,10 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$userData = $this->user->getUserData();
-			return View::make('users.instellingen',['userData'=> $userData[0]]);
+			$userId = Auth::id();
+			$dealsVerkocht = $this->user->dealsVerkocht($userId);
+			$dealsGekocht = $this->user->dealsGekocht($userId);
+			return View::make('users.instellingen',['userData'=> $userData[0],'dealsVerkocht' => $dealsVerkocht,'dealsGekocht' => $dealsGekocht]);
 		}
 		else
 		{
@@ -230,7 +237,7 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$topUsers = $this->user->getTopUsers();
-			return View::make('users.profiles',['title' => 'Top mealdealers','users' => $topUsers]);	
+			return View::make('users.profiles',['title' => 'Top mealdealers','users' => $topUsers,'zoekString' => null]);	
 		}
 		else
 		{
@@ -257,7 +264,7 @@ class UsersController extends \BaseController {
 			$zoekString = Input::get('zoekString');
 			$zoekString = htmlspecialchars($zoekString);
 			$zoekResult = $this->user->filterByName($zoekString);
-			return View::make('users.profiles',['title' => 'Zoekresultaten voor '.$zoekString,'users' => $zoekResult]);
+			return View::make('users.profiles',['title' => 'Zoekresultaten voor '.$zoekString,'users' => $zoekResult,'zoekString' => $zoekString]);
 		}
 		else
 		{

@@ -5,8 +5,8 @@
 
 @section("content")
 	<div>
-		{{Form::open(['url' => 'user/filter' , 'method' => 'POST'])}}
-		<input type="text" name='zoekString' placeholder="Zoeken naar mensen" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+		{{Form::open(['url' => 'user/filter' , 'method' => 'GET'])}}
+		<input type="text" name='zoekString' placeholder="Zoeken mealdealers" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
 		{{Form::close()}}
 	</div>
 	<h1>{{$title}}</h1>
@@ -19,9 +19,9 @@
 				<p>aantal votes: {{$user->votes}}</p>			
 			</a>
 		@empty
-		      <p>Geen mensen gevonden</p>
+		      <p>Geen mealdealers gevonden</p>
 		@endforelse
-
+		{{$users->appends(array('zoekString' => $zoekString))->links()}}
 		
 	</div>
 @stop

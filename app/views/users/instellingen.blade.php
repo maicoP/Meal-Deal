@@ -19,7 +19,9 @@
 		<p>Straatnaam: {{$userData->straatnaam}}
 		<p>Postcode: {{$userData->postcode}}</p>
 		<p>Huisnummer: {{$userData->huisnummer}}</p>
-		<p>Postbus: {{$userData->postbus}}</p>	
+		<p>Postbus: {{$userData->postbus}}</p>
+		<p>Aantal verkochte deals: {{$dealsVerkocht}}</p>
+		<p>Aantal gekochte deals: {{$dealsGekocht}}</p>	
 	</div>
 
 @stop

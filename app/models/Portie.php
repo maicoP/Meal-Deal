@@ -100,4 +100,9 @@ class Portie extends Eloquent{
 		return $koperId[0]->koperId;
 	}
 
+	public function getPortieKoper($id)
+	{
+		return Portie::where('id','=',$id)->first();
+	}
+
 }

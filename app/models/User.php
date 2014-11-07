@@ -135,13 +135,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return User::orderBy('votes','desc')
 						->take(10)
-						->get();
+						->paginate(5);
 	}
 
 	public function filterByName($zoekString)
 	{
 		return User::orderBy('votes','desc')
 						->where('naam','LIKE','%'.$zoekString.'%')
-						->get();
+						->paginate(5);
+	}
+
+	public function dealsVerkocht($id)
+	{
+		return Portie::where('verkoperId','=',$id)
+					->where('status','=','geaccepteert')
+					->count();
+	}
+
+	public function dealsGekocht($id)
+	{
+		return Portie::where('koperId','=',$id)
+				->where('status','=','geaccepteert')
+				->count();
+	}
+
+	public function getUserByNaam($id)
+	{
+		return User::where('naam','=',$id)->first();
 	}
 }

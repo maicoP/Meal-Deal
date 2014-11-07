@@ -5,24 +5,26 @@
 
 @section("content")
 	<div>
-		<h1>Profile of {{$userData->naam}}</h1>
-		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
-		<p>{{$userData->info}}</p>
-		<p>Votes: {{$userData->votes}}</p>
-		@if(!in_array ( $userData->id , $userVotedOn))
+		<h1>Profile of {{$user->naam}}</h1>
+		<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+		<p>{{$user->info}}</p>
+		<p>Aantal verkochte deals: {{$dealsVerkocht}}</p>
+		<p>Aantal gekochte deals: {{$dealsGekocht}}</p>
+		<p>Votes: {{$user->votes}}</p>
+		@if(!in_array ( $user->id , $userVotedOn))
 			<div>
-				{{Form::open(['url' => 'user/'.$userData->id.'/vote'])}}
+				{{Form::open(['url' => 'user/'.$user->id.'/vote'])}}
 				{{Form::submit('vote')}}
 				{{Form::close()}}
 			</div>
 		@endif
-
-		<p>Adres: {{$userData->straatnaam." ".$userData->huisnummer." ".$userData->postcode." ".$userData->gemeente}}
-		@if($userData->postbus != "")
-		Postbus:{{$userData->postbus}}
+		
+		<p>Adres: {{$user->straatnaam." ".$user->huisnummer." ".$user->postcode." ".$user->gemeente}}
+		@if($user->postbus != "")
+		Postbus:{{$user->postbus}}
 		@endif</p>
-		<h2>Deals from {{$userData->naam}}</h2>
-		@forelse($userData->deal as $deal )
+		<h2>Deals from {{$user->naam}}</h2>
+		@forelse($userDeals as $deal )
 			<div>
 					<h2>
 						{{$deal->gerecht}}
@@ -45,8 +47,10 @@
 
 				</div>
 		@empty
-			<p>{{$userData->naam}} heeft nog geen deals geplaats</p>
+			<p>{{$user->naam}} heeft nog geen deals geplaats</p>
 		@endforelse
+		{{$userDeals->links()}}
+		
 	</div>
 	
 @stop

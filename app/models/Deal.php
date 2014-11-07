@@ -40,7 +40,7 @@ class Deal extends Eloquent{
 						$q->orderBy('created_at','DESC');
 						}))->where('verkoperId','=',Auth::id())
 						->where('status','=','beschikbaar')
-						->get();
+						->paginate(3);
 	}
 	public function getMyDealsVerkopenGeaccepteert()
 	{
@@ -48,7 +48,7 @@ class Deal extends Eloquent{
 						$q->orderBy('created_at','DESC');
 						}))->Where('status', 'geaccepteert')
 						->where('.verkoperId','=',Auth::id())
-						->get();
+						->paginate(3);
 	}
 
 	public function getMyDealsVerkopenAagevraagt()
@@ -57,7 +57,7 @@ class Deal extends Eloquent{
 						$q->orderBy('created_at','DESC');
 						}))->where('status','=','aangevraagt')
 						->where('verkoperId','=',Auth::id())
-						->get();
+						->paginate(3);
 	}
 
 	public function getMyDealsKopen()
@@ -68,15 +68,15 @@ class Deal extends Eloquent{
 						->where('koperId','=',Auth::id())
 						->orWhere('status', 'geaccepteert')
 						->where('.koperId','=',Auth::id())
-						->get();
+						->paginate(3);
 	}
 
 	public static function getDealsFromUser($id)
 	{
-		return User::with(array('Deal' => function($q){
-							$q->orderBy('deals.created_at','DESC');
-						}))->where('naam','=',$id)
-						->get();
+		return Deal::whereHas('user',function($q) use($id){
+							$q->where('naam','=',$id);
+						})->orderBy('deals.created_at','DESC')
+						->paginate(5);
 	}
 
 	public static function getDealByRegion($id)
@@ -88,7 +88,7 @@ class Deal extends Eloquent{
 						->where('beschikbaar','=',true)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
-						->get();
+						->paginate(6);
 	}
 
 	public static function getDealByAfhaalMethode($afhalen,$id)
@@ -101,7 +101,12 @@ class Deal extends Eloquent{
 						->where('beschikbaar','=',true)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
-						->get();
+						->paginate(6);
+	}
+
+	public function getDealVerkoper($dealId)
+	{
+		return Deal::has('user')->where('id','=',$dealId)->first();
 	}
 
 }

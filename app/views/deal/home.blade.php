@@ -71,5 +71,6 @@
 		@empty
 		      <p>Geen Deals gevonden</p>
 		@endforelse
+		{{$deals->links()}}
 	</div>
 @stop

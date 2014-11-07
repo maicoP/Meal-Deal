@@ -7,13 +7,11 @@
 	<div>
 		<h1>Mijn Deals</h1>
 		<div>
-			<h2>Verkopen</h2>
-			@if( $dealsBeschikbaar->isEmpty() == 1 && $VerkopenGeaccepteert->isEmpty() == 1 && $VerkopenAangevraagt->isEmpty() == 1)
-			<p>U verkoopt geen deals.</p>
-			@else
-				@foreach($VerkopenAangevraagt as $dealVerkopen)
+			<h2>Deals die u verkoopt</h2>
+				<h2>Aanvragen</h2>
+				@forelse($VerkopenAangevraagt as $dealVerkopen)
 					<div>
-						<h2>{{$dealVerkopen->koper->naam}} wil graag deze deal</h2>
+						<h3>{{$dealVerkopen->koper->naam}} wil graag deze deal</h3>
 						<p>Koper: </p>
 						<span><img src="{{strpos($dealVerkopen->koper->afbeelding,'https') !== false ?$dealVerkopen->koper->afbeelding : '/img/'.$dealVerkopen->koper->afbeelding}}">{{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</span>
 						<h3>{{$dealVerkopen->deal->gerecht}}</h3>
@@ -34,10 +32,14 @@
 						{{Form::close()}}
 						
 					</div>
-				@endforeach
-				@foreach($VerkopenGeaccepteert as $dealVerkopen)
+				@empty
+				<p>U heeft nog geen aanvragen op u deals</p>
+				@endforelse
+				{{$VerkopenAangevraagt->links()}}
+				<h2>Geaccepteert</h2>
+				@forelse($VerkopenGeaccepteert as $dealVerkopen)
 					<div>
-						<h2>U verkoopt deze deal aan{{$dealVerkopen->koper->naam}}</h2>
+						<h3>U verkoopt deze deal aan {{$dealVerkopen->koper->naam}}</h3>
 						<p>Koper: </p>
 						<span><img src="{{strpos($dealVerkopen->koper->afbeelding,'https') !== false ?$dealVerkopen->koper->afbeelding : '/img/'.$dealVerkopen->koper->afbeelding}}">{{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</span>
 						<h3>{{$dealVerkopen->deal->gerecht}}</h3>
@@ -48,11 +50,19 @@
 						@else
 						<p>Ontvangst: Komen Eten.</p>
 						@endif
-						<p>U heeft deze deal geacepteert</p>
+						<p>U heeft deze deal geaccepteert</p>
+						{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+						{{Form::hidden('type','afzeggen')}}
+						{{Form::submit('Deal Afzeggen')}}
+						{{Form::close()}}
 						
 					</div>
-				@endforeach
-				@foreach($dealsBeschikbaar as $dealBeschikbaar)
+				@empty
+				<p>U heeft nog geen deals die geaccepteert zijn</p>
+				@endforelse
+				{{$VerkopenGeaccepteert->links()}}
+				<h2>Beschikbaar</h2>
+				@forelse($dealsBeschikbaar as $dealBeschikbaar)
 					<div>
 						<h3>{{$dealBeschikbaar->deal->gerecht}}</h3>
 						<p>Deal einde:{{$dealBeschikbaar->deal->dealeinde}}</p>
@@ -64,8 +74,10 @@
 						@endif
 						<p>Deal is nog vrij</p>
 					</div>
-				@endforeach
-			@endif
+				@empty
+				<p>U heeft geen deals beschikbaar</p>
+				@endforelse
+				{{$dealsBeschikbaar ->links()}}
 		</div>
 		<div>
 			<h2>Kopen</h2>
@@ -82,13 +94,22 @@
 					@endif
 					@if($dealKopen->status == "aangevraagt")
 						<p>Wachten op reactie van verkoper</p>
+						{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+						{{Form::hidden('type','aanvraag intrekken')}}
+						{{Form::submit('Aaanvraag Intrekken')}}
+						{{Form::close()}}
 					@elseif($dealKopen->status == "geaccepteert")
 						<p>U deal is geacepteert</p>
+						{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+						{{Form::hidden('type','Acceptatieafzeggen')}}
+						{{Form::submit('Deal Afzeggen')}}
+						{{Form::close()}}
 					@endif
 					
 				@empty
 				<p>U hebt momenteel geen aanvragen gedaan</p>
 				@endforelse
+				{{$dealsKopen->links()}}
 		</div>
 		
 	</div>
