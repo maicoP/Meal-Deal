@@ -79,26 +79,30 @@ class Deal extends Eloquent{
 						->paginate(5);
 	}
 
-	public static function getDealByRegion($id)
+	public function getDealByRegion($id)
 	{
+		$today = date('Y-m-d');
 		return DB::table('deals')
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
 						->where('beschikbaar','=',true)
+						// ->where('deals.created_at','>=',$today)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
 	}
 
-	public static function getDealByAfhaalMethode($afhalen,$id)
+	public function getDealByAfhaalMethode($afhalen,$id)
 	{
+		$today = date('Y-m-d');
 		return DB::table('deals')
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
 						->where('deals.afhalen','=',$afhalen)
 						->where('beschikbaar','=',true)
+						// ->where('deals.created_at','>=',$today)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
