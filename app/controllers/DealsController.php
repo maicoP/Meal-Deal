@@ -61,7 +61,6 @@ class DealsController extends \BaseController {
 			$this->deal->fill($input);
 			$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur')).':00';
 			$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde')).':00';
-			$this->deal->setNow();
 			if( $this->deal->isValid())
 			{
 				$filename = 'nofile.png';

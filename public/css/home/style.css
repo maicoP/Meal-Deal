@@ -30,7 +30,7 @@ a.hiddenanchor{
 
 #wrapper a{
 	color: rgb(95, 155, 198);
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 #wrapper h1{

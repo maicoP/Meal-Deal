@@ -9,7 +9,7 @@ html {
     overflow-y:scroll;
 }
 
-img {
+.imglogo {
   max-width: 100%;
   height: auto;
   vertical-align: bottom;
@@ -201,7 +201,24 @@ img {
 .container{
   width:100%;
   height:auto;
-  background-color:#DED3C1;
+  background-color:#ededed;
+}
+
+.footer{
+  width:100%;
+  height:30px;
+  background-color:#ffffff;
+}
+
+.minifooter{
+    color: #646464;
+    font-family: "Montserrat";
+    font-size: 13px;
+    line-height: 36px;
+    background-color:#ffffff;
+    padding-bottom:0px;
+    margin-bottom:0px;
+    text-align:center;
 }
 
 .menulinks {
@@ -224,6 +241,210 @@ img {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/*DEALS*/
+
+h1{
+  font-size:50px;
+  font-family: 'Lobster', sans-serif;
+  color:#fe8f2d;
+  text-align:center;
+  margin-top:35px;
+  margin-bottom:15px;
+  font-weight:normal;
+}
+
+
+h2{
+  font-size:30px;
+  font-family: 'Open Sans', sans-serif;
+  color:#808080;
+  line-height:120%;
+  text-align:center;
+  margin-top:35px;
+  margin-bottom:15px;
+  font-weight:normal;
+}
+
+.deal{
+  width:980px;
+  height:254px;
+  background-color:#FFFFFF;
+  background-image: url("http://subtlepatterns.com/patterns/subtle_dots.png");
+  border-radius: 2px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+  margin:0 auto;
+  margin-top:35px;
+  margin-bottom:35px;
+  overflow:hidden;
+}
+
+.deal-title{
+  font-size:30px;
+  color:#646464;
+  font-family: "Montserrat";
+}
+
+.deal-info{
+  /* background-color:yellow; */
+  height:254px;
+  width:359px;
+  float:left;
+  padding:10px;
+}
+
+.deal-information{
+  padding-top:10px;
+  margin-top:10px;
+  width:100%;
+  /* background-color:red; */
+  height:110px;
+}
+
+.deal-practical{
+  width:100%;
+  /* background-color:green; */
+}
+
+.practical{
+  float:left;
+  width:35px;
+  height:29px;
+  margin-left:11px;
+}
+
+.practicaltext{
+  line-height:100%;
+  padding-top:3px;
+  float:left;
+  margin-bottom:20px;
+}
+
+.practicals{
+  float:right;
+  width:51px;
+padding-bottom:10px;
+}
+
+.deal-photo{
+  margin:10px;
+  width:300px;
+  height:232px;
+  height:;
+  overflow:hidden;
+  background-color:red;
+  float:left;
+}
+
+.deal-photo img{
+
+}
+
+.deal-owner{
+  width:300px;
+  height:254px;
+/*  background-color:blue;*/
+  padding:10px;
+  float:left;
+}
+
+
+
+.owner-avatar{
+  float:left;
+}
+
+.owner-name{
+  margin-top:10px;
+  float:left;
+  font-size:25px;
+  margin-left:0px;
+  color:#646464;
+  text-align:left;
+  width:100%;
+  font-family: "Montserrat";
+}
+
+.owner-name > a {color: #fe8f2d; text-decoration: none;}
+.owner-name > a:hover {color: #FF6E00;}
+
+.owner-address{
+  margin-top:14px;
+  float:left;
+  font-size:17px;
+  margin-left:0px;
+  color:#646464;
+  text-align:left;
+}
+
+.owner-badges{
+  margin-top:0px;
+  float:left;
+  font-size:17px;
+  margin-left:4px;
+  color:#646464;
+  text-align:left;
+}
+
+.dealbutton{
+
+  float:right;
+  width:100%;
+  /**/
+
+  height:32px;
+    border: 1px solid rgb(28, 108, 122);
+    border-radius: 3px;
+    box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Oswald",sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 1px 5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s linear 0s;
+    width: 100%;
+    background: none repeat scroll 0 0 #fe8f2d;
+}
+
+.dealbutton:hover{
+background: none repeat scroll 0 0 #e36a00;
+}
+
+.selectors{
+  width:980px;
+  
+  /* overflow:scroll; */
+  margin:0 auto;
+  margin-top:35px;
+  margin-bottom:35px;
+  padding-bottom:35px;
+  padding-left:200px;
+  padding-right:200px;
+}
+
+/* 
+* .selectors{
+padding-left:300px; Internet Explorer Browsers
+} */
+
+.regioselect{
+  float:left;
+  width:48%;
+}
+
+.methodeselect{
+float:right;
+  width:48%;
+}
+
+/* Text Styles */
+
+a {color: #fb9e25; text-decoration: none;}
+a:hover {color: #fb9e25;}
+.label {color: #777;text-transform: uppercase;margin-left: 10px;font-size: 0.8em;margin-bottom: 5px;display: block;}
+
 
 /*MEDIA QUERIES*/
 
@@ -266,6 +487,52 @@ img {
   }
   .content{
     width:700px;
+  }
+}
+
+@media (max-width: 1000px){
+  .deal{
+    width:359px;
+    height:auto;
+  }
+  .deal-photo{
+       margin: 15px 0 21px 28px;
+  }
+  .dealbutton{
+    height:45px;
+  }
+  .deal-owner{
+    width:359px;
+    text-align:center;
+  }
+  .owner-name{
+    text-align:center;
+    margin-top:10px;
+  }
+  .owner-address{
+    text-align:center;
+    width:100%;
+  }
+  .owner-avatar, .owner-badges{
+    float:none;
+    display:inline-block;
+  }
+  .deal-title, .deal-information{
+    text-align:center;
+  }
+  .regioselect, .methodeselect{
+    float:none;
+    width:100%;
+    padding-top:10px;
+  }
+  .selectors{
+    padding-bottom:0px;
+    width:359px;
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .dropcontainer{
+    width:359px;
   }
 }
 
@@ -316,3 +583,90 @@ img {
     width:500px;
   }
 }
+
+.fix{
+  font-size:50%;
+}
+
+
+/*SELECT FORMS*/
+
+
+.custom-dropdown__select{
+    font-size: inherit; 
+    padding: .5em; 
+    margin: 0; 
+    background-color: #ffffff;
+    color:#808080; 
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+}
+
+.fixdef {
+    background-color: #ffffff;
+    color:#808080;    
+}
+
+@supports (pointer-events: none) and
+      ((-webkit-appearance: none) or
+      (-moz-appearance: none) or
+      (appearance: none)) {
+
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      width:100%;
+    }
+
+    .custom-dropdown__select {
+        padding-right: 2.5em;
+        border: 0;
+        border-radius: 3px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;    
+      width:100%;
+    }
+
+    .custom-dropdown::before,
+    .custom-dropdown::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .custom-dropdown::after { /*  Custom dropdown arrow */
+        content: "\25BC";
+        color: #fff;
+        height: 1em;
+        font-size: .625em;
+        line-height: 1;
+        right: 1.2em;
+        top: 50%; margin-top: -.5em;
+    }
+
+    .custom-dropdown::before {
+        width: 2em;
+        right: 0; top: 0; bottom: 0;
+        border-radius: 0 3px 3px 0;
+    }
+
+    .fixdev::before {
+        background-color:#ffffff;
+        border-left: 1px solid rgba(0,0,0,.1);
+    }
+
+    .fixdev::after {
+        color: rgba(1,1,1,.8);
+    }
+
+    /* FF only temp fix */
+    @-moz-document url-prefix() {
+        .custom-dropdown__select             { padding-right: .9em }
+        .custom-dropdown--large .custom-dropdown__select { padding-right: 1.3em }
+        .custom-dropdown--small .custom-dropdown__select { padding-right: .5em }
+    }
+}
+

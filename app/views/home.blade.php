@@ -61,7 +61,7 @@
                         <span>{{ Session::get('err') }}</span>
                         @endif
                         <p> 
-                            {{Form::label('email', ' ', array('data-icon' => '&#xf003;'))}}
+                            {{Form::label('email', ' ', array('data-icon' => '&#xf1fa;'))}}
 							{{Form::email('email','', array('placeholder' => 'Email','required' => 'required'))}}
                         </p>
                         <p> 
@@ -73,8 +73,9 @@
                         	{{ Form::submit('LOG IN', ['class' => 'inloggen','value' => 'LOGIN'])}}
 						</p>
                         <p class="login button"> 
-                            <a class="fb" href="login/fb">LOG IN MET FACEBOOK</a> 
-                            
+                            <a class="fb" href="login/fb">
+                            <input class="fb" value="LOG IN MET FACEBOOK" type="button">
+                            </a> 
 						</p>
                         <p class="change_link">
 							Nog geen lid?
@@ -100,12 +101,12 @@
                         @endif
                         <p> 
                             <span>{{ $errors->first('naam')}}</span>
-                            {{Form::label('naam',' ', array('data-icon' => '&#xf007;'))}}
+                            {{Form::label('naam',' ', array('data-icon' => '&#xf19d;'))}}
                             {{Form::text('naam',Session::has('fbData') ? Session::get('fbData')['name'] :'', array('placeholder' => 'Gebruikersnaam','required' => 'required'))}}
                         </p>
                         <p> 
                             <span>{{ $errors->first('email')}}</span>
-                            {{Form::label('email',' ', array('data-icon' => '&#xf003;'))}}
+                            {{Form::label('email',' ', array('data-icon' => '&#xf1fa;'))}}
                             {{Form::email('email',Session::has('fbData') ? Session::get('fbData')['email'] :'', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
                         </p>
                         <p> 
@@ -118,23 +119,23 @@
                             {{Form::select('regionId', $regions)}}  
                         </p>
                         <p> 
-                            {{Form::label('straatnaam',' ', array('data-icon' => '&#xf041;'))}}
-                            {{Form::text('straatnaam','',array('placeholder' => 'Straatnaam','required' => 'required'))}}   
-                        </p>
-                        <p> 
-                            {{Form::label('postcode',' ', array('data-icon' => '&#xf041;'))}}
-                            {{Form::text('postcode','',array('placeholder' => 'Postcode','required' => 'required'))}}   
-                        </p>
-                        <p> 
                             {{Form::label('gemeente',' ', array('data-icon' => '&#xf041;'))}}
                             {{Form::text('gemeente','',array('placeholder' => 'Gemeente','required' => 'required'))}}       
                         </p>
                         <p> 
-                            {{Form::label('huisnummer',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::label('postcode',' ', array('data-icon' => '&#xf162;'))}}
+                            {{Form::text('postcode','',array('placeholder' => 'Postcode','required' => 'required'))}}   
+                        </p>
+                        <p> 
+                            {{Form::label('straatnaam',' ', array('data-icon' => '&#xf018;'))}}
+                            {{Form::text('straatnaam','',array('placeholder' => 'Straatnaam','required' => 'required'))}}   
+                        </p>
+                        <p> 
+                            {{Form::label('huisnummer',' ', array('data-icon' => '&#xf015;'))}}
                             {{Form::text('huisnummer','',array('placeholder' => 'Huisnummer','required' => 'required'))}}       
                         </p>
                         <p> 
-                            {{Form::label('postbus',' ', array('data-icon' => '&#xf041;'))}}
+                            {{Form::label('postbus',' ', array('data-icon' => '&#xf0e0;'))}}
                             {{Form::text('postbus','',array('placeholder' => 'Postbus'))}}  
                         </p>
                         <p class="textarea"> 

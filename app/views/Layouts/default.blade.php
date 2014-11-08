@@ -12,6 +12,10 @@ return (Route::current()->uri() == $route) ? $class : '';
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700' type='text/css' media='all' />
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	{{HTML::style("css/reset.css")}}
 	{{HTML::style("css/style.css")}}
 </head>
 <body>
@@ -29,7 +33,8 @@ return (Route::current()->uri() == $route) ? $class : '';
 				</div>
 				<div class="logodiv">
 					<div class="logo aligncenter">
-							{{ HTML::image('css/img/logo.png'); }}
+							{{ HTML::image('css/img/logo.png', '', ['class' => 'imglogo']) }}
+
 					</div>
 					<div class="menu-button alignleft"></div>
 				</div>
@@ -48,6 +53,9 @@ return (Route::current()->uri() == $route) ? $class : '';
 	<div class="container">
 		<div class="content">
 			@yield('content')
+		</div>
+		<div class="footer">
+			<div class="minifooter">Copyright 2014 MealDeal | Maico Paulussen &amp; Matthias Verhoeven</div>
 		</div>
 	</div>
 </body>
