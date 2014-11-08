@@ -94,13 +94,13 @@
 					@endif
 					@if($dealKopen->status == "aangevraagt")
 						<p>Wachten op reactie van verkoper</p>
-						{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+						{{Form::open(['url' => 'mydeals/'.$dealKopen->id.'/edit','method' => 'get'])}}
 						{{Form::hidden('type','aanvraag intrekken')}}
 						{{Form::submit('Aaanvraag Intrekken')}}
 						{{Form::close()}}
 					@elseif($dealKopen->status == "geaccepteert")
 						<p>U deal is geacepteert</p>
-						{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
+						{{Form::open(['url' => 'mydeals/'.$dealKopen->id.'/edit','method' => 'get'])}}
 						{{Form::hidden('type','Acceptatieafzeggen')}}
 						{{Form::submit('Deal Afzeggen')}}
 						{{Form::close()}}

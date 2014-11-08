@@ -19,7 +19,7 @@
 
 			<div>
 				{{ Form::label('gerecht','Gerecht:')}}
-				{{ Form::text('gerecht')}}
+				{{ Form::text('gerecht','', array('required' => 'required'))}}
 				
 			</div>
 
@@ -37,12 +37,12 @@
 
 			<div>
 				{{ Form::label('dealeinde','Deal Einde:')}}
-				<input type="time" name="dealeinde">
+				<input required="required" placeholder="--:--" type="time" name="dealeinde">
 			</div>
 
 			<div>
 				{{ Form::label('afhaaluur','Afhaaluur:')}}
-				<input type="time" name="afhaaluur">
+				<input required="required" placeholder="--:--" type="time" name="afhaaluur">
 			</div>
 
 			<div>

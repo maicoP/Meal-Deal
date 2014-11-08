@@ -17,8 +17,8 @@ class CreateTableDeals extends Migration {
 			$table->increments('id');
 			$table->string('gerecht');
 			$table->string('afbeeldingdeal');
-			$table->time('dealeinde');
-			$table->time('afhaaluur');
+			$table->timestamp('dealeinde');
+			$table->timestamp('afhaaluur');
 			$table->boolean('afhalen');
 			$table->boolean('beschikbaar')->default(true);
 			$table->timestamps();

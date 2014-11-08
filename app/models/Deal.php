@@ -3,17 +3,16 @@
 class Deal extends Eloquent{
 
 	protected $fillable =['gerecht','afbeeldingdeal','dealeinde','afhaaluur','afhalen','beschikbaar','porties','verkoperId'];
-
 	public static $rules=[
-		'gerecht' =>	'required',
-		'dealeinde'	=>	'required',
-		'afhaaluur'	=>	'required',
+		'dealeinde'	=>	'date_format:Y-m-d H:i:s',
+		'afhaaluur'	=>	'date_format:Y-m-d H:i:s|after:dealeinde',
 		'porties' => 'required',
 		'afbeeldingdeal' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif',
 		'afhalen'	=>	'required',
 	];
 
 	public $errors;
+
 	public function porties()
 	{
 		 return $this->hasMany('Portie','dealId');
@@ -33,40 +32,54 @@ class Deal extends Eloquent{
 		$this->errors =$validation->messages();
 		return false;
 	}
-
+	public function getDate(){
+		return date("Y-m-d H:i:s");
+	}
 	public function getMyDealsBeschikbaar()
 	{
-		return Portie::with(array('deal'=>  function($q){
+		$now = date('Y-m-d H:i:s');
+		return Portie::whereHas('deal',function($q) use($now){
 						$q->orderBy('created_at','DESC');
-						}))->where('verkoperId','=',Auth::id())
+						$q->where('deals.dealeinde','>=',$now);
+						})->where('verkoperId','=',Auth::id())
 						->where('status','=','beschikbaar')
 						->paginate(3);
 	}
 	public function getMyDealsVerkopenGeaccepteert()
 	{
-		return Portie::with(array('koper','deal'=>  function($q){
+		$now = date('Y-m-d H:i:s');
+		return Portie::whereHas('deal',function($q) use($now){
 						$q->orderBy('created_at','DESC');
-						}))->Where('status', 'geaccepteert')
+						$q->where('deals.afhaaluur','>=',$now);
+						})->with(array('koper'))->Where('status', 'geaccepteert')
 						->where('.verkoperId','=',Auth::id())
 						->paginate(3);
 	}
 
 	public function getMyDealsVerkopenAagevraagt()
 	{
-		return Portie::with(array('koper','deal'=>  function($q){
+		$now = date('Y-m-d H:i:s');
+		return Portie::whereHas('deal',function($q) use($now) {
 						$q->orderBy('created_at','DESC');
-						}))->where('status','=','aangevraagt')
+						$q->where('deals.dealeinde','>=',$now);
+						})->with(array('koper'))->where('status','=','aangevraagt')
 						->where('verkoperId','=',Auth::id())
 						->paginate(3);
 	}
 
 	public function getMyDealsKopen()
 	{
-		return Portie::with(array('verkoper','deal'=>  function($q){
+		$now = date('Y-m-d H:i:s');
+		return Portie::whereHas('deal', function($q) use($now){
 						$q->orderBy('created_at','DESC');
-						}))->where('status','=','aangevraagt')
+						$q->where('deals.afhaaluur','>=',$now);
+						})->with(array('verkoper'))->where('status','=','aangevraagt')
 						->where('koperId','=',Auth::id())
 						->orWhere('status', 'geaccepteert')
+						->whereHas('deal', function($q) use($now){
+						$q->orderBy('created_at','DESC');
+						$q->where('deals.afhaaluur','>=',$now);
+						})
 						->where('.koperId','=',Auth::id())
 						->paginate(3);
 	}
@@ -81,13 +94,13 @@ class Deal extends Eloquent{
 
 	public function getDealByRegion($id)
 	{
-		$today = date('Y-m-d');
+		$now = date('Y-m-d H:i:s');
 		return DB::table('deals')
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
 						->where('beschikbaar','=',true)
-						// ->where('deals.created_at','>=',$today)
+						->where('deals.dealeinde','>=',$now)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
@@ -95,14 +108,14 @@ class Deal extends Eloquent{
 
 	public function getDealByAfhaalMethode($afhalen,$id)
 	{
-		$today = date('Y-m-d');
+		$now = date('Y-m-d H:i:s');
 		return DB::table('deals')
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
 						->where('regions.id','=',$id)
 						->where('deals.afhalen','=',$afhalen)
 						->where('beschikbaar','=',true)
-						// ->where('deals.created_at','>=',$today)
+						->where('deals.dealeinde','>=',$now)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);

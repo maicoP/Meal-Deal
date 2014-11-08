@@ -16,7 +16,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'naam' => 'unique:users,naam',
 		'email' => 'unique:users,email',
 		'password' => 'min:8',
-		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif'
+		'afbeelding' => 'image|max:1000|mimes:jpg,jpeg,bmp,png,gif',
 	];
 
 	public static $editRules=[

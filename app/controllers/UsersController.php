@@ -51,6 +51,7 @@ class UsersController extends \BaseController {
 			}
 			if(Input::hasFile('afbeelding'))
 			{
+				$filename = Input::get('naam').'.png';
 				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
 				$image->crop(100,100);
 				$destenation = 'img/'.$filename;
@@ -159,6 +160,7 @@ class UsersController extends \BaseController {
 			}
 			if( $this->user->fill($input)->isValid($rules))
 			{
+					$this->user->afbeelding = Auth::user()->afbeelding;
 				if(Input::hasFile('afbeelding'))
 				{
 					$filename = Auth::user()->naam.".png";
@@ -168,9 +170,8 @@ class UsersController extends \BaseController {
 					$this->user->afbeelding = $filename;
 					$image->save($destenation);
 				}
-					$this->user->afbeelding = Auth::user()->afbeelding;
 					$this->user->save();
-					return Redirect::to('users/instellingen');
+					return Redirect::to('user/instellingen');
 			}
 			else
 			{

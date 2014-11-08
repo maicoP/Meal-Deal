@@ -58,8 +58,11 @@ class DealsController extends \BaseController {
 		if(Auth::check())
 		{
 			$input = Input::all();
-
-			if( $this->deal->fill($input)->isValid())
+			$this->deal->fill($input);
+			$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur')).':00';
+			$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde')).':00';
+			$this->deal->setNow();
+			if( $this->deal->isValid())
 			{
 				$filename = 'nofile.png';
 				if(Input::hasFile('afbeeldingdeal'))
@@ -71,8 +74,8 @@ class DealsController extends \BaseController {
 				}
 				$this->deal->afbeeldingdeal= $filename;
 				$this->deal->gerecht = htmlspecialchars(Input::get('gerecht'));
-				$this->deal->afhaaluur = htmlspecialchars(Input::get('afhaaluur'));
-				$this->deal->dealeinde = htmlspecialchars(Input::get('dealeinde'));
+				$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur'));
+				$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde'));
 				$this->deal->verkoperId = Auth::id();
 				$this->deal->save();
 				$dealId = $this->deal->id;
