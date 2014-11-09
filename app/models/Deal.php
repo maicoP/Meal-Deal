@@ -2,7 +2,7 @@
 
 class Deal extends Eloquent{
 
-	protected $fillable =['gerecht','afbeeldingdeal','dealeinde','afhaaluur','afhalen','beschikbaar','porties','verkoperId'];
+	protected $fillable =['gerecht','afbeeldingdeal','dealeinde','afhaaluur','afhalen','beschikbaar','porties','verkoperId','beschrijving'];
 	public static $rules=[
 		'dealeinde'	=>	'date_format:Y-m-d H:i:s',
 		'afhaaluur'	=>	'date_format:Y-m-d H:i:s|after:dealeinde',
@@ -31,9 +31,6 @@ class Deal extends Eloquent{
 		
 		$this->errors =$validation->messages();
 		return false;
-	}
-	public function getDate(){
-		return date("Y-m-d H:i:s");
 	}
 	public function getMyDealsBeschikbaar()
 	{

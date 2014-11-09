@@ -9,6 +9,9 @@
 	<div>
 		{{ Form::open(['route' => 'deals.store','files' => true]) }}
 			<div>
+				@if(Session::has('message') )
+					{{Session::get('message')}}
+				@endif
 				{{ $errors->first('naam')}}
 				{{ $errors->first('porties')}}
 				{{ $errors->first('afbeelding')}}
@@ -48,6 +51,12 @@
 			<div>
 				{{ Form::label('afhalen','Ontvangst:')}}
 				{{Form::select('afhalen', array(true => 'Afhalen', false => 'Komen eten'))}}
+
+			</div>
+
+			<div>
+				{{ Form::label('beschrijving','Beschrijving:')}}
+				{{Form::textarea('beschrijving','',array('maxlength' => '200'))}}
 
 			</div>
 

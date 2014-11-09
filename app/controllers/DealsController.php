@@ -57,32 +57,39 @@ class DealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
+			
 			$input = Input::all();
 			$this->deal->fill($input);
 			$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur')).':00';
 			$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde')).':00';
 			if( $this->deal->isValid())
 			{
-				$filename = 'nofile.png';
-				if(Input::hasFile('afbeeldingdeal'))
+				if($this->deal->dealeinde > date("Y-m-d H:i:s"))
 				{
-					$filename = Input::file('afbeeldingdeal')->getClientOriginalName();
-					$image = Image::make(Input::file('afbeeldingdeal')->getRealPath())->heighten(400);
-					$destenation = 'img/deals/'.$filename;
-					$image->save($destenation);
+					$filename = 'nofile.png';
+					if(Input::hasFile('afbeeldingdeal'))
+					{
+						$filename = Input::file('afbeeldingdeal')->getClientOriginalName();
+						$image = Image::make(Input::file('afbeeldingdeal')->getRealPath())->heighten(400);
+						$destenation = 'img/deals/'.$filename;
+						$image->save($destenation);
+					}
+					$this->deal->afbeeldingdeal= $filename;
+					$this->deal->gerecht = htmlspecialchars(Input::get('gerecht'));
+					$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur'));
+					$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde'));
+					$this->deal->verkoperId = Auth::id();
+					$this->deal->save();
+					$dealId = $this->deal->id;
+					$userId = Auth::id();
+					Portie::savePorties(Input::get('porties'),$dealId,$userId);
+
+					return Redirect::to('deals');
 				}
-				$this->deal->afbeeldingdeal= $filename;
-				$this->deal->gerecht = htmlspecialchars(Input::get('gerecht'));
-				$this->deal->afhaaluur = date('Y-m-d').' '.htmlspecialchars(Input::get('afhaaluur'));
-				$this->deal->dealeinde = date('Y-m-d').' '.htmlspecialchars(Input::get('dealeinde'));
-				$this->deal->verkoperId = Auth::id();
-				$this->deal->save();
-				$dealId = $this->deal->id;
-				$userId = Auth::id();
-				Portie::savePorties(Input::get('porties'),$dealId,$userId);
-
-				return Redirect::to('deals');
-
+				else
+				{
+					return Redirect::to('deals/create')->withInput()->with('message','Het ingegeven tijdstip bij dealeinde moet later zijn dan het huidige tijdstip');
+				}
 			}
 			else
 			{

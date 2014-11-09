@@ -17,6 +17,7 @@
 
 		<div class="selectors">
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
+			{{Form::text('zoekString','',array('placeholder' => 'Zoek op deals' ))}}
 			<div class="regioselect">
 			<span class="custom-dropdown fixdev">
 			<select class="custom-dropdown__select" name='regionId' onchange="this.form.submit()">
@@ -68,6 +69,7 @@
 					<div class="deal-info">
 						<div class="deal-title">{{$deal->gerecht}}</div>
 						<div class="deal-information">
+						<p>{{$deal->beschrijving}}</p>
 						@if($deal->afhalen == 1)
 							Ontvangst: Afhalen
 						@else

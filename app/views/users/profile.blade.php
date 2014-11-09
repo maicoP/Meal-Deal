@@ -31,6 +31,7 @@
 					</h2>
 					<div><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}"></div>
 					@if($deal->afhalen == 1)
+					<p>{{$deal->beschrijving}}</p>
 					<p>Ontvangst: Afhalen</p>
 					@else
 					<p>Ontvangst: Komen Eten.</p>
