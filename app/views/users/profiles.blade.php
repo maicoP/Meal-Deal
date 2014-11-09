@@ -14,7 +14,9 @@
 			@forelse($users as $user)
 			<div class="user">
 		      	<a href="{{'/users/'.$user->naam}}">
-					<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+					<div class="imgfbfix">
+						<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+					</div>
 				</a>
 					<div class="badgetop"><img src="{{'/img/badges/'.$user->badge.'.png'}}" alt=""></div>
 				<a href="{{'/users/'.$user->naam}}">

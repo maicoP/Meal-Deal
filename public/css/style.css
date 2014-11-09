@@ -566,6 +566,13 @@ a:hover {color: #fb9e25;}
   width:50px;
 }
 
+.imgfbfix{
+  float:left;
+  height:100px;
+  width:100px;
+  overflow:hidden;
+}
+
 /*MEDIA QUERIES*/
 
 @media (max-width: 1169px) {
