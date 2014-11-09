@@ -76,9 +76,9 @@
 						</div>
 						<div class="deal-practical">
 							<div class="practical"><img src="{{'/css/img/klok.png'}}" alt=""></div>
-							<div class="practicaltext">Deal Einde<br><b><p class="fix">{{$deal->dealeinde}}</p></b></div>
+							<div class="practicaltext">Deal Einde<br><b><p class="fix">{{substr($deal->dealeinde,11,5)}}</p></b></div>
 							<div class="practical"><img src="{{'/css/img/vork.png'}}" alt=""></div>
-							<div class="practicaltext">Eten Om<br><b><p class="fix">{{$deal->afhaaluur}}</p></b></div>
+							<div class="practicaltext">Eten Om<br><b><p class="fix">{{substr($deal->afhaaluur,11,5)}}</p></b></div>
 							<div class="practical"><img src="{{'/css/img/people.png'}}" alt=""></div>
 							<div class="practicaltext">Deals<br><b>{{$deal->porties}}</b></div>
 						</div>
