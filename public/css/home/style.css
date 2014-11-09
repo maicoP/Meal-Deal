@@ -40,7 +40,7 @@ a.hiddenanchor{
 	font-family: 'Lobster', cursive;
 	font-weight: bold;
 	text-align: center;
-	padding-bottom: 30px;
+	padding-bottom: 10px; /*was 30*/
 }
 
 
@@ -311,4 +311,20 @@ p.change_link{
 	position: absolute;
 	height: 90px;
 	background: transparent;
+}
+
+.regerror{
+    color: #f76a51;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
+}
+
+.regsucc{
+    color: #8CE562;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
 }

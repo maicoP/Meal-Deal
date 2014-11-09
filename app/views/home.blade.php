@@ -52,13 +52,13 @@
                 @else
                     <div id="login" class="animate form" style="display: none;">
                 @endif
-                @if(Session::has('message'))
-                    {{ Session::get('message')}}
-                @endif
                     {{ Form::open(['route' => 'sessions.store']) }}
                         <h1>Log in</h1> 
+                        @if(Session::has('message'))
+                            <div class="regsucc">{{ Session::get('message')}}</div>
+                        @endif
                         @if(Session::get('err') !== null)
-                        <span>{{ Session::get('err') }}</span>
+                        <div class="regerror">{{ Session::get('err') }}</div>
                         @endif
                         <p> 
                             {{Form::label('email', ' ', array('data-icon' => '&#xf1fa;'))}}
@@ -94,23 +94,24 @@
                 @endif
                     {{Form::open(['route' => 'users.store','files' => true]) }}
                         <h1>Registreer</h1> 
+                        <div class="regerror">{{ $errors->first('naam')}}</div>
+                        <div class="regerror">{{ $errors->first('email')}}</div>
+                        <div class="regerror">{{ $errors->first('password')}}</div>
+                        <div class="regerror">{{ $errors->first('afbeelding')}}</div>
                         @if(Session::has('fbData'))
                         {{Form::hidden('facebook',true)}}
                         @else
                             {{Form::hidden('facebook',false)}}
                         @endif
                         <p> 
-                            <span>{{ $errors->first('naam')}}</span>
                             {{Form::label('naam',' ', array('data-icon' => '&#xf19d;'))}}
                             {{Form::text('naam',Session::has('fbData') ? Session::get('fbData')['name'] :'', array('placeholder' => 'Gebruikersnaam','required' => 'required'))}}
                         </p>
                         <p> 
-                            <span>{{ $errors->first('email')}}</span>
                             {{Form::label('email',' ', array('data-icon' => '&#xf1fa;'))}}
                             {{Form::email('email',Session::has('fbData') ? Session::get('fbData')['email'] :'', array('placeholder' => 'Email','type' => 'email','required' => 'required'))}}
                         </p>
                         <p> 
-                            <span>{{ $errors->first('password')}}</span>
                             {{Form::label('password',' ', array('data-icon' => '&#xf084;'))}}
                             {{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}    
                         </p>
@@ -143,7 +144,6 @@
                             {{Form::textarea('info','',array('placeholder' => 'Informatie','required' => 'required','rows' => '4'))}}        
                         </p>
                         <p> 
-                            <span>{{ $errors->first('afbeelding')}}</span>
                             {{Form::label('afbeelding',' ',array('data-icon' => '&#xf030;'))}}
                             {{Form::file('afbeelding','',array('placeholder' => 'Avatar'))}}    
                         </p>                                                                                              

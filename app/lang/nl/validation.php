@@ -36,13 +36,13 @@ return array(
     "digits_between" => ":attribute moet bestaan uit minimaal :min en maximaal :max cijfers.",
     "email"          => ":attribute is geen geldig e-mailadres.",
     "exists"         => ":attribute bestaat niet.",
-    "image"          => ":attribute moet een afbeelding zijn.",
+    "image"          => "Je :attribute moet een afbeelding zijn.",
     "in"             => ":attribute is ongeldig.",
     "integer"        => ":attribute moet een getal zijn.",
     "ip"             => ":attribute moet een geldig IP-adres zijn.",
     "max"            => array(
         "numeric" => ":attribute moet minder dan :max zijn.",
-        "file"    => ":attribute moet minder dan :max kilobytes zijn.",
+        "file"    => "Je :attribute moet minder dan :max kilobytes zijn.",
         "string"  => ":attribute moet minder dan :max karakters zijn.",
         "array"   => ":attribute mag maximaal :max items bevatten."
     ),
@@ -50,7 +50,7 @@ return array(
     "min"            => array(
         "numeric" => ":attribute moet minimaal :min zijn.",
         "file"    => ":attribute moet minimaal :min kilobytes zijn.",
-        "string"  => ":attribute moet minimaal :min karakters zijn.",
+        "string"  => "Je :attribute moet minimaal :min karakters zijn.",
         "array"   => ":attribute moet minimaal :min items bevatten."
     ),
     "not_in"         => "Het formaat van :attribute is ongeldig.",
@@ -70,7 +70,7 @@ return array(
         "array"   => ":attribute moet :size items bevatten."
     ),
     "timezone"       => "Het :attribute moet een geldige zone zijn.",
-    "unique"         => ":attribute is al in gebruik.",
+    "unique"         => "Oeps, deze :attribute is al in gebruik.",
     "url"            => ":attribute is geen geldige URL.",
 
     /*
