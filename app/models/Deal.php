@@ -103,14 +103,30 @@ class Deal extends Eloquent{
 						->paginate(6);
 	}
 
-	public function getDealByAfhaalMethode($afhalen,$id)
+	public function getDealByZoekString($regionId,$zoekString)
 	{
 		$now = date('Y-m-d H:i:s');
 		return DB::table('deals')
 						->join('users','users.id', '=','deals.verkoperId')
 						->join('regions','users.regionId','=','regions.id')
-						->where('regions.id','=',$id)
+						->where('regions.id','=',$regionId)
+						->where('deals.gerecht','like','%'.$zoekString.'%')
+						->where('beschikbaar','=',true)
+						->where('deals.dealeinde','>=',$now)
+						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
+						->orderBy('deals.created_at','DESC')
+						->paginate(6);
+	}
+
+	public function getDealByAfhaalMethodeAndZoekString($regionId,$afhalen,$zoekString)
+	{
+		$now = date('Y-m-d H:i:s');
+		return DB::table('deals')
+						->join('users','users.id', '=','deals.verkoperId')
+						->join('regions','users.regionId','=','regions.id')
+						->where('regions.id','=',$regionId)
 						->where('deals.afhalen','=',$afhalen)
+						->where('deals.gerecht','like','%'.$zoekString.'%')
 						->where('beschikbaar','=',true)
 						->where('deals.dealeinde','>=',$now)
 						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')

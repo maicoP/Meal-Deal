@@ -19,7 +19,7 @@ class DealsController extends \BaseController {
 		{
 			$regionId = User::getRegionId(Auth::Id());
 			$regionId = $regionId[0]->regionId;		
-			return View::make('deal.home',['deals' => $this->deal->getDealByRegion($regionId),'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => 2]);
+			return View::make('deal.home',['deals' => $this->deal->getDealByRegion($regionId),'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => 2,'zoekString'=> ""]);
 		}
 		else
 		{
@@ -156,22 +156,26 @@ class DealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			return Input::all();
 			$regionId = Input::get('regionId');
-			
-			$deals =  $this->deal->getDealByRegion($regionId);
-			$methode = 2;
-			if(Input::get('afhalen') !== null)
+			$zoekString = Input::get('zoekString');
+			$afhaalMethode = Input::get('afhalen');
+			if($afhaalMethode !== "2" && $zoekString !== null)
 			{
-				if(Input::get('afhalen') !== "2")
-				{
-					$deals = $this->deal->getDealByAfhaalMethode(Input::get('afhalen'),$regionId);
-					$methode = Input::get('afhalen');
-				}
-
+				$deals = $this->deal->getDealByAfhaalMethodeAndZoekString($regionId,$afhaalMethode,$zoekString);
+				$methode = Input::get('afhalen');
+			}
+			elseif($zoekString !== null)
+			{
+				$deals = $this->deal->getDealByZoekString($regionId,$zoekString);
+				$methode = 2;
+			}
+			else
+			{
+				$deals =  $this->deal->getDealByRegion($regionId);
+				$methode = 2;
 			}
 			
-			return View::make('deal.home',['deals' => $deals,'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => $methode]);
+			return View::make('deal.home',['deals' => $deals,'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => $methode,'zoekString' => $zoekString]);
 		}
 		else
 		{

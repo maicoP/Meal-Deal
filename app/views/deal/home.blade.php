@@ -14,9 +14,10 @@
 		@endif
 		</div>
 		<h1>Beschikbare deals</h1>
+		{{Session::has('zoekString')}}
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<div class="searchbar">
-			<input class="searchfield" type="text" name='zoekString' placeholder="Zoek naar deals" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+			<input class="searchfield" type="text" name='zoekString' value="{{$zoekString}}"placeholder="Zoek naar deals" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
 		</div>
 		<div class="selectors">
 			<div class="regioselect">
