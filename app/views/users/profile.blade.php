@@ -7,6 +7,7 @@
 	<div>
 		<h1>Profile of {{$user->naam}}</h1>
 		<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+		<img src="{{'/img/badges/'.$user->badge.'.png'}}" alt="">
 		<p>{{$user->info}}</p>
 		<p>Aantal verkochte deals: {{$dealsVerkocht}}</p>
 		<p>Aantal gekochte deals: {{$dealsGekocht}}</p>
@@ -23,6 +24,7 @@
 		@if($user->postbus != "")
 		Postbus:{{$user->postbus}}
 		@endif</p>
+		<p>School: {{$user->school->naam}}</p>
 		<h2>Deals from {{$user->naam}}</h2>
 		@forelse($userDeals as $deal )
 			<div>

@@ -8,7 +8,7 @@ class Region extends Eloquent{
 	}
 	public static function getAllRegions()
 	{
-		$results = DB::table('regions')->select('naamRegio','id')->orderBy('naamRegio','asc')->get();
+		$results = Region::select('naamRegio','id')->orderBy('naamRegio','asc')->get();
 		$allRegions = array();
 		foreach($results as $result)
 		{

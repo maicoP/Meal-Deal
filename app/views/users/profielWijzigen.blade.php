@@ -24,6 +24,10 @@
 	   	    {{Form::email('email',$userData->email, array('type' => 'email','required' => 'required'))}}
 	   	</p>
 	   	<p> 
+	   	    School: 
+	   	    {{Form::select('schoolId', $schools,$userData->schoolId)}}  
+	   	</p>
+	   	<p> 
 	   	    Regio: 
 	   	    {{Form::select('regionId', $regions,$userData->regionId)}}  
 	   	</p>

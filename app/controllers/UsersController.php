@@ -130,7 +130,7 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$userData = $this->user->getUserData();
-			return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'userData'=> $userData[0]]);
+			return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'schools' => School::getAllSchools(),'userData'=> $userData]);
 		}
 		else
 		{
@@ -221,10 +221,11 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$userData = $this->user->getUserData();
+			$userDeals = Deal::getDealsFromUser(Auth::user()->naam);
 			$userId = Auth::id();
 			$dealsVerkocht = $this->user->dealsVerkocht($userId);
 			$dealsGekocht = $this->user->dealsGekocht($userId);
-			return View::make('users.instellingen',['userData'=> $userData[0],'dealsVerkocht' => $dealsVerkocht,'dealsGekocht' => $dealsGekocht]);
+			return View::make('users.instellingen',['userDeals' => $userDeals,'userData'=> $userData,'dealsVerkocht' => $dealsVerkocht,'dealsGekocht' => $dealsGekocht]);
 		}
 		else
 		{

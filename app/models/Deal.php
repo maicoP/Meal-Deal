@@ -98,7 +98,7 @@ class Deal extends Eloquent{
 						->where('regions.id','=',$id)
 						->where('beschikbaar','=',true)
 						->where('deals.dealeinde','>=',$now)
-						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
+						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding','users.badge')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
 	}
@@ -113,7 +113,7 @@ class Deal extends Eloquent{
 						->where('deals.gerecht','like','%'.$zoekString.'%')
 						->where('beschikbaar','=',true)
 						->where('deals.dealeinde','>=',$now)
-						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
+						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding','users.badge')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
 	}
@@ -129,7 +129,7 @@ class Deal extends Eloquent{
 						->where('deals.gerecht','like','%'.$zoekString.'%')
 						->where('beschikbaar','=',true)
 						->where('deals.dealeinde','>=',$now)
-						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding')
+						->select('deals.*','users.naam','users.postcode','users.gemeente','users.straatnaam','users.postbus','users.huisnummer','users.afbeelding','users.badge')
 						->orderBy('deals.created_at','DESC')
 						->paginate(6);
 	}

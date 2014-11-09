@@ -13,8 +13,7 @@
 Route::get('logout','SessionsController@destroy');
 Route::get('/', function()
 {
-	
-	return View::make('home',['regions' =>  Region::getAllRegions()]);
+	return View::make('home',['regions' =>  Region::getAllRegions(),'schools' => School::getAllSchools()]);
 });
 Route::get('login/fb', 'FacebookController@index');
 Route::get('login/fb/callback','FacebookController@callback');

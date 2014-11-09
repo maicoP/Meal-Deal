@@ -62,6 +62,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasMany('Profile');
     }
+    public function school()
+	{
+		return $this->belongsTo('School','schoolId');
+	}
 	public function isValid($rules)
 	{	
 		if($rules == "register")
@@ -92,7 +96,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getUserData()
 	{
 		return User::with('Region')->where('users.id','=',Auth::id())
-								->get();
+								->first();
 	}
 
 	public function addCoin($id)

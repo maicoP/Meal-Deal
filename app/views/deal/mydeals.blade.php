@@ -86,7 +86,8 @@
 				@forelse($dealsKopen as $dealKopen)
 					<h3>{{$dealKopen->deal->gerecht}}</h3>
 					<p>Verkoper: </p>
-					<span><img src="{{strpos($dealKopen->verkoper->afbeelding,'https') !== false ?$dealKopen->verkoper->afbeelding : '/img/'.$dealKopen->verkoper->afbeelding}}">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
+					<span><img src="{{strpos($dealKopen->verkoper->afbeelding,'https') !== false ?$dealKopen->verkoper->afbeelding : '/img/'.$dealKopen->verkoper->afbeelding}}">
+						<img src="{{'/img/badges/'.$dealKopen->verkoper->badge.'.png'}}" alt="">{{link_to("users/".$dealKopen->verkoper->naam, $dealKopen->verkoper->naam)}}</span>
 					<p>Adress:{{$dealKopen->koper->straatnaam." ".$dealKopen->koper->huisnummer."<br>".$dealKopen->koper->postcode." ".$dealKopen->koper->gemeente}}</p>
 					@if($dealKopen->koper->postbus != "")
 					<br>Postbus: {{$dealKopen->koper->postbus}}

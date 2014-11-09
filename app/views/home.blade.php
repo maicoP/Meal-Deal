@@ -117,6 +117,10 @@
                             {{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}    
                         </p>
                         <p> 
+                            {{Form::label('schoolId','School: ')}}
+                            {{Form::select('schoolId', $schools)}}  
+                        </p>
+                        <p> 
                             {{Form::label('regionId','Regio: ')}}
                             {{Form::select('regionId', $regions)}}  
                         </p>
