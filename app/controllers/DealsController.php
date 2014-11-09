@@ -156,7 +156,7 @@ class DealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-
+			return Input::all();
 			$regionId = Input::get('regionId');
 			
 			$deals =  $this->deal->getDealByRegion($regionId);

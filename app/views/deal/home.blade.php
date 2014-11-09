@@ -17,7 +17,7 @@
 
 		<div class="selectors">
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
-			{{Form::text('zoekString','',array('placeholder' => 'Zoek op deals' ))}}
+			<input type="text" name='zoekString' placeholder="Zoeken deals" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
 			<div class="regioselect">
 			<span class="custom-dropdown fixdev">
 			<select class="custom-dropdown__select" name='regionId' onchange="this.form.submit()">
