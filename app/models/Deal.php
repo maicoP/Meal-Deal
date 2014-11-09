@@ -151,10 +151,10 @@ class Deal extends Eloquent{
 	{
 		$aantGeaccepteerdeDeals = $this->getGeaccepteerdeDeals($id);
 
-		if($aantGeaccepteerdeDeals < 2)
+		if($aantGeaccepteerdeDeals < 5)
 		{
 			$this->updateBadge($id,'dummy');
-		}elseif($aantGeaccepteerdeDeals >= 2 && $aantGeaccepteerdeDeals < 10)
+		}elseif($aantGeaccepteerdeDeals >= 5 && $aantGeaccepteerdeDeals < 10)
 		{
 			$this->updateBadge($id,'1ster');
 		}

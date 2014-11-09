@@ -70,7 +70,8 @@ class DealsController extends \BaseController {
 					if(Input::hasFile('afbeeldingdeal'))
 					{
 						$filename = Input::file('afbeeldingdeal')->getClientOriginalName();
-						$image = Image::make(Input::file('afbeeldingdeal')->getRealPath())->heighten(400);
+						$image = Image::make(Input::file('afbeeldingdeal')->getRealPath())->heighten(232);
+						$image->crop(300,232);
 						$destenation = 'img/deals/'.$filename;
 						$image->save($destenation);
 					}
