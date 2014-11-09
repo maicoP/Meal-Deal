@@ -552,6 +552,15 @@ a:hover {color: #fb9e25;}
   background-image: url("img/subtle_dots.png");
   border-radius: 5px;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+  height:155px;
+  overflow:hidden;
+}
+
+
+.username{
+  float:left;
+  width:100%;
+  overflow:hidden;
 }
 
 /* .user:nth-child(even){
