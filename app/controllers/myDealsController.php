@@ -126,6 +126,7 @@ class myDealsController extends \BaseController {
 				$koperId =  $this->portie->getKoperId($id);
 				$this->user->addCoin(Auth::id());
 				$this->user->deleteCoin($koperId);
+				$this->deal->checkBadge(Auth::id());
 
 				//data ophalen wanneer men accepteert
 				$verkoper = Auth::user();
@@ -163,6 +164,7 @@ class myDealsController extends \BaseController {
 				$this->user->deleteCoin(Auth::id());
 				$this->user->addCoin($koperId);
 				$this->portie->wijgerPortie($id);
+				$this->deal->checkBadge(Auth::id());
 
 				//mail verzenden dat de deal niet door gaat
 			  	$data = array('naamVerzender' =>  Auth::user()->naam , 'naamOntvanger' => $naamKoper , 'gerecht' => $gerecht,'boodschap' => 'de deal afgezegt(wegens omstandigheden)');
@@ -189,6 +191,7 @@ class myDealsController extends \BaseController {
 			    $this->user->deleteCoin($portieKoper->verkoper->id);
 				$this->user->addCoin(Auth::id());
 			    $emailVerkoper = $portieKoper->verkoper->email;
+			    $this->deal->checkBadge($portieKoper->verkoper->id);
 
 			    //mail verzenden dat de deal niet door gaat
 			    $data = array('naamVerzender' =>  Auth::user()->naam , 'naamOntvanger' => $naamVerkoper , 'gerecht' => $gerecht,'boodschap' => 'de deal afgezegt(wegens omstandigheden)');

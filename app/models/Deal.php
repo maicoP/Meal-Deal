@@ -139,4 +139,41 @@ class Deal extends Eloquent{
 		return Deal::has('user')->where('id','=',$dealId)->first();
 	}
 
+	public function getGeaccepteerdeDeals($id)
+	{
+		return Deal::whereHas('porties',function($q) use($id){
+						$q->where('verkoperId','=',$id);
+						$q->where('status','=','geaccepteert');
+					})->count();
+	}
+
+	public function checkBadge($id)
+	{
+		$aantGeaccepteerdeDeals = $this->getGeaccepteerdeDeals($id);
+
+		if($aantGeaccepteerdeDeals < 2)
+		{
+			$this->updateBadge($id,'dummy');
+		}elseif($aantGeaccepteerdeDeals >= 2 && $aantGeaccepteerdeDeals < 10)
+		{
+			$this->updateBadge($id,'1ster');
+		}
+		elseif($aantGeaccepteerdeDeals >= 10 && $aantGeaccepteerdeDeals < 25)
+		{
+			$this->updateBadge($id,'2sterren');
+		}
+		elseif($aantGeaccepteerdeDeals >= 25 )
+		{
+			$this->updateBadge($id,'3sterren');
+		}
+	}
+
+	public function updateBadge($id,$badge)
+	{
+		User::where('id','=',$id)
+				->update(array(
+					"badge" => $badge
+				));	
+	}
+
 }

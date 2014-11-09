@@ -134,15 +134,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getTopUsers()
 	{
 		return User::orderBy('votes','desc')
-						->take(10)
-						->paginate(5);
+						->take(50)
+						->paginate(9);
 	}
 
 	public function filterByName($zoekString)
 	{
 		return User::orderBy('votes','desc')
 						->where('naam','LIKE','%'.$zoekString.'%')
-						->paginate(5);
+						->paginate(9);
 	}
 
 	public function dealsVerkocht($id)
