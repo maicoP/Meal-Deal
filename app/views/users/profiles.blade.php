@@ -1,27 +1,30 @@
 @extends('layouts.default')
 @section("title")
-	Zoek Deals | MealDeal
+	Profielen | MealDeal
 @stop
 
 @section("content")
-	<div>
-		{{Form::open(['url' => 'user/filter' , 'method' => 'GET'])}}
-		<input type="text" name='zoekString' placeholder="Zoeken mealdealers" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
-		{{Form::close()}}
-	</div>
 	<h1>{{$title}}</h1>
-	<div>
-		@forelse($users as $user)
-		      <a href="{{'/users/'.$user->naam}}">
-				<h3>{{$user->naam}}</h3>
-				<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
-				<p>{{$user->badge}}</p>
-				<p>aantal votes: {{$user->votes}}</p>			
-			</a>
-		@empty
-		      <p>Geen mealdealers gevonden</p>
-		@endforelse
-		{{$users->appends(array('zoekString' => $zoekString))->links()}}
-		
+		{{Form::open(['url' => 'user/filter' , 'method' => 'GET'])}}
+		<div class="searchbar">
+			<input class="searchfield" type="text" name='zoekString' placeholder="Zoek naar mealdealers" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+		</div>
+		{{Form::close()}}
+	<div class="selectors">
+			@forelse($users as $user)
+			<div class="user">
+		      	<a href="{{'/users/'.$user->naam}}">
+					<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+				</a>
+					<div class="badgetop"><img src="{{'/img/badges/'.$user->badge.'.png'}}" alt=""></div>
+				<a href="{{'/users/'.$user->naam}}">
+					<h3>{{$user->naam}}</h3>
+				</a>
+					<p><img src="{{'/css/img/thumbsup.png'}}" alt=""> {{$user->votes}}</p>			
+			</div>
+			@empty
+			      <p>Geen mealdealers gevonden</p>
+			@endforelse
+			{{$users->appends(array('zoekString' => $zoekString))->links()}}
 	</div>
 @stop
