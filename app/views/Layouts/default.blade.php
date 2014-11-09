@@ -18,6 +18,7 @@ return (Route::current()->uri() == $route) ? $class : '';
 	{{HTML::style('css/home/font-awesome-4.2.0/css/font-awesome.min.css'); }}
 	{{HTML::style("css/reset.css")}}
 	{{HTML::style("css/style.css")}}
+	{{HTML::style('css/shared.css'); }}
 </head>
 <body>
 	<div class="navigation-box">

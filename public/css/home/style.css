@@ -312,19 +312,3 @@ p.change_link{
 	height: 90px;
 	background: transparent;
 }
-
-.regerror{
-    color: #f76a51;
-    margin-bottom: 15px;
-    text-align: center;
-    width: 100%;
-    text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
-}
-
-.regsucc{
-    color: #8CE562;
-    margin-bottom: 15px;
-    text-align: center;
-    width: 100%;
-    text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
-}

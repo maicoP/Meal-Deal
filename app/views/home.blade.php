@@ -12,6 +12,7 @@
         <link rel="shortcut icon" href="../favicon.ico"> 
         {{ HTML::style('css/home/reset.css'); }}
         {{ HTML::style('css/home/style.css'); }}
+        {{ HTML::style('css/home/shared.css'); }}
         {{ HTML::style('css/home/font-awesome-4.2.0/css/font-awesome.min.css'); }}
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>

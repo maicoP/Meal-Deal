@@ -14,17 +14,17 @@
 				@if(Session::has('message') )
 					{{Session::get('message')}}
 				@endif
-				{{ $errors->first('naam')}}
-				{{ $errors->first('porties')}}
-				{{ $errors->first('afbeelding')}}
-				{{ $errors->first('dealeinde')}}
-				{{ $errors->first('afhaaluur')}}
-				{{ $errors->first('afhalen')}}
+				<div class="regerror">{{ $errors->first('naam')}}</div>
+				<div class="regerror">{{ $errors->first('porties')}}</div>
+				<div class="regerror">{{ $errors->first('afbeelding')}}</div>
+				<div class="regerror">{{ $errors->first('dealeinde')}}</div>
+				<div class="regerror">{{ $errors->first('afhaaluur')}}</div>
+				<div class="regerror">{{ $errors->first('afhalen')}}</div>
 			</div>
 
 			<p>
-				{{ Form::label('gerecht','Gerecht:', array('data-icon' => '&#xf1fa;'))}}
-				{{ Form::text('gerecht','', array('placeholder' => 'Email','required' => 'required'))}}
+				{{ Form::label('gerecht','Gerecht:', array('data-icon' => '&#xf1b1;'))}}
+				{{ Form::text('gerecht','', array('required' => 'required'))}}
 			</p>
 
 			<p>
@@ -33,19 +33,19 @@
 				
 			</p>
 
-			<p>
-				{{ Form::label('afbeeldingdeal','Afbeelding:')}}
+			<p class="camera">
+				{{ Form::label('afbeeldingdeal','Afbeelding:', array('data-icon' => '&#xf030;'))}}
 				{{ Form::file('afbeeldingdeal')}}
 				
 			</p>
 
 			<p>
-				{{ Form::label('dealeinde','Deal Einde:')}}
+				{{ Form::label('dealeinde','Deal Einde:', array('data-icon' => '&#xf017;'))}}
 				<input required="required" placeholder="--:--" type="time" name="dealeinde">
 			</p>
 
 			<p>
-				{{ Form::label('afhaaluur','Afhaaluur:')}}
+				{{ Form::label('afhaaluur','Afhaaluur:', array('data-icon' => '&#xf0f5;'))}}
 				<input required="required" placeholder="--:--" type="time" name="afhaaluur">
 			</p>
 
@@ -61,8 +61,8 @@
 
 			</p>
 
-			<p>
-				{{ Form::submit('Plaats')}}
+			<p class="submit-button">
+				{{ Form::submit('DEAL PLAATSEN', ['class' => 'inloggen','value' => 'DEAL PLAATSEN'])}}
 			</p>
 		{{ Form::close() }}
 		</div>

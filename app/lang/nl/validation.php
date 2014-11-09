@@ -30,7 +30,7 @@ return array(
     "boolean"        => ":attribute moet true of false zijn.",
     "confirmed"      => ":attribute bevestiging komt niet overeen.",
     "date"           => ":attribute moet een datum bevatten.",
-    "date_format"    => ":attribute moet een geldig datum formaat bevatten.",
+    "date_format"    => "Het veld :attribute moet een geldig datum formaat bevatten.",
     "different"      => ":attribute en :other moeten verschillend zijn.",
     "digits"         => ":attribute moet bestaan uit :digits cijfers.",
     "digits_between" => ":attribute moet bestaan uit minimaal :min en maximaal :max cijfers.",

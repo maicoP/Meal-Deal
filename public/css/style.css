@@ -468,6 +468,76 @@ a:hover {color: #fb9e25;}
   text-align:center;
 }
 
+/*CREATE DEALS*/
+
+.submitdeal{
+  width:100%;
+  padding: 18px 6% 60px;
+  background-image: url("http://subtlepatterns.com/patterns/subtle_dots.png");
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+  margin-top:35px;
+  margin-bottom:-30px;
+}
+
+.submitdeal p{
+  margin-bottom: 15px;
+}
+
+[data-icon]:after {
+    color: #fe8f2d;
+    content: attr(data-icon);
+    font-family: "FontAwesome";
+    left: 10px;
+    position: absolute;
+    top: 35px;
+    width: 30px;
+}
+
+.submitdeal .submitbutton{
+
+}
+
+.submitdeal .inloggen{
+    border: 1px solid rgb(28, 108, 122);
+    border-radius: 3px;
+    box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Oswald",sans-serif;
+    font-size: 18px;
+    margin-bottom: -45px;
+    padding: 8px 5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s linear 0s;
+    width: 97.5%;
+    background: none repeat scroll 0 0 #fe8f2d;
+}
+
+.submitdeal .inloggen:hover{
+  background:#e36a00;
+}
+
+.camera > [data-icon]:after {
+    top: 40px;
+}
+
+.submitdeal label {
+    color: rgb(64, 92, 96);
+    position: relative;
+}
+
+.submitdeal input, .submitdeal textarea {
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+    box-sizing: content-box;
+    margin-top: 4px;
+    padding: 10px 5px 10px 32px;
+    transition: all 0.2s linear 0s;
+    width: 92%;
+}
+
 /*MEDIA QUERIES*/
 
 @media (max-width: 1169px) {
@@ -556,46 +626,10 @@ a:hover {color: #fb9e25;}
   .dropcontainer{
     width:359px;
   }
-}
 
-/*CREATE DEALS*/
-
-.submitdeal{
-  width:100%;
-  padding: 18px 6% 60px;
-  background-image: url("http://subtlepatterns.com/patterns/subtle_dots.png");
-  border-radius: 5px;
-  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
-}
-
-.submitdeal p{
-  margin-bottom: 15px;
-}
-
-[data-icon]:after {
-    color: #fe8f2d;
-    content: attr(data-icon);
-    font-family: "FontAwesome";
-    left: 10px;
-    position: absolute;
-    top: 35px;
-    width: 30px;
-}
-
-.submitdeal label {
-    color: rgb(64, 92, 96);
-    position: relative;
-}
-
-.submitdeal input, .submitdeal textarea {
-    border: 1px solid rgb(178, 178, 178);
-    border-radius: 3px;
-    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
-    box-sizing: content-box;
-    margin-top: 4px;
-    padding: 10px 5px 10px 32px;
-    transition: all 0.2s linear 0s;
-    width: 92%;
+  .submitdeal input, .submitdeal textarea {
+    width: 89%;
+  }
 }
 
 
@@ -648,7 +682,8 @@ a:hover {color: #fb9e25;}
 }
 
 .fix{
-  font-size:50%;
+  font-size:90%;
+  /* font-weight:500; */
 }
 
 
