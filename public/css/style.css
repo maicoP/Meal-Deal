@@ -414,10 +414,8 @@ background: none repeat scroll 0 0 #e36a00;
 
 .selectors{
   width:980px;
-  
-  /* overflow:scroll; */
   margin:0 auto;
-  margin-top:35px;
+  margin-top:5px;
   margin-bottom:35px;
   padding-bottom:35px;
   padding-left:200px;
@@ -445,6 +443,30 @@ a {color: #fb9e25; text-decoration: none;}
 a:hover {color: #fb9e25;}
 .label {color: #777;text-transform: uppercase;margin-left: 10px;font-size: 0.8em;margin-bottom: 5px;display: block;}
 
+
+/*SEARCHBAR*/
+
+.searchbar{
+  width:980px;
+  margin:0 auto;
+  margin-top:35px;
+  margin-bottom:0px;
+  padding-bottom:10px;
+  padding-left:200px;
+  padding-right:200px;
+}
+
+.searchfield{
+  width:100%;
+  color:#808080; 
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+  font-size: inherit;
+  border: 0 none;
+  padding: 0.5em;
+  text-align:center;
+}
 
 /*MEDIA QUERIES*/
 
@@ -525,7 +547,7 @@ a:hover {color: #fb9e25;}
     width:100%;
     padding-top:10px;
   }
-  .selectors{
+  .selectors, .searchbar{
     padding-bottom:0px;
     width:359px;
     padding-left:0px;
@@ -535,6 +557,47 @@ a:hover {color: #fb9e25;}
     width:359px;
   }
 }
+
+/*CREATE DEALS*/
+
+.submitdeal{
+  width:100%;
+  padding: 18px 6% 60px;
+  background-image: url("http://subtlepatterns.com/patterns/subtle_dots.png");
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+}
+
+.submitdeal p{
+  margin-bottom: 15px;
+}
+
+[data-icon]:after {
+    color: #fe8f2d;
+    content: attr(data-icon);
+    font-family: "FontAwesome";
+    left: 10px;
+    position: absolute;
+    top: 35px;
+    width: 30px;
+}
+
+.submitdeal label {
+    color: rgb(64, 92, 96);
+    position: relative;
+}
+
+.submitdeal input, .submitdeal textarea {
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+    box-sizing: content-box;
+    margin-top: 4px;
+    padding: 10px 5px 10px 32px;
+    transition: all 0.2s linear 0s;
+    width: 92%;
+}
+
 
 @media (max-width: 700px) {
   .navigation {
@@ -589,8 +652,9 @@ a:hover {color: #fb9e25;}
 }
 
 
-/*SELECT FORMS*/
 
+
+/*SELECT FORMS*/
 
 .custom-dropdown__select{
     font-size: inherit; 

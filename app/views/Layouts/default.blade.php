@@ -15,6 +15,7 @@ return (Route::current()->uri() == $route) ? $class : '';
 	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	{{HTML::style('css/home/font-awesome-4.2.0/css/font-awesome.min.css'); }}
 	{{HTML::style("css/reset.css")}}
 	{{HTML::style("css/style.css")}}
 </head>

@@ -7,6 +7,8 @@
 	<h1>Deal Plaatsen</h1>
 
 	<div>
+		<div class="selectors">
+		<div class="submitdeal">
 		{{ Form::open(['route' => 'deals.store','files' => true]) }}
 			<div>
 				@if(Session::has('message') )
@@ -20,50 +22,51 @@
 				{{ $errors->first('afhalen')}}
 			</div>
 
-			<div>
-				{{ Form::label('gerecht','Gerecht:')}}
-				{{ Form::text('gerecht','', array('required' => 'required'))}}
-				
-			</div>
+			<p>
+				{{ Form::label('gerecht','Gerecht:', array('data-icon' => '&#xf1fa;'))}}
+				{{ Form::text('gerecht','', array('placeholder' => 'Email','required' => 'required'))}}
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('porties','Aantal Porties:')}}
 				{{  Form::selectRange('porties', 1, 20)}}
 				
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('afbeeldingdeal','Afbeelding:')}}
 				{{ Form::file('afbeeldingdeal')}}
 				
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('dealeinde','Deal Einde:')}}
 				<input required="required" placeholder="--:--" type="time" name="dealeinde">
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('afhaaluur','Afhaaluur:')}}
 				<input required="required" placeholder="--:--" type="time" name="afhaaluur">
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('afhalen','Ontvangst:')}}
 				{{Form::select('afhalen', array(true => 'Afhalen', false => 'Komen eten'))}}
 
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::label('beschrijving','Beschrijving:')}}
 				{{Form::textarea('beschrijving','',array('maxlength' => '200'))}}
 
-			</div>
+			</p>
 
-			<div>
+			<p>
 				{{ Form::submit('Plaats')}}
-			</div>
+			</p>
 		{{ Form::close() }}
+		</div>
+		</div>
 		
 	</div>
 @stop

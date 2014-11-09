@@ -14,10 +14,11 @@
 		@endif
 		</div>
 		<h1>Beschikbare deals</h1>
-
-		<div class="selectors">
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
-			<input type="text" name='zoekString' placeholder="Zoeken deals" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+		<div class="searchbar">
+			<input class="searchfield" type="text" name='zoekString' placeholder="Zoek naar deals" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }"/>
+		</div>
+		<div class="selectors">
 			<div class="regioselect">
 			<span class="custom-dropdown fixdev">
 			<select class="custom-dropdown__select" name='regionId' onchange="this.form.submit()">
