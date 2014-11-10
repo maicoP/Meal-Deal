@@ -165,8 +165,8 @@ class UsersController extends \BaseController {
 				if(Input::hasFile('afbeelding'))
 				{
 					$filename = Auth::user()->naam.".png";
-					$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
-					$image->crop(100,100);
+					$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(300);
+					$image->crop(300,300);
 					$destenation = 'img/'.$filename;
 					$this->user->afbeelding = $filename;
 					$image->save($destenation);
