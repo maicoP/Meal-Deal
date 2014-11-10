@@ -12,7 +12,7 @@
         <link rel="shortcut icon" href="../favicon.ico"> 
         {{ HTML::style('css/home/reset.css'); }}
         {{ HTML::style('css/home/style.css'); }}
-        {{ HTML::style('css/home/shared.css'); }}
+        {{ HTML::style('css/shared.css'); }}
         {{ HTML::style('css/home/font-awesome-4.2.0/css/font-awesome.min.css'); }}
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -116,13 +116,15 @@
                             {{Form::label('password',' ', array('data-icon' => '&#xf084;'))}}
                             {{Form::password('password', array('placeholder' => 'Paswoord','type' => 'password','required' => 'required'))}}    
                         </p>
-                        <p> 
-                            {{Form::label('schoolId','School: ')}}
-                            {{Form::select('schoolId', $schools)}}  
+                        <p>{{Form::label('schoolId','School: ')}}
+                            <span class="ccustom-dropdown cfixdev">
+                            {{Form::select('schoolId', $schools, null,array('class' => 'ccustom-dropdown__select'))}}
+                            </span>
                         </p>
-                        <p> 
-                            {{Form::label('regionId','Regio: ')}}
-                            {{Form::select('regionId', $regions)}}  
+                        <p>{{Form::label('regionId','Regio: ')}}
+                            <span class="ccustom-dropdown cfixdev">
+                            {{Form::select('regionId', $regions, null,array('class' => 'ccustom-dropdown__select'))}}
+                            </span>
                         </p>
                         <p> 
                             {{Form::label('gemeente',' ', array('data-icon' => '&#xf041;'))}}

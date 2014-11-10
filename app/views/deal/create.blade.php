@@ -29,14 +29,14 @@
 
 			<p>
 				{{ Form::label('porties','Aantal Porties:')}}
-				{{  Form::selectRange('porties', 1, 20)}}
-				
+			<span class="ccustom-dropdown cfixdev cwidthfix">
+				{{  Form::selectRange('porties', 1, 20, null, array('class' => 'ccustom-dropdown__select'))}}
+			</span>			
 			</p>
 
 			<p class="camera">
 				{{ Form::label('afbeeldingdeal','Afbeelding:', array('data-icon' => '&#xf030;'))}}
 				{{ Form::file('afbeeldingdeal')}}
-				
 			</p>
 
 			<p>
@@ -51,7 +51,9 @@
 
 			<p>
 				{{ Form::label('afhalen','Ontvangst:')}}
-				{{Form::select('afhalen', array(true => 'Afhalen', false => 'Komen eten'))}}
+				<span class="ccustom-dropdown cfixdev cwidthfix2">
+				{{Form::select('afhalen', array(true => 'Afhalen', false => 'Komen eten'), null, array('class' => 'ccustom-dropdown__select'))}}
+				</span>
 
 			</p>
 

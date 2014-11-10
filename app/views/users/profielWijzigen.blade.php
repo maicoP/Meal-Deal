@@ -21,13 +21,19 @@
 	   	    {{Form::label('email','Email', array('data-icon' => '&#xf1fa;'))}}
 	   	    {{Form::email('email',$userData->email, array('type' => 'email','required' => 'required'))}}
 	   	</p>
+	
+
 	   	<p> 
 	   	    {{Form::label('school','School')}}
-	   	    {{Form::select('schoolId', $schools,$userData->schoolId)}}  
+	   	    <span class="ccustom-dropdown cfixdev cwidthfix3">
+	   	    {{Form::select('schoolId', $schools,$userData->schoolId, array('class' => 'ccustom-dropdown__select'))}}
+	   	    </span>
 	   	</p>
 	   	<p> 
 	   	    {{Form::label('regio','Regio')}}
-	   	    {{Form::select('regionId', $regions,$userData->regionId)}}  
+	   	    <span class="ccustom-dropdown cfixdev cwidthfix3">
+	   	    {{Form::select('regionId', $regions,$userData->regionId, array('class' => 'ccustom-dropdown__select'))}} 
+	   	    </span>
 	   	</p>
 	   	<p> 
 	   	    {{Form::label('straatnaam','Straatnaam', array('data-icon' => '&#xf018;'))}}

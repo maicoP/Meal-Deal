@@ -16,3 +16,106 @@
     width: 100%;
     text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
 }
+
+/*SELECT FORMS*/
+
+.ccustom-dropdown__select{
+    font-size: inherit; 
+    padding: .5em; 
+    margin: 0; 
+    background-color: #ffffff;
+    color:#808080; 
+    border: 2px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+}
+
+.cfixdef {
+    background-color: #ffffff;
+    color:#808080;    
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+}
+
+@supports (pointer-events: none) and
+      ((-webkit-appearance: none) or
+      (-moz-appearance: none) or
+      (appearance: none)) {
+
+    .ccustom-dropdown {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      width:103%;
+    }
+
+    .cwidthfix{
+        width:75px;
+    }
+
+    .cwidthfix2{
+        width:145px;
+    }
+
+    .cwidthfix3{
+        width:99.5%;
+    }
+
+    .ccustom-dropdown__select {
+        padding-right: 2.5em;
+        border: 0;
+        border-radius: 3px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;    
+        width:100%;
+    }
+
+    .ccustom-dropdown::before,
+    .ccustom-dropdown::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .ccustom-dropdown::after { /*  Custom dropdown arrow */
+        content: "\25BC";
+        color: #fff;
+        height: 1em;
+        font-size: .625em;
+        line-height: 1;
+        right: 1.2em;
+        top: 50%; margin-top: -.5em;
+    }
+
+    .ccustom-dropdown::before {
+        width: 2em;
+        right: 0; top: 0; bottom: 0;
+        border-radius: 0 3px 3px 0;
+    }
+
+    .cfixdev::before {
+        background-color:#ffffff;
+            border: 1px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(168, 168, 168, 0.6) inset;
+    }
+
+    .cfixdev::after {
+        color: rgba(1,1,1,.8);
+    }
+
+    /* FF only temp fix */
+    @-moz-document url-prefix() {
+        .ccustom-dropdown__select             { padding-right: .9em }
+        .ccustom-dropdown--large .custom-dropdown__select { padding-right: 1.3em }
+        .ccustom-dropdown--small .custom-dropdown__select { padding-right: .5em }
+    }
+}
+
+@media (max-width: 1000px) {
+    .cwidthfix3{
+        width:101%;
+    }
+}
