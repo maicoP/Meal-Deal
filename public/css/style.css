@@ -581,6 +581,44 @@ background: none repeat scroll 0 0 #e36a00;
 padding-left:300px; Internet Explorer Browsers
 } */
 
+.instellingen{
+  width:500px;
+  margin:0 auto;
+  margin-top:35px;
+  padding-bottom:20px;
+  text-align:center;
+}
+
+.instellinglink{
+    border: 1px solid rgb(28, 108, 122);
+    border-radius: 3px;
+    box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
+    color: #fff;
+    cursor: pointer;
+    font-family: "Oswald",sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 8px 5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s linear 0s;
+    width: 100%;
+    background: none repeat scroll 0 0 #fe8f2d;
+}
+
+.instellinglink a, .instellinglink a:hover{
+      color: #fff;
+          font-family: "Oswald",sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 8px 5px;
+}
+
+.instellinglink:hover{
+  background: none repeat scroll 0 0 #e36a00;
+}
+
+
+
 .regioselect{
   float:left;
   width:48%;
@@ -683,6 +721,10 @@ a:hover {color: #fb9e25;}
     top: 40px;
 }
 
+.userafbeelding > [data-icon]:after {
+    top: 144px;
+}
+
 .submitdeal label {
     color: rgb(64, 92, 96);
     position: relative;
@@ -732,6 +774,7 @@ a:hover {color: #fb9e25;}
   float:left;
   width:100%;
   overflow:hidden;
+  height:26px;
 }
 
 /* .user:nth-child(even){
@@ -756,6 +799,11 @@ a:hover {color: #fb9e25;}
 /*MEDIA QUERIES*/
 
 @media (max-width: 1169px) {
+
+.main-nav > ul > li > a:before {
+    bottom: 0;
+}
+
   .navigation {
     /*background-color:yellow;*/
     width: 700px;
@@ -832,6 +880,14 @@ a:hover {color: #fb9e25;}
     width:100%;
     padding-top:10px;
   }
+
+  .instellinglink{
+    float:none;
+    width:250px;
+    margin: 10px auto;
+    margin-bottom:0px;
+  }
+
   .selectors, .searchbar{
     /* padding-bottom:0px; */
     width:359px;
@@ -1022,7 +1078,7 @@ text-decoration:none;
 font-weight:bold;
 }
 
-.pagination li, a {
+.pagination li, .pagination a {
 padding:4px 5px;
 }
 

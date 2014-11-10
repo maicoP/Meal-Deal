@@ -1,62 +1,62 @@
 @extends('layouts.default')
 @section("title")
-	Zoek Deals | MealDeal
+	Profiel Bewerken | MealDeal
 @stop
 
 @section("content")
 	<h1>Profiel Wijzigen</h1>
 	<div>
-		{{Link_to("#","Profiel wijzigen")}}
-		{{Link_to("user/editPassword","Wachtwoord wijzigen")}}
-	</div>
-	<div>
-		<h2>Profile of {{$userData->naam}}</h2>
+		<h2>{{$userData->naam}}</h2>
+		<div class="selectors">
+		<div class="submitdeal">
 		{{Form::open(['url' => 'users/'.$userData->id,'files' => true,'method' => 'PUT'])}}
-	   	<p>
-	   	    Afbeelding: <br/>	
+	   	<p class="userafbeelding">
+	   	    {{Form::label('afbeelding','Afbeelding', array('data-icon' => '&#xf030;'))}}<br>
 	   		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
 	   	    <span>{{ $errors->first('afbeelding')}}</span>
 	   	    {{Form::file('afbeelding','',array('value' => 'Avatar'))}}    
 	   	</p>  
 	   	<p> 
 	   	    <span>{{ $errors->first('email')}}</span>
-	   	    Email: 
+	   	    {{Form::label('email','Email', array('data-icon' => '&#xf1fa;'))}}
 	   	    {{Form::email('email',$userData->email, array('type' => 'email','required' => 'required'))}}
 	   	</p>
 	   	<p> 
-	   	    School: 
+	   	    {{Form::label('school','School')}}
 	   	    {{Form::select('schoolId', $schools,$userData->schoolId)}}  
 	   	</p>
 	   	<p> 
-	   	    Regio: 
+	   	    {{Form::label('regio','Regio')}}
 	   	    {{Form::select('regionId', $regions,$userData->regionId)}}  
 	   	</p>
 	   	<p> 
-	   	    Straatnaam: 
+	   	    {{Form::label('straatnaam','Straatnaam', array('data-icon' => '&#xf018;'))}}
 	   	    {{Form::text('straatnaam',$userData->straatnaam,array('required' => 'required'))}}   
 	   	</p>
 	   	<p> 
-	   	    Postcode: 
+	   	    {{Form::label('postcode','Postcode', array('data-icon' => '&#xf162;'))}}
 	   	    {{Form::text('postcode',$userData->postcode,array('required' => 'required'))}}   
 	   	</p>
 	   	<p> 
-	   	    Gemeente: 
+	   	    {{Form::label('gemeente','Gemeente', array('data-icon' => '&#xf041;'))}}
 	   	    {{Form::text('gemeente',$userData->gemeente,array('required' => 'required'))}}       
 	   	</p>
 	   	<p> 
-	   	    Huisnummer: 
+	   	    {{Form::label('huisnummer','Huisnummer', array('data-icon' => '&#xf015;'))}}
 	   	    {{Form::text('huisnummer',$userData->huisnummer,array('required' => 'required'))}}       
 	   	</p>
 	   	<p> 
-	   	    Postbus: 
+	   	    {{Form::label('postbus','Postbus', array('data-icon' => '&#xf0e0;'))}}
 	   	    {{Form::text('postbus',$userData->postbus)}}  
 	   	</p>
-	   	<p class="textarea"> 
-	   	    {{Form::label('info',' ', array('data-icon' => '&#xf05a;'))}}
+	   	<p>
+	   	    {{Form::label('info','Info', array('data-icon' => '&#xf05a;'))}}
 	   	    {{Form::textarea('info',$userData->info,array('required' => 'required','rows' => '4'))}}        
 	   	</p>
 	
-		{{Form::submit('Wijzigen')}}
+		{{Form::submit('Wijzigen', ['class' => 'inloggen','value' => 'WIJZIGEN'])}}
 		{{Form::close()}}
+		</div>
+		</div>
 	</div>
 @stop

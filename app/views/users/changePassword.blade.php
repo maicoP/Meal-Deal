@@ -1,32 +1,31 @@
 @extends('layouts.default')
 @section("title")
-	Zoek Deals | MealDeal
+	Wachtwoord Wijzigen | MealDeal
 @stop
 
 @section("content")
-	<div class='col-md-12 text-center'>
+	<div>
 		<div class="page-header">
-			<h1>Edit Password</h1>
+			<h1>Wachtwoord wijzigen</h1>
 		</div>
-
-		@if(isset($message))
-			<p>{{$message}}</p>	
-		@endif
-		{{Form::open(['url' => 'user/savePassword','method' => 'POST']) }}
-		<div class="col-md-8 col-md-offset-2">
-			@if(Session::get('errorsPrecent') == true)
-				<div class="alert alert-danger">
-					<div>{{ $errors->first('password')}}</div>
-					<div>{{ $errors->first('newpassword')}}</div>
-				</div>
-			@endif
-			<div>{{Form::label('password','Password:')}}
-				 {{Form::password('password',array('type' => 'password','required' => 'required'))}}</div>
-			<div>{{Form::label('newpassword','New Password:')}}
-				 {{Form::password('newpassword',array('type' => 'password','required' => 'required'))}}</div>
-			<div>{{Form::submit('Edit')}}</div>
+		<div class="selectors">
+		<div class="submitdeal">
+			{{Form::open(['url' => 'user/savePassword','method' => 'POST']) }}
+				@if(Session::get('errorsPrecent') == true)
+					<div class="regerror">{{ $errors->first('password')}}</div>
+					<div class="regerror">{{ $errors->first('newpassword')}}</div>
+					@if(isset($message))
+						<div class="regerror">{{$message}}</div>
+					@endif
+				@endif
+				<div>{{Form::label('password','Huidig wachtwoord:', array('data-icon' => '&#xf084;'))}}
+					 {{Form::password('password',array('type' => 'password','required' => 'required'))}}</div>
+				<div>{{Form::label('newpassword','Nieuw wachtwoord:', array('data-icon' => '&#xf084;'))}}
+					 {{Form::password('newpassword',array('type' => 'password','required' => 'required'))}}</div>
+				<div>{{Form::submit('WIJZIGEN', ['class' => 'inloggen'])}}</div>
+			{{Form::close() }}
 		</div>
-		{{Form::close() }}
+		</div>
 
 	</div>
 	

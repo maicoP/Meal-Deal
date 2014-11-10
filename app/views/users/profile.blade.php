@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section("title")
-	Zoek Deals | MealDeal
+	Profiel | MealDeal
 @stop
 
 @section("content")

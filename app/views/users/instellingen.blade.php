@@ -1,54 +1,87 @@
 @extends('layouts.default')
 @section("title")
-	Zoek Deals | MealDeal
+	Instellingen | MealDeal
 @stop
 
 @section("content")
 	<h1>Instellingen</h1>
-	<div>
-		{{Link_to("users/".$userData->naam."/edit","Profiel wijzigen")}}
-		{{Link_to("user/editPassword","Wachtwoord wijzigen")}}
+	<div class="instellingen">
+		<div class="regioselect instellinglink">
+		{{Link_to("users/".$userData->naam."/edit","PROFIEL BEWERKEN")}}
+		</div>
+		<div class="methodeselect instellinglink">
+		{{Link_to("user/editPassword","WACHTWOORD WIJZIGEN")}}
+		</div>
 	</div>
 	<div>
-		<h2>Profile of {{$userData->naam}}</h2>
-		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
-		<img src="{{'/img/badges/'.$userData->badge.'.png'}}" alt="">
-		<p>{{$userData->info}}</p>
-		<p>Votes: {{$userData->votes}}</p>
-		<p>School: {{$userData->school->naam}}</p>
-		<p>Regio: {{$userData->region->naamRegio}}</p>
-		<p>Gemeente: {{$userData->gemeente}}</p>
-		<p>Straatnaam: {{$userData->straatnaam}}
-		<p>Postcode: {{$userData->postcode}}</p>
-		<p>Huisnummer: {{$userData->huisnummer}}</p>
-		<p>Postbus: {{$userData->postbus}}</p>
-		<p>Aantal verkochte deals: {{$dealsVerkocht}}</p>
-		<p>Aantal gekochte deals: {{$dealsGekocht}}</p>	
+		<h2>Profiel van {{$userData->naam}}</h2>
+		<div class="profielbox userprofile">
+		<div class="userprofile-left">
+			<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
+		</div>
+		<div class="userprofile-right">
+			<div id="badgeleft">
+				<img src="{{'/img/badges/'.$userData->badge.'.png'}}" alt="">
+			</div>
+			<div id="badgeright">
+				Deals gedoneerd: {{$dealsVerkocht}} <br>
+				Deals geclaimed: {{$dealsGekocht}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/home.png'}}" alt=""><br>
+				{{$userData->straatnaam." ".$userData->huisnummer."<br>".$userData->postcode." ".$userData->gemeente}}
+				@if($userData->postbus != "")
+				<br>Postbus:{{$userData->postbus}}
+				@endif
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/uni.png'}}" alt="">
+				<br>{{$userData->school->naam}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/info.png'}}" alt="">
+				{{$userData->info}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/votes.png'}}" alt="">{{$userData->votes}}
+			</div>
+		</div>
+		</div>
+
 	</div>
 	<div>
 		@forelse($userDeals as $deal )
-			<div>
-					<h2>
-						{{$deal->gerecht}}
-					</h2>
-					<div><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}"></div>
-					@if($deal->afhalen == 1)
-					<p>{{$deal->beschrijving}}</p>
-					<p>Ontvangst: Afhalen</p>
-					@else
-					<p>Ontvangst: Komen Eten.</p>
-					@endif
-					<p>Beschikbare Porties: {{$deal->porties}}</p>
-					<p>Datum: {{substr($deal->created_at, 0, 10);}}</p>
-					<p>Deal einde:{{$deal->dealeinde}}</p>
-					<p>Afhaaluur:{{$deal->afhaaluur}}</p>
+
+			<div class="deal dealuser">
+				<div class="deal-info">
+						<div class="deal-title">{{$deal->gerecht}}</div>
+						<div class="deal-information">
+						<p>{{$deal->beschrijving}}</p>
+						@if($deal->afhalen == 1)
+							Ontvangst: Afhalen
+						@else
+							Ontvangst: Komen Eten
+						@endif
+						</div>
+						<div class="deal-practical">
+							<div class="practical"><img src="{{'/css/img/klok.png'}}" alt=""></div>
+							<div class="practicaltext">Deal Einde<br><b><p class="fix">{{substr($deal->dealeinde,11,5)}}</p></b></div>
+							<div class="practical"><img src="{{'/css/img/vork.png'}}" alt=""></div>
+							<div class="practicaltext">Eten Om<br><b><p class="fix">{{substr($deal->afhaaluur,11,5)}}</p></b></div>
+							<div class="practical"><img src="{{'/css/img/people.png'}}" alt=""></div>
+							<div class="practicaltext">Deals<br><b>{{$deal->porties}}</b></div>
+						</div>
 					@if($deal->beschikbaar == 1)
 					<p>Beschikbaar</p>
 					@else
 					<p>Niet meer Beschikbaar</p>
 					@endif
-
 				</div>
+				<div class="deal-photo">
+					<img src="{{'/img/deals/'.$deal->afbeeldingdeal}}">
+				</div>
+			</div>
+
 		@empty
 			<p>{{$userData->naam}} heeft nog geen deals geplaats</p>
 		@endforelse
