@@ -266,6 +266,86 @@ h2{
   font-weight:normal;
 }
 
+h3{
+  font-size:21px;
+  font-family: 'Open Sans', sans-serif;
+  color:#808080;
+  line-height:120%;
+  text-align:center;
+  margin-top:30px;
+  margin-bottom:5px;
+  font-weight:normal;
+}
+
+h4{
+
+}
+
+.sub{
+  text-decoration:underline;
+  font-size:110%;
+  margin-top:20px;
+}
+
+.color{
+  display:inline;
+  color:#fe8f2d;
+}
+
+.link{
+  display:inline;
+  color:#fe8f2d;
+}
+
+.small{
+  font-size:15px;
+  font-family: 'Open Sans', sans-serif;
+  color:#808080;
+  line-height:120%;
+  text-align:center;
+  margin-top:0px;
+  margin-bottom:30px;
+  font-weight:normal;
+}
+
+.status{
+  margin-bottom:0px;
+  margin-top:0px;
+}
+
+.link > a {color: #fe8f2d; text-decoration: none;}
+.link > a:hover {color: #FF6E00;}
+
+/*MIJNDEAL*/
+
+.mijndeal{
+  width:980px;
+  height:auto;
+  background-color:#FFFFFF;
+  background-image: url("img/subtle_dots.png");
+  border-radius: 2px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+  margin:0 auto;
+  margin-top:35px;
+  margin-bottom:0px;
+  overflow:hidden;
+}
+
+.lastdealbox{
+  margin-bottom:35px;
+}
+
+.mijndeal-button{
+  width:980px;
+  height:auto;
+  margin:0 auto;
+  margin-top:10px;
+  margin-bottom:35px;
+  overflow:hidden;
+}
+
+/*DEAL*/
+
 .deal{
   width:980px;
   height:254px;
@@ -387,25 +467,32 @@ padding-bottom:10px;
 }
 
 .dealbutton{
-
   float:right;
   width:100%;
-  /**/
-
   height:32px;
-    border: 1px solid rgb(28, 108, 122);
-    border-radius: 3px;
-    box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
-    color: #fff;
-    cursor: pointer;
-    font-family: "Oswald",sans-serif;
-    font-size: 18px;
-    margin-bottom: 10px;
-    padding: 1px 5px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s linear 0s;
-    width: 100%;
-    background: none repeat scroll 0 0 #fe8f2d;
+  border: 1px solid rgb(28, 108, 122);
+  border-radius: 3px;
+  box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
+  color: #fff;
+  cursor: pointer;
+  font-family: "Oswald",sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+  /* padding: 1px 5px; */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s linear 0s;
+  width: 100%;
+  background: none repeat scroll 0 0 #fe8f2d;
+}
+
+.dealbutton-left{
+  float:left;
+  width:47%;
+}
+
+.dealbutton-right{
+  float-right;
+  width:47%;
 }
 
 .dealbutton:hover{
@@ -637,7 +724,7 @@ a:hover {color: #fb9e25;}
 }
 
 @media (max-width: 1000px){
-  .deal{
+  .deal, .mijndeal, .mijndeal-button{
     width:359px;
     height:auto;
   }

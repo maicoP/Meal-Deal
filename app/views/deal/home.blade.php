@@ -65,7 +65,6 @@
 						@if($deal->postbus != "")
 						<br>Postbus: {{$deal->postbus}}
 						@endif
-
 						</div>
 					</div>
 					<div class="deal-info">
@@ -88,7 +87,7 @@
 						</div>
 						{{Form::open(['route' => 'mydeals.store'])}}
 						{{Form::hidden('dealId',$deal->id)}}
-						{{ Form::submit('DEAL', ['class' => 'dealbutton','value' => 'DEAL'])}}
+						{{Form::submit('DEAL', ['class' => 'dealbutton','value' => 'DEAL'])}}
 						{{Form::close()}}
 					</div>
 					<div class="deal-photo"><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}" alt=""></div>
