@@ -72,8 +72,11 @@
 							<div class="practicaltext">Deals<br><b>{{$deal->porties}}</b></div>
 						</div>
 
-					@if($deal->beschikbaar == 1)
-					<p>Beschikbaar</p>
+					@if($deal->beschikbaar == 1 && $deal->dealeinde > date('Y-m-d H:i:s'))
+					{{Form::open(['route' => 'mydeals.store'])}}
+					{{Form::hidden('dealId',$deal->id)}}
+					{{Form::submit('DEAL', ['class' => 'dealbutton','value' => 'DEAL'])}}
+					{{Form::close()}}
 					@else
 					<p>Niet meer Beschikbaar</p>
 					@endif
