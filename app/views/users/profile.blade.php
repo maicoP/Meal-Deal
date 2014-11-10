@@ -5,50 +5,83 @@
 
 @section("content")
 	<div>
-		<h1>Profile of {{$user->naam}}</h1>
-		<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
-		<img src="{{'/img/badges/'.$user->badge.'.png'}}" alt="">
-		<p>{{$user->info}}</p>
-		<p>Aantal verkochte deals: {{$dealsVerkocht}}</p>
-		<p>Aantal gekochte deals: {{$dealsGekocht}}</p>
-		<p>Votes: {{$user->votes}}</p>
-		@if(!in_array ( $user->id , $userVotedOn))
-			<div>
-				{{Form::open(['url' => 'user/'.$user->id.'/vote'])}}
-				{{Form::submit('vote')}}
-				{{Form::close()}}
+		<h1>Profiel van {{$user->naam}}</h1>
+
+		<div class="profielbox userprofile">
+		<div class="userprofile-left">
+			<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+		</div>
+		<div class="userprofile-right">
+			<div id="badgeleft">
+				<img src="{{'/img/badges/'.$user->badge.'.png'}}" alt="">
 			</div>
-		@endif
-		
-		<p>Adres: {{$user->straatnaam." ".$user->huisnummer." ".$user->postcode." ".$user->gemeente}}
-		@if($user->postbus != "")
-		Postbus:{{$user->postbus}}
-		@endif</p>
-		<p>School: {{$user->school->naam}}</p>
-		<h2>Deals from {{$user->naam}}</h2>
+			<div id="badgeright">
+				Deals gedoneerd: {{$dealsVerkocht}} <br>
+				Deals geclaimed: {{$dealsGekocht}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/home.png'}}" alt=""><br>
+				{{$user->straatnaam." ".$user->huisnummer."<br>".$user->postcode." ".$user->gemeente}}
+				@if($user->postbus != "")
+				<br>Postbus:{{$user->postbus}}
+				@endif
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/uni.png'}}" alt="">
+				<br>{{$user->school->naam}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/info.png'}}" alt="">
+				{{$user->info}}
+			</div>
+			<div id="useritem">
+				<img src="{{'/css/img/votes.png'}}" alt="">{{$user->votes}}
+				@if(!in_array ( $user->id , $userVotedOn))
+				<div class="voteuserprofile">
+					{{Form::open(['url' => 'user/'.$user->id.'/vote'])}}
+					{{Form::submit('STEM', ['class' => 'dealbutton','value' => 'DEAL'])}}
+					{{Form::close()}}
+				</div>
+			@endif
+			</div>
+		</div>
+		</div>
+
+		<h2>Deals van {{$user->naam}}</h2>
 		@forelse($userDeals as $deal )
-			<div>
-					<h2>
-						{{$deal->gerecht}}
-					</h2>
-					<div><img src="{{'/img/deals/'.$deal->afbeeldingdeal}}"></div>
-					@if($deal->afhalen == 1)
-					<p>{{$deal->beschrijving}}</p>
-					<p>Ontvangst: Afhalen</p>
-					@else
-					<p>Ontvangst: Komen Eten.</p>
-					@endif
-					<p>Beschikbare Porties: {{$deal->porties}}</p>
-					<p>Datum: {{substr($deal->created_at, 0, 10);}}</p>
-					<p>Deal einde:{{$deal->dealeinde}}</p>
-					<p>Afhaaluur:{{$deal->afhaaluur}}</p>
+			<div class="deal dealuser">
+				<div class="deal-info">
+						<div class="deal-title">{{$deal->gerecht}}</div>
+
+
+						<div class="deal-information">
+						<p>{{$deal->beschrijving}}</p>
+						@if($deal->afhalen == 1)
+							Ontvangst: Afhalen
+						@else
+							Ontvangst: Komen Eten
+						@endif
+						</div>
+
+						<div class="deal-practical">
+							<div class="practical"><img src="{{'/css/img/klok.png'}}" alt=""></div>
+							<div class="practicaltext">Deal Einde<br><b><p class="fix">{{substr($deal->dealeinde,11,5)}}</p></b></div>
+							<div class="practical"><img src="{{'/css/img/vork.png'}}" alt=""></div>
+							<div class="practicaltext">Eten Om<br><b><p class="fix">{{substr($deal->afhaaluur,11,5)}}</p></b></div>
+							<div class="practical"><img src="{{'/css/img/people.png'}}" alt=""></div>
+							<div class="practicaltext">Deals<br><b>{{$deal->porties}}</b></div>
+						</div>
+
 					@if($deal->beschikbaar == 1)
 					<p>Beschikbaar</p>
 					@else
 					<p>Niet meer Beschikbaar</p>
 					@endif
-
 				</div>
+				<div class="deal-photo">
+					<img src="{{'/img/deals/'.$deal->afbeeldingdeal}}">
+				</div>
+			</div>
 		@empty
 			<p>{{$user->naam}} heeft nog geen deals geplaats</p>
 		@endforelse

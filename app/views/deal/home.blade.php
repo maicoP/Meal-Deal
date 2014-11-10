@@ -31,8 +31,8 @@
 					@endif
 			    @endforeach
 			</select>
-			</div>
 			</span>
+			</div>
 			<div class="methodeselect">
 			<span class="custom-dropdown fixdev">
 			<select class="custom-dropdown__select" name='afhalen' onchange="this.form.submit()">
