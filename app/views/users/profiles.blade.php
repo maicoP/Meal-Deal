@@ -15,7 +15,7 @@
 			<div class="user">
 		      	<a href="{{'/users/'.$user->naam}}">
 					<div class="imgfbfix">
-						<img src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
+						<img width="100" height="100" src="{{strpos($user->afbeelding,'https') !== false ?$user->afbeelding : '/img/'.$user->afbeelding}}">
 					</div>
 				</a>
 					<div class="badgetop"><img src="{{'/img/badges/'.$user->badge.'.png'}}" alt=""></div>

@@ -12,7 +12,7 @@
 		{{Form::open(['url' => 'users/'.$userData->id,'files' => true,'method' => 'PUT'])}}
 	   	<p class="userafbeelding">
 	   	    {{Form::label('afbeelding','Afbeelding', array('data-icon' => '&#xf030;'))}}<br>
-	   		<img src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
+	   		<img width="100" height="100" src="{{strpos($userData->afbeelding,'https') !== false ?$userData->afbeelding : '/img/'.$userData->afbeelding}}">
 	   	    <span>{{ $errors->first('afbeelding')}}</span>
 	   	    {{Form::file('afbeelding','',array('value' => 'Avatar'))}}    
 	   	</p>  

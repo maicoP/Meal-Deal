@@ -58,7 +58,7 @@
 			@forelse($deals as $deal)
 				<div class="deal">
 					<div class="deal-owner">
-						<img class="owner-avatar" src="{{strpos($deal->afbeelding,'https') !== false ?$deal->afbeelding : '/img/'.$deal->afbeelding}}" alt="">
+						<img class="owner-avatar" width="100" height="100" src="{{strpos($deal->afbeelding,'https') !== false ?$deal->afbeelding : '/img/'.$deal->afbeelding}}" alt="">
 						<img src="{{'/img/badges/'.$deal->badge.'.png'}}" alt="">
 						<div class="owner-name">{{link_to("users/$deal->naam", $deal->naam)}}</div>
 						<div class="owner-address">{{$deal->straatnaam." ".$deal->huisnummer."<br>".$deal->postcode." ".$deal->gemeente}}
