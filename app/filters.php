@@ -13,7 +13,13 @@
 
 App::before(function($request)
 {
-	//
+	//aantal nieuwe aanvragen of geaccepteerde deals opvragen voor de gebruiker
+	App::singleton('notifications', function(){
+        return user::getNotifications();
+    });
+
+    //variabele beschikbaar in alle views maken
+    View::share('notifications', app('notifications'));
 });
 
 

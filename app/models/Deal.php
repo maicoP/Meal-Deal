@@ -81,7 +81,7 @@ class Deal extends Eloquent{
 						->paginate(3);
 	}
 
-	public static function getDealsFromUser($id)
+	public function getDealsFromUser($id)
 	{
 		return Deal::whereHas('user',function($q) use($id){
 							$q->where('naam','=',$id);

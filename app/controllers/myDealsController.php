@@ -22,6 +22,7 @@ class myDealsController extends \BaseController {
 			$verkopenGeaccepteert= $this->deal->getMyDealsVerkopenGeaccepteert();
 			$verkopenAangevraagt= $this->deal->getMyDealsVerkopenAagevraagt();
 			$kopen= $this->deal->getMyDealsKopen();
+			$this->user->deleteNotifications();
 			return View::make('deal.mydeals',['dealsBeschikbaar' => $beschikbaar,'VerkopenAangevraagt' => $verkopenAangevraagt,'VerkopenGeaccepteert' => $verkopenGeaccepteert,'dealsKopen' => $kopen]);
 		}
 		else

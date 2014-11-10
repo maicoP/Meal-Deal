@@ -88,7 +88,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->errors =$validation->messages();
 		return false;
 	}
-	public static function getRegionId($id)
+	public function getRegionId($id)
 	{
 		return DB::table('users')->select('regionId')->where('id','=',$id)->get();
 	}
@@ -166,5 +166,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getUserByNaam($id)
 	{
 		return User::where('naam','=',$id)->first();
+	}
+
+	public static function getNotifications()
+	{
+		$getAantalAanvragenByKoper = Portie::where('verkoperId','=',Auth::id())
+						->where('notifVerkoper','=',true)
+						->count();
+
+
+		$getAantalGeacepteertByVeroper = Portie::where('koperId','=',Auth::id())
+						->where('notifKoper','=',true)
+						->count();
+		return $getAantalGeacepteertByVeroper + $getAantalAanvragenByKoper;
+	}
+
+	public function setNotificationKoper($id)
+	{
+		Portie::where('id','=',$id)->update(array('notifKoper' => true));
+	}
+
+	public function deleteNotifications()
+	{
+		Portie::where('verkoperId','=',Auth::id())->update(array('notifVerkoper' => false));
+		Portie::where('koperId','=',Auth::id())->update(array('notifKoper' => false));
 	}
 }

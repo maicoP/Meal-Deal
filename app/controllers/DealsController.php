@@ -8,16 +8,18 @@ class DealsController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function __construct(Deal $deal)
+	public function __construct(Deal $deal,Portie $portie,User $user)
 	{
 		$this->deal = $deal;
+		$this->portie = $portie;
+		$this->user = $user;
 	}
 
 	public function index()
 	{
 		if(Auth::check())
 		{
-			$regionId = User::getRegionId(Auth::Id());
+			$regionId = $this->user->getRegionId(Auth::Id());
 			$regionId = $regionId[0]->regionId;		
 			return View::make('deal.home',['deals' => $this->deal->getDealByRegion($regionId),'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => 2,'zoekString'=> ""]);
 		}
@@ -83,7 +85,7 @@ class DealsController extends \BaseController {
 					$this->deal->save();
 					$dealId = $this->deal->id;
 					$userId = Auth::id();
-					Portie::savePorties(Input::get('porties'),$dealId,$userId);
+					$this->portie->savePorties(Input::get('porties'),$dealId,$userId);
 
 					return Redirect::to('deals');
 				}

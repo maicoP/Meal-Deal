@@ -41,7 +41,8 @@ class Portie extends Eloquent{
 		Portie::where('id','=',$portieId->id)
 							->update(array(
 				'status' => 'aangevraagt',
-				'koperId' => Auth::id()
+				'koperId' => Auth::id(),
+				'notifVerkoper' => true
 			));
 		// aantal beschikbare porties bij deal aanpassen
 		Deal::where('id','=',$dealId)
@@ -63,7 +64,8 @@ class Portie extends Eloquent{
 	{
 		Portie::where('id','=',$portieId)
 						   ->update(array(
-						   	"status" => "geaccepteert"
+						   	"status" => "geaccepteert",
+						   	'notifKoper' => true
 						   	));							
 	}
 

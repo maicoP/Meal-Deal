@@ -8,15 +8,16 @@ class UsersController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function __construct(User $user, Vote $vote)
+	public function __construct(User $user, Vote $vote,Deal $deal)
 	{
 		$this->user = $user;
 		$this->vote = $vote;
+		$this->deal = $deal;
 	}
 	
 	public function index()
 	{
-		//
+		return user::getNotifications();
 	}
 
 
@@ -104,7 +105,7 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$userDeals = Deal::getDealsFromUser($id);
+			$userDeals = $this->deal->getDealsFromUser($id);
 			$user= $this->user->getUserByNaam($id);
 			$userId = Auth::id();
 			$userVotedOn =  $this->user->getProfileIdVoted($userId);
@@ -221,7 +222,7 @@ class UsersController extends \BaseController {
 		if(Auth::check())
 		{
 			$userData = $this->user->getUserData();
-			$userDeals = Deal::getDealsFromUser(Auth::user()->naam);
+			$userDeals = $this->deal->getDealsFromUser(Auth::user()->naam);
 			$userId = Auth::id();
 			$dealsVerkocht = $this->user->dealsVerkocht($userId);
 			$dealsGekocht = $this->user->dealsGekocht($userId);
