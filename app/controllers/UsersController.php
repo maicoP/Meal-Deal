@@ -48,13 +48,13 @@ class UsersController extends \BaseController {
 				$code = Input::get('code');
 				$facebook = new Facebook(Config::get('facebook'));
 			    $me = $facebook->api('/me');
-				$filename = 'https://graph.facebook.com/'.$me['id'].'/picture?type=square&height=100';
+				$filename = 'https://graph.facebook.com/'.$me['id'].'/picture?type=square&height=300';
 			}
 			if(Input::hasFile('afbeelding'))
 			{
 				$filename = Input::get('naam').'.png';
-				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(100);
-				$image->crop(100,100);
+				$image = Image::make(Input::file('afbeelding')->getRealPath())->heighten(300);
+				$image->crop(300,300);
 				$destenation = 'img/'.$filename;
 				$image->save($destenation);		
 			}
