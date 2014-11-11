@@ -197,7 +197,7 @@
                 Deze kan je dan weer kan gebruiken om een deal te "kopen". <br><br>
                 Bij meal deal kan je evolueren van een keukendummy tot een 3sterren chef.</p><br>
 
-                <p><a class="hovera">Registreer nu om een MealDealer te worden!</a></p>
+                <p><a href="#" class="hovera to_register">Registreer nu om een MealDealer te worden!</a></p>
             </div>
         </div>
 
