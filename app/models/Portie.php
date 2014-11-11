@@ -74,7 +74,9 @@ class Portie extends Eloquent{
 		Portie::where('id','=',$portieId)
 						   ->update(array(
 						   	"status" => "beschikbaar",
-						   	"koperId" => 0
+						   	"koperId" => 0,
+						   	'notifVerkoper' => false,
+						   	'notifKoper' => false,
 						   	));	
 		$dealId = Portie::where('id','=',$portieId)
 						->select('dealId')
