@@ -14,8 +14,8 @@
 				@if(Session::get('errorsPrecent') == true)
 					<div class="regerror">{{ $errors->first('password')}}</div>
 					<div class="regerror">{{ $errors->first('newpassword')}}</div>
-					@if(isset($message))
-						<div class="regerror">{{$message}}</div>
+					@if(Session::has('message'))
+						<div class="regerror">{{Session::get('message')}}</div>
 					@endif
 				@endif
 				<div>{{Form::label('password','Huidig wachtwoord:', array('data-icon' => '&#xf084;'))}}

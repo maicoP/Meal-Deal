@@ -292,16 +292,16 @@ class UsersController extends \BaseController {
 				{
 					$user->password = Hash::make($newpassword);
 					$user->save();
-					return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password has been changed']);
+					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'U wachtoord is gewijzigt']);
 				}
 				else
 				{
-					return View::make('users.changePassword',['id' => Auth::id(),'message' =>'Your password could not be changed']);
+					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'je huidig wachtwoord was niet correct']);
 				}
 			}	
 			else
 			{
-				return Redirect::back()->withInput()->withErrors($validation->messages())->with('errorsPrecent', true);
+				return Redirect::back()->withErrors($validation->messages())->with('errorsPrecent', true);
 			}
 		}
 		else
