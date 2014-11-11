@@ -99,9 +99,9 @@
 							@else
 							Komen eten: 
 							@endif
-						{{$dealKopen->koper->straatnaam." ".$dealKopen->koper->huisnummer.", ".$dealKopen->koper->postcode." ".$dealKopen->koper->gemeente}}, 
-						@if($dealKopen->koper->postbus != "")
-						Postbus: {{$dealKopen->koper->postbus}}
+						{{$dealKopen->verkoper->straatnaam." ".$dealKopen->verkoper->huisnummer.", ".$dealKopen->verkoper->postcode." ".$dealKopen->verkoper->gemeente}}, 
+						@if($dealKopen->verkoper->postbus != "")
+						Postbus: {{$dealKopen->verkoper->postbus}}
 						
 						@endif
 					<br>
