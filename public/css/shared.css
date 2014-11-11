@@ -10,11 +10,18 @@
 }
 
 .regsucc{
-    color: #8CE562;
+    color: #348d0a;
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
     text-shadow: 4px 4px 2px rgba(150, 150, 150, 0.29);
+}
+
+/*NOTIFICAITON*/
+
+.notification{
+    display:inline;
+    color:#E36A00;
 }
 
 /*SELECT FORMS*/
