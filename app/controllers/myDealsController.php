@@ -180,7 +180,7 @@ class myDealsController extends \BaseController {
 			  	$emailVerkoper = $portieKoper->verkoper->email;
 
 			  	//mail verzenden dat de deal niet door gaat
-			    $data = array('naamVerzender' =>  Auth::user()->naam , 'naamOntvanger' => $naamVerkoper , 'gerecht' => $gerecht,'boodschap' => 'zijn aanvraag ingetrokken');
+			    $data = array('naamVerzender' =>  Auth::user()->naam , 'naamOntvanger' => $naamVerkoper , 'gerecht' => $gerecht,'boodschap' => 'de aanvraag ingetrokken');
 				Mail::send('emails.dealWijgeren',$data, function($message) use($emailVerkoper,$naamVerkoper)
 				{
 				 $message->to($emailVerkoper, $naamVerkoper)->subject("Meal Deal aanvraag ingetroken");
