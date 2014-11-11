@@ -39,6 +39,7 @@
         </script>
     </head>
     <body>
+    <div id="mainwrapper">
             <div id="logo">
             	{{ HTML::image('css/home/logo.png'); }}
             </div>
@@ -80,9 +81,10 @@
 						</p>
                         <p class="change_link">
 							Nog geen lid?
-							<a href="#" class="to_register">Registreer</a>
+							<a href="#" class="to_register">Registreer</a>                            
 						</p>
-                    {{ Form::close() }}
+                    {{ Form::close() }}               
+                    <div class="info"><a class="hovera" href="#openModal">Meal Deal? </a> -<a class="hovera" href="#openModal2"> Werking</a></div>
                 </div>
                 @if($errors->isEmpty())
                     @if(Session::has('fbData'))
@@ -167,6 +169,39 @@
                         </p>
                     {{Form::close() }}
                 </div>
+            </div> 
+        </div>
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Meal Deal</h1>
+        <p>"for students by students"</p><br>
+
+        <p><b>Wat is meal deal?</b></p><br>
+
+        <p>Ben je student en heb je soms geen tijd of zin om zelf iets klaar te maken?<br>
+        Of ben je misschien een echte keuken prins(es) en hou je ervan om je maaltijden met een andere student te delen?</p><br>
+
+        <p>Dan ben je bij ons op het juiste adres!<br>
+        Bij Meal Deal kan je eenvoudig maaltijden vinden en delen met andere studenten in dezelfde regio.</p><br>
             </div>
+        </div>
+
+        <div id="openModal2" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Werking</h1>
+                <p>Elke nieuwe mealdealer krijgt 5 coins.<br><br>
+                Deze kan men gebruiken om maaltijden(deals) van mede-studenten te "kopen".<br><br>
+                Je kan ook zelf deals plaatsen en per verkochte deal krijg je dan weer een coin erbij.<br>
+                Deze kan je dan weer kan gebruiken om een deal te "kopen". <br><br>
+                Bij meal deal kan je evolueren van een keukendummy tot een 3sterren chef.</p><br>
+
+                <p><a class="hovera">Registreer nu om een MealDealer te worden!</a></p>
+            </div>
+        </div>
+
+
+
     </body>
 </html>
