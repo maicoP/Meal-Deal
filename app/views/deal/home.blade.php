@@ -6,14 +6,12 @@
 @section("content")
 	<div>
 		<div>
-		<!--<h3>Welkom {{Auth::user()->naam}}</h3>
-		<img src="{{strpos(Auth::user()->afbeelding,'https') !== false ?Auth::user()->afbeelding : '/img/'.Auth::user()->afbeelding}}">
-		<p>Aantal Coins :{{Auth::user()->coins}}</p> -->
 		@if(Session::get('error') !== null )
 		<p>{{Session::get('error')}}</p>
 		@endif
 		</div>
 		<h1>Beschikbare deals</h1>
+		<div class="coins"><div class="cointextfix">{{Auth::user()->coins}}</div><div class="coinimgfix"></div></div>
 		{{Session::has('zoekString')}}
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<div class="searchbar">

@@ -643,6 +643,39 @@ a:hover {color: #fb9e25;}
 .label {color: #777;text-transform: uppercase;margin-left: 10px;font-size: 0.8em;margin-bottom: 5px;display: block;}
 
 
+/*COINS*/
+
+.coins{
+  text-align:center;
+  font-size:25px;
+  padding-top:15px;
+}
+
+.cointextfix{
+  display:inline-block;
+  margin:0;
+  padding-right:0px;
+  padding-top:1px;
+  width:30px;
+  height:26px;
+  color:#808080;
+  text-align:right;
+/*   background-color:green; */
+  vertical-align:middle;
+}
+
+
+.coinimgfix{
+  background-image:url("img/coins.png");
+  display:inline-block;
+  margin:0;
+  padding:0;
+  width:30px;
+  height:26px;
+  /* background-color:blue; */
+  vertical-align:middle;
+}
+
 /*SEARCHBAR*/
 
 .searchbar{
