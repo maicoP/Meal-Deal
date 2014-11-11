@@ -27,7 +27,7 @@ return (Route::current()->uri() == $route) ? $class : '';
 				<div class="menulinks nav-wrap">
 					<nav class="main-nav to-left">
 						<ul class="navigation-list clearfix"> 
-							<li class="menu-item {{setActive('mydeals')}}"><a href="/mydeals">{{$notifications != 0 ? $notifications:""}} Mijn Deals</a></li>
+							<li class="menu-item {{setActive('mydeals')}}"><a href="/mydeals"><div class="notification">{{$notifications != 0 ? $notifications:""}}</div> Mijn Deals</a></li>
 							<li class="menu-item {{setActive('deals/create')}}">{{link_to("deals/create", "Deal Plaatsen")}}</li>
 							<li  class="menu-item {{setActive('deals')}}">{{link_to("deals", "Deal Zoeken")}}</li>
 						</ul>

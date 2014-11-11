@@ -83,7 +83,7 @@
 			</div>
 
 		@empty
-			<p>{{$userData->naam}} heeft nog geen deals geplaats</p>
+			<h2>Deze gebruiker heeft nog geen deals geplaatst.</h2>
 		@endforelse
 		{{$userDeals->links()}}
 	</div>
