@@ -48,7 +48,7 @@ class UsersController extends \BaseController {
 				$code = Input::get('code');
 				$facebook = new Facebook(Config::get('facebook'));
 			    $me = $facebook->api('/me');
-				$filename = 'https://graph.facebook.com/'.$me['id'].'/picture?type=square&height=300';
+				$filename = 'https://graph.facebook.com/'.$me['id'].'/picture?width=300&height=300';
 			}
 			if(Input::hasFile('afbeelding'))
 			{
