@@ -12,7 +12,7 @@
 		{{ Form::open(['route' => 'deals.store','files' => true]) }}
 			<div>
 				@if(Session::has('message') )
-					{{Session::get('message')}}
+				<div class="regerror">	{{Session::get('message')}}</div>
 				@endif
 				<div class="regerror">{{ $errors->first('naam')}}</div>
 				<div class="regerror">{{ $errors->first('porties')}}</div>
