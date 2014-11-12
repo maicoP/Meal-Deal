@@ -425,7 +425,8 @@ h4{
 }
 
 .deal-title{
-  font-size:30px;
+  font-size:25px;
+  overflow:hidden;
   color:#646464;
   font-family: "Montserrat";
 }

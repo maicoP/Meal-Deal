@@ -7,7 +7,7 @@
 	<div>
 		<div>
 		@if(Session::has('error'))
-			<p>{{Session::get('error')}}</p>
+			<p class="regerror">{{Session::get('error')}}</p>
 		@endif
 		</div>
 		

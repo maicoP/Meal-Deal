@@ -74,13 +74,13 @@ class myDealsController extends \BaseController {
 				}
 				else
 				{
-					return Redirect::to('deals')->with('error', 'U kan geen deal meer aanvragen, u hebt al aanvragen staan en niet genoeg coins voor een nieuwe aanvraag.');
+					return Redirect::to('deals')->with('error', 'U kan geen deal meer aanvragen, u hebt al aanvragen open staan.');
 				}
 				
 			}
 			else
 			{
-				return Redirect::to('deals')->with('error', 'U kan geen deal maken u coins zijn op, verkoop zelf deals om coins te krijgen');
+				return Redirect::to('deals')->with('error', 'U kan geen deal maken want uw coins zijn op, verkoop zelf deals om coins te ontvangen');
 			}
 			
 		}
