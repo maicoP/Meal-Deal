@@ -19,8 +19,7 @@ class DealsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$regionId = $this->user->getRegionId(Auth::Id());
-			$regionId = $regionId[0]->regionId;		
+			$regionId = Auth::user()->regionId;	
 			return View::make('deal.home',['deals' => $this->deal->getDealByRegion($regionId),'regions' => Region::getAllRegions(), 'selectedRegion' => $regionId , 'selectedAfhaalMethode' => 2,'zoekString'=> ""]);
 		}
 		else

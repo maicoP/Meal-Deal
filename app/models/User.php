@@ -88,16 +88,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->errors =$validation->messages();
 		return false;
 	}
-	public function getRegionId($id)
-	{
-		return DB::table('users')->select('regionId')->where('id','=',$id)->get();
-	}
-
-	public function getUserData()
-	{
-		return User::with('Region')->where('users.id','=',Auth::id())
-								->first();
-	}
 
 	public function addCoin($id)
 	{

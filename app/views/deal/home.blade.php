@@ -6,10 +6,11 @@
 @section("content")
 	<div>
 		<div>
-		@if(Session::get('error') !== null )
-		<p>{{Session::get('error')}}</p>
+		@if(Session::has('error'))
+			<p>{{Session::get('error')}}</p>
 		@endif
 		</div>
+		
 		<h1>Beschikbare deals</h1>
 		<div class="coins"><div class="cointextfix">{{Auth::user()->coins}}</div><div class="coinimgfix"></div></div>
 		{{Session::has('zoekString')}}

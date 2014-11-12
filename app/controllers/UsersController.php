@@ -17,7 +17,7 @@ class UsersController extends \BaseController {
 	
 	public function index()
 	{
-		return user::getNotifications();
+		//
 	}
 
 
@@ -130,7 +130,7 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$userData = $this->user->getUserData();
+			$userData = Auth::user();
 			return View::make('users.profielWijzigen',['regions' =>  Region::getAllRegions(),'schools' => School::getAllSchools(),'userData'=> $userData]);
 		}
 		else
@@ -221,7 +221,7 @@ class UsersController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$userData = $this->user->getUserData();
+			$userData = Auth::user();
 			$userDeals = $this->deal->getDealsFromUser(Auth::user()->naam);
 			$userId = Auth::id();
 			$dealsVerkocht = $this->user->dealsVerkocht($userId);
