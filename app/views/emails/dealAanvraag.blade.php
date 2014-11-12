@@ -7,7 +7,7 @@
 <body>
 	<p>Beste {{$naamVerkoper}},<br/>
 		<br/>
-	   {{$naamKoper}} zou graag een portie hebben van u gerecht {{$gerecht}}.<br/>
-		Ga naar http://mealdeal.app:8000/ om deze aanvraag te reageren.<br/></p>
+	   {{$naamKoper}} zou graag een portie hebben van uw gerecht {{$gerecht}}.<br/>
+		Ga naar http://mealdeal.app:8000/ om op deze aanvraag te reageren.<br/></p>
 </body>
 </html>

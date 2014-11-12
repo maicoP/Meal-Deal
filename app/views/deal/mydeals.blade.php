@@ -36,14 +36,14 @@
 								{{Form::close()}}
 								{{Form::open(['url' => 'mydeals/'.$dealVerkopen->id.'/edit','method' => 'get'])}}
 								{{Form::hidden('type','wijger')}}
-								{{Form::submit('WIJGER DEAL', ['class' => 'dealbutton dealbutton-right'])}}
+								{{Form::submit('WEIGER DEAL', ['class' => 'dealbutton dealbutton-right'])}}
 								{{Form::close()}}
 							</div>
 						@endforeach
 						{{$VerkopenAangevraagt->links()}}
 					@endif
 					@if(!$VerkopenGeaccepteert->isEmpty())
-						<h2 class="sub">Geaccepteert</h2>
+						<h2 class="sub">Geaccepteerd</h2>
 						@foreach($VerkopenGeaccepteert as $dealVerkopen)
 							<div class="mijndeal">
 								<h3>U geeft een portie weg van {{$dealVerkopen->deal->gerecht}} aan {{link_to("users/".$dealVerkopen->koper->naam, $dealVerkopen->koper->naam)}}</h3>
@@ -121,7 +121,7 @@
 						{{Form::hidden('type','Acceptatieafzeggen')}}
 						{{Form::submit('DEAL AFZEGGEN', ['class' => 'dealbutton','value' => 'DEAL AFZEGGEN'])}}
 						{{Form::close()}}
-						<h3 class="status">Status: <div class="color">Deal is geaccepteert</div></h3>
+						<h3 class="status">Status: <div class="color">Deal is geaccepteerd</div></h3>
 					@endif
 				</div>
 				@empty

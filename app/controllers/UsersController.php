@@ -83,7 +83,7 @@ class UsersController extends \BaseController {
 		        $profile->username = Input::get('naam');
 		        $profile = $this->user->profiles()->save($profile);
 			}
-				 return Redirect::to('/')->with('message', 'U bent succesvol geregistreert');
+				 return Redirect::to('/')->with('message', 'U bent succesvol geregistreerd');
 		}
 		else
 		{
@@ -292,11 +292,11 @@ class UsersController extends \BaseController {
 				{
 					$user->password = Hash::make($newpassword);
 					$user->save();
-					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'U wachtoord is gewijzigt']);
+					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'U wachtoord is gewijzigd']);
 				}
 				else
 				{
-					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'je huidig wachtwoord was niet correct']);
+					return Redirect::back()->with(['errorsPrecent'=> true,'message'=>'Je huidig wachtwoord was niet correct']);
 				}
 			}	
 			else
