@@ -67,8 +67,9 @@
 						</div>
 					</div>
 					<div class="deal-info">
-						<div class="deal-title">{{$deal->gerecht}}</div>
+						
 						<div class="deal-information">
+						<div class="deal-title">{{$deal->gerecht}}</div>
 						<p>{{$deal->beschrijving}}</p>
 						@if($deal->afhalen == 1)
 							Ontvangst: Afhalen
