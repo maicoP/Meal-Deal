@@ -192,9 +192,9 @@
                 <a href="#close" title="Close" class="close">X</a>
                 <h1>Werking</h1>
                 <p>Elke nieuwe mealdealer krijgt 5 coins.<br><br>
-                Deze kan men gebruiken om maaltijden(deals) van mede-studenten te "kopen".<br><br>
+                Deze kan men gebruiken om maaltijden(deals) van mede-studenten te claimen.<br><br>
                 Je kan ook zelf deals plaatsen en per verkochte deal krijg je dan weer een coin erbij.<br>
-                Deze kan je dan weer kan gebruiken om een deal te "kopen". <br><br>
+                Deze kan je dan weer kan gebruiken om een deal te claimen. <br><br>
                 Bij meal deal kan je evolueren van een keukendummy tot een 3sterren chef.</p><br>
 
                 <p><a href="#" class="hovera to_register">Registreer nu om een MealDealer te worden!</a></p>

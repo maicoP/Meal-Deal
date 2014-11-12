@@ -12,7 +12,7 @@
 		</div>
 		
 		<h1>Beschikbare deals</h1>
-		<div class="coins"><div class="cointextfix">{{Auth::user()->coins}}</div><div class="coinimgfix"></div></div>
+		<div class="coins"><a class="hovera" href="#openModal3"><div class="cointextfix">{{Auth::user()->coins}}</div><div class="coinimgfix"></div></a></div>
 		{{Session::has('zoekString')}}
 			{{Form::open(['url' => 'deals/filter','method'=> 'post']) }}
 		<div class="searchbar">
@@ -96,4 +96,14 @@
 		@endforelse
 		{{$deals->links()}}
 	</div>
+        <div id="openModal3" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Coins</h1>
+                <p>Coins heb je nodig om deals te claimen.<br><br>
+                Elk nieuw lid begint met 5 coins.<br><br>
+                Telkens je een deal claimt vermindert je totaal aantal coins met 1.<br><br>
+                Coins kan je terugverdienen door maaltijden te doneren.<br><br>
+            </div>
+        </div>
 @stop

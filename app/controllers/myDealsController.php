@@ -143,7 +143,7 @@ class myDealsController extends \BaseController {
 				$data = array('naamVerkoper' =>  $verkoper->naam , 'naamKoper' => $naamKoper , 'gerecht' => $gerecht,'adress' => $adress,'emailVerkoper' => $emailVerkoper,'afhaaluur' => $afhaaluur);
 				Mail::send('emails.dealGeaccepteert',$data, function($message) use($emailKoper,$naamKoper)
 				{
-				 $message->to($emailKoper, $naamKoper)->subject("Meal Deal Geaccepteert");
+				 $message->to($emailKoper, $naamKoper)->subject("Meal Deal Geaccepteerd");
 				});
 			    break;
 
