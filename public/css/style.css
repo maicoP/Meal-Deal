@@ -829,6 +829,90 @@ a:hover {color: #fb9e25;}
   overflow:hidden;
 }
 
+/*POPUP COINS*/
+
+
+.modalDialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+.modalDialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modalDialog > div {
+  width: 362px;
+  height:300px;
+  position: relative;
+  margin: 302px auto;
+  padding: 5px 20px 13px 20px;
+    background-image: url("img/subtle_dots.png");
+    border-radius: 5px;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.11);
+    text-align:center;
+}
+
+.modalDialog > div > h1{
+  font-size: 48px;
+  color:#fe8f2d;
+  padding: 2px 0 10px 0;
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 10px; /*was 30*/
+  margin-top:10px;
+}
+
+.close {
+  background: #FE8F2D;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #5F9BC6; }
+
+.info{
+  color: #33bbff;
+    margin-bottom: -49px;
+    font-size: 110%;  
+    margin-top: 81px;
+    text-align: center;
+    text-shadow: 0px 3px 5px rgba(150, 150, 150, 0.5);
+}
+
+.hovera{
+  color:#5F9BC6;
+  cursor:pointer;
+}
+
+.hovera:hover{
+  color:#FE8F2D;
+  cursor:pointer;
+}
+
 /*MEDIA QUERIES*/
 
 @media (max-width: 1169px) {

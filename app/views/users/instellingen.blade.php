@@ -25,7 +25,7 @@
 			</div>
 			<div id="badgeright">
 				Deals gedoneerd: {{$dealsVerkocht}} <br>
-				Deals geclaimed: {{$dealsGekocht}}
+				Deals geclaimd: {{$dealsGekocht}}
 			</div>
 			<div id="useritem">
 				<img src="{{'/css/img/home.png'}}" alt=""><br>
