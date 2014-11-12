@@ -30,7 +30,7 @@
 			<p>
 				{{ Form::label('porties','Aantal Porties:')}}
 			<span class="ccustom-dropdown cfixdev cwidthfix">
-				{{  Form::selectRange('porties', 1, 20, null, array('class' => 'ccustom-dropdown__select'))}}
+				{{  Form::selectRange('porties', 1, 5, null, array('class' => 'ccustom-dropdown__select'))}}
 			</span>			
 			</p>
 
